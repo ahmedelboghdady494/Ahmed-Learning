@@ -1,158 +1,801 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ahmed Academy | Grade 9 Math</title>
+<title>Ahmed Academy | Grade 9 Math</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
-    body {
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    nav {
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #111827;
-      padding-left: 8%;
-      padding-right: 8%;
-    }
+body {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+/* NAVIGATION */
+nav {
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111827;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-    .hero {
-      padding: 100px 20px;
-    }
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
 
-    h1 {
-      font-size: 50px;
-      margin-bottom: 20px;
-    }
+.nav-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    .hero p {
-      font-size: 20px;
-      color: #cbd5e1;
-      margin-bottom: 30px;
-    }
+.nav-links button {
+  background: transparent;
+  padding: 9px 12px;
+  font-size: 14px;
+}
 
-    button {
-      background: #2563eb;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
+.nav-links button:hover {
+  background: #1e293b;
+}
 
-    button:hover {
-      background: #1d4ed8;
-    }
+/* BUTTONS */
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    .features {
-      padding: 50px 10%;
-    }
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
 
-    .features h2 {
-      margin-bottom: 30px;
-      font-size: 32px;
-    }
+/* HERO */
+.hero {
+  padding: 100px 20px 80px;
+}
 
-    .cards {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
 
-    .card {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
-      width: 250px;
-    }
+.hero p {
+  font-size: 20px;
+  color: #cbd5e1;
+  margin-bottom: 30px;
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-    }
+/* HOME FEATURES */
+.features {
+  padding: 50px 10%;
+}
 
-    footer {
-      padding: 30px;
-      margin-top: 40px;
-      background: #111827;
-      color: #94a3b8;
-    }
-  </style>
+.features h2 {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 15px;
+  width: 250px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: #263449;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #cbd5e1;
+}
+
+/* PAGES */
+.page {
+  display: none;
+  padding: 70px 20px;
+  min-height: 65vh;
+}
+
+.page.active {
+  display: block;
+}
+
+.page h2 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.page-intro {
+  color: #cbd5e1;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+/* LESSONS */
+.lesson-list {
+  max-width: 800px;
+  margin: auto;
+  background: #1e293b;
+  padding: 15px 30px;
+  border-radius: 18px;
+  text-align: left;
+}
+
+.lesson {
+  padding: 22px 10px;
+  border-bottom: 1px solid #334155;
+  cursor: pointer;
+}
+
+.lesson:last-child {
+  border-bottom: none;
+}
+
+.lesson:hover {
+  background: #263449;
+}
+
+.lesson h3 {
+  margin-bottom: 8px;
+}
+
+.lesson p {
+  color: #cbd5e1;
+}
+
+/* QUIZ */
+.quiz-box {
+  max-width: 800px;
+  margin: auto;
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 18px;
+  text-align: left;
+}
+
+.quiz-question {
+  margin-bottom: 35px;
+}
+
+.quiz-question h3 {
+  margin-bottom: 15px;
+}
+
+.quiz-question button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  text-align: left;
+  padding: 13px 18px;
+  font-size: 16px;
+}
+
+.quiz-result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* PROGRESS */
+.progress-box {
+  max-width: 800px;
+  margin: auto;
+  background: #1e293b;
+  padding: 35px;
+  border-radius: 18px;
+  text-align: left;
+}
+
+.progress-bar {
+  height: 24px;
+  background: #334155;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 18px 0 25px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 35%;
+  background: #2563eb;
+  border-radius: 20px;
+}
+
+/* CHALLENGES */
+.challenge-box {
+  max-width: 800px;
+  margin: auto;
+  background: #1e293b;
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.challenge-box p {
+  color: #cbd5e1;
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.answer {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* BACK BUTTON */
+.back {
+  margin-top: 30px;
+  background: #475569;
+}
+
+.back:hover {
+  background: #64748b;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  margin-top: 40px;
+  background: #111827;
+  color: #94a3b8;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .nav-links button {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="logo">🎓 Ahmed Academy</div>
-    <div>Grade 9 Advanced Math</div>
-  </nav>
+<!-- NAVIGATION -->
+<nav>
 
-  <section class="hero">
-    <h1>Learn Math. Be Brilliant. 🚀</h1>
+  <div class="logo">
+    🎓 Ahmed Academy
+  </div>
+
+  <div>
+    Grade 9 Advanced Math
+  </div>
+
+  <div class="nav-links">
+
+    <button onclick="showPage('home')">
+      Home
+    </button>
+
+    <button onclick="showPage('lessons')">
+      Lessons
+    </button>
+
+    <button onclick="showPage('quizzes')">
+      Quizzes
+    </button>
+
+    <button onclick="showPage('progress')">
+      Progress
+    </button>
+
+    <button onclick="showPage('challenges')">
+      Challenges
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <h1>
+      Learn Math. Be Brilliant. 🚀
+    </h1>
 
     <p>
       A learning platform for Grade 9 Advanced Mathematics
       – UAE Curriculum 🇦🇪
     </p>
 
-    <button onclick="alert('Welcome to Ahmed Academy!')">
+    <button onclick="showPage('lessons')">
       Start Learning
     </button>
-  </section>
 
-  <section class="features">
+  </div>
 
-    <h2>Everything You Need 📚</h2>
+
+  <div class="features">
+
+    <h2>
+      Everything You Need 📚
+    </h2>
 
     <div class="cards">
 
-      <div class="card">
-        <h3>📖 Lessons</h3>
-        <p>Learn step by step.</p>
+      <div class="card" onclick="showPage('lessons')">
+
+        <h3>
+          📖 Lessons
+        </h3>
+
+        <p>
+          Learn step by step.
+        </p>
+
       </div>
 
-      <div class="card">
-        <h3>📝 Quizzes</h3>
-        <p>Test your knowledge.</p>
+
+      <div class="card" onclick="showPage('quizzes')">
+
+        <h3>
+          📝 Quizzes
+        </h3>
+
+        <p>
+          Test your knowledge.
+        </p>
+
       </div>
 
-      <div class="card">
-        <h3>📊 Progress</h3>
-        <p>Track your improvement.</p>
+
+      <div class="card" onclick="showPage('progress')">
+
+        <h3>
+          📊 Progress
+        </h3>
+
+        <p>
+          Track your improvement.
+        </p>
+
       </div>
 
-      <div class="card">
-        <h3>🏆 Challenges</h3>
-        <p>Challenge yourself.</p>
+
+      <div class="card" onclick="showPage('challenges')">
+
+        <h3>
+          🏆 Challenges
+        </h3>
+
+        <p>
+          Challenge yourself.
+        </p>
+
       </div>
 
     </div>
 
-  </section>
+  </div>
 
-  <footer>
-    © 2026 Ahmed Academy | Founder: Ahmed 👑
-  </footer>
+</section>
+
+
+<!-- LESSONS -->
+<section id="lessons" class="page">
+
+  <h2>
+    📖 Lessons
+  </h2>
+
+  <p class="page-intro">
+    Choose a lesson and start learning step by step.
+  </p>
+
+
+  <div class="lesson-list">
+
+    <div class="lesson"
+         onclick="lessonMessage('Algebra Basics')">
+
+      <h3>
+        Lesson 1 — Algebra Basics
+      </h3>
+
+      <p>
+        Variables, expressions and simplifying algebraic expressions.
+      </p>
+
+    </div>
+
+
+    <div class="lesson"
+         onclick="lessonMessage('Linear Equations')">
+
+      <h3>
+        Lesson 2 — Linear Equations
+      </h3>
+
+      <p>
+        Solve one-step and multi-step equations.
+      </p>
+
+    </div>
+
+
+    <div class="lesson"
+         onclick="lessonMessage('Functions')">
+
+      <h3>
+        Lesson 3 — Functions
+      </h3>
+
+      <p>
+        Understand functions, inputs, outputs and graphs.
+      </p>
+
+    </div>
+
+
+    <div class="lesson"
+         onclick="lessonMessage('Geometry')">
+
+      <h3>
+        Lesson 4 — Geometry
+      </h3>
+
+      <p>
+        Angles, triangles and important geometric relationships.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <button class="back"
+          onclick="showPage('home')">
+
+    ← Back Home
+
+  </button>
+
+</section>
+
+
+<!-- QUIZZES -->
+<section id="quizzes" class="page">
+
+  <h2>
+    📝 Quizzes
+  </h2>
+
+  <p class="page-intro">
+    Test your math knowledge.
+  </p>
+
+
+  <div class="quiz-box">
+
+    <div class="quiz-question">
+
+      <h3>
+        1. What is 3x + 2x?
+      </h3>
+
+      <button onclick="answer(this,false)">
+        A) 5
+      </button>
+
+      <button onclick="answer(this,true)">
+        B) 5x
+      </button>
+
+      <button onclick="answer(this,false)">
+        C) 6x
+      </button>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+      <h3>
+        2. If x = 4, what is 2x + 3?
+      </h3>
+
+      <button onclick="answer(this,false)">
+        A) 7
+      </button>
+
+      <button onclick="answer(this,true)">
+        B) 11
+      </button>
+
+      <button onclick="answer(this,false)">
+        C) 14
+      </button>
+
+    </div>
+
+
+    <div class="quiz-question">
+
+      <h3>
+        3. What is 10 ÷ 2?
+      </h3>
+
+      <button onclick="answer(this,true)">
+        A) 5
+      </button>
+
+      <button onclick="answer(this,false)">
+        B) 8
+      </button>
+
+      <button onclick="answer(this,false)">
+        C) 20
+      </button>
+
+    </div>
+
+
+    <p id="quiz-result"
+       class="quiz-result">
+    </p>
+
+  </div>
+
+
+  <button class="back"
+          onclick="showPage('home')">
+
+    ← Back Home
+
+  </button>
+
+</section>
+
+
+<!-- PROGRESS -->
+<section id="progress" class="page">
+
+  <h2>
+    📊 Your Progress
+  </h2>
+
+  <p class="page-intro">
+    Keep learning and watch your progress grow.
+  </p>
+
+
+  <div class="progress-box">
+
+    <h3>
+      Overall Progress: 35%
+    </h3>
+
+
+    <div class="progress-bar">
+
+      <div class="progress-fill">
+      </div>
+
+    </div>
+
+
+    <p style="color:#cbd5e1;">
+      Lessons completed: 2 / 6
+    </p>
+
+
+    <p style="color:#cbd5e1; margin-top:10px;">
+      Quiz score: 80%
+    </p>
+
+  </div>
+
+
+  <button class="back"
+          onclick="showPage('home')">
+
+    ← Back Home
+
+  </button>
+
+</section>
+
+
+<!-- CHALLENGES -->
+<section id="challenges" class="page">
+
+  <h2>
+    🏆 Challenges
+  </h2>
+
+  <p class="page-intro">
+    Ready for a harder question?
+  </p>
+
+
+  <div class="challenge-box">
+
+    <h3>
+      🔥 Challenge of the Day
+    </h3>
+
+
+    <p>
+      If 2x + 7 = 19,
+      what is the value of x?
+    </p>
+
+
+    <button onclick="challengeAnswer()">
+      Show Answer
+    </button>
+
+
+    <div id="challenge-answer"
+         class="answer">
+    </div>
+
+  </div>
+
+
+  <button class="back"
+          onclick="showPage('home')">
+
+    ← Back Home
+
+  </button>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  © 2026 Ahmed Academy |
+  Founder: Ahmed 👑
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+function showPage(pageId) {
+
+  const pages =
+    document.querySelectorAll(".page");
+
+  pages.forEach(function(page) {
+
+    page.classList.remove("active");
+
+  });
+
+
+  const selectedPage =
+    document.getElementById(pageId);
+
+
+  if (selectedPage) {
+
+    selectedPage.classList.add("active");
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* LESSON CLICK */
+
+function lessonMessage(lesson) {
+
+  alert(
+    "📖 " + lesson +
+    "\n\nThis lesson is ready for Ahmed Academy!"
+  );
+
+}
+
+
+/* QUIZ */
+
+function answer(button, correct) {
+
+  if (correct) {
+
+    button.style.background = "#16a34a";
+
+    document.getElementById("quiz-result").innerHTML =
+      "✅ Correct! Excellent work!";
+
+  } else {
+
+    button.style.background = "#dc2626";
+
+    document.getElementById("quiz-result").innerHTML =
+      "❌ Not quite. Try again!";
+
+  }
+
+}
+
+
+/* CHALLENGE */
+
+function challengeAnswer() {
+
+  document.getElementById(
+    "challenge-answer"
+  ).innerHTML =
+    "✅ x = 6";
+
+}
+
+</script>
 
 </body>
 </html>
+```
