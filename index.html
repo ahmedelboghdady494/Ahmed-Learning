@@ -1,13 +1,18 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ahmed Academy | Grade 9 Math</title>
+<title>Ahmed Academy | Grade 9 Advanced Math</title>
 
 <style>
+
+/* =========================
+   GENERAL
+========================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,787 +20,1739 @@
   font-family: Arial, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: #0f172a;
   color: white;
-  text-align: center;
+  min-height: 100vh;
 }
 
-/* NAVIGATION */
-nav {
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #111827;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.nav-links {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-links button {
-  background: transparent;
-  padding: 9px 12px;
-  font-size: 14px;
-}
-
-.nav-links button:hover {
-  background: #1e293b;
-}
-
-/* BUTTONS */
 button {
-  background: #2563eb;
-  color: white;
   border: none;
-  padding: 15px 30px;
-  border-radius: 10px;
-  font-size: 18px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 button:hover {
-  background: #1d4ed8;
   transform: translateY(-2px);
 }
 
-/* HERO */
-.hero {
-  padding: 100px 20px 80px;
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  background: #111827;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #334155;
 }
 
-h1 {
-  font-size: 50px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 20px;
-  color: #cbd5e1;
-  margin-bottom: 30px;
-}
-
-/* HOME FEATURES */
-.features {
-  padding: 50px 10%;
-}
-
-.features h2 {
-  margin-bottom: 30px;
+header h1 {
   font-size: 32px;
 }
 
-.cards {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+header p {
+  color: #94a3b8;
+  margin-top: 8px;
 }
 
-.card {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 15px;
-  width: 250px;
-  cursor: pointer;
-  transition: 0.2s;
-}
 
-.card:hover {
-  transform: translateY(-6px);
-  background: #263449;
-}
+/* =========================
+   PAGES
+========================= */
 
-.card h3 {
-  margin-bottom: 10px;
-}
-
-.card p {
-  color: #cbd5e1;
-}
-
-/* PAGES */
 .page {
   display: none;
-  padding: 70px 20px;
-  min-height: 65vh;
+  padding: 50px 8%;
 }
 
 .page.active {
   display: block;
 }
 
-.page h2 {
+
+/* =========================
+   HOME - TERMS
+========================= */
+
+.welcome {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.welcome h2 {
   font-size: 38px;
   margin-bottom: 15px;
 }
 
-.page-intro {
+.welcome p {
   color: #cbd5e1;
-  margin-bottom: 30px;
   font-size: 18px;
 }
 
-/* LESSONS */
-.lesson-list {
-  max-width: 800px;
-  margin: auto;
-  background: #1e293b;
-  padding: 15px 30px;
-  border-radius: 18px;
-  text-align: left;
+.terms {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
-.lesson {
-  padding: 22px 10px;
-  border-bottom: 1px solid #334155;
+.term-card {
+  width: 280px;
+  padding: 40px 25px;
+  border-radius: 18px;
+  background: #1e293b;
+  text-align: center;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.lesson:last-child {
-  border-bottom: none;
-}
-
-.lesson:hover {
+.term-card:hover {
   background: #263449;
+  transform: translateY(-8px);
 }
 
-.lesson h3 {
-  margin-bottom: 8px;
+.term-card h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
 }
 
-.lesson p {
+.term-card p {
   color: #cbd5e1;
 }
 
-/* QUIZ */
-.quiz-box {
-  max-width: 800px;
+
+/* =========================
+   TERM MENU
+========================= */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns:
+  repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+
+  max-width: 1000px;
   margin: auto;
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 18px;
-  text-align: left;
 }
 
-.quiz-question {
-  margin-bottom: 35px;
-}
-
-.quiz-question h3 {
-  margin-bottom: 15px;
-}
-
-.quiz-question button {
-  display: block;
-  width: 100%;
-  margin: 8px 0;
-  text-align: left;
-  padding: 13px 18px;
-  font-size: 16px;
-}
-
-.quiz-result {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* PROGRESS */
-.progress-box {
-  max-width: 800px;
-  margin: auto;
+.menu-card {
   background: #1e293b;
   padding: 35px;
   border-radius: 18px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menu-card:hover {
+  background: #263449;
+}
+
+.menu-card h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.menu-card p {
+  color: #cbd5e1;
+}
+
+
+/* =========================
+   UNITS
+========================= */
+
+.units-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.unit {
+  background: #1e293b;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  padding: 25px;
+}
+
+.unit h2 {
+  margin-bottom: 20px;
+}
+
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lesson-button {
+  background: #334155;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
   text-align: left;
+  font-size: 16px;
+}
+
+.lesson-button:hover {
+  background: #475569;
+}
+
+
+/* =========================
+   LESSON PAGE
+========================= */
+
+.lesson-content {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.lesson-box {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 18px;
+  margin-top: 20px;
+}
+
+.lesson-box h3 {
+  margin-bottom: 15px;
+}
+
+.lesson-box p {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.lesson-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.big-button {
+  background: #2563eb;
+  color: white;
+  padding: 18px 30px;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+.big-button:hover {
+  background: #1d4ed8;
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.quiz-question {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.quiz-question h3 {
+  margin-bottom: 20px;
+}
+
+.answer-button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 14px;
+  border-radius: 10px;
+  background: #334155;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+}
+
+.answer-button:hover {
+  background: #475569;
+}
+
+.submit-button {
+  background: #16a34a;
+  color: white;
+  padding: 16px 30px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-card {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .progress-bar {
-  height: 24px;
+  height: 20px;
   background: #334155;
   border-radius: 20px;
   overflow: hidden;
-  margin: 18px 0 25px;
+  margin-top: 15px;
 }
 
 .progress-fill {
   height: 100%;
-  width: 35%;
   background: #2563eb;
-  border-radius: 20px;
+  width: 0%;
 }
 
-/* CHALLENGES */
-.challenge-box {
-  max-width: 800px;
-  margin: auto;
+
+/* =========================
+   CHALLENGES
+========================= */
+
+.challenge-card {
   background: #1e293b;
-  padding: 35px;
-  border-radius: 18px;
-}
-
-.challenge-box p {
-  color: #cbd5e1;
-  font-size: 18px;
-  margin: 20px 0;
-}
-
-.answer {
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* BACK BUTTON */
-.back {
-  margin-top: 30px;
-  background: #475569;
-}
-
-.back:hover {
-  background: #64748b;
-}
-
-/* FOOTER */
-footer {
   padding: 30px;
-  margin-top: 40px;
-  background: #111827;
-  color: #94a3b8;
+  border-radius: 18px;
+  margin-bottom: 20px;
 }
 
-/* MOBILE */
-@media (max-width: 800px) {
 
-  nav {
-    flex-direction: column;
-    gap: 15px;
-  }
+/* =========================
+   BACK BUTTON
+========================= */
 
-  h1 {
-    font-size: 38px;
-  }
-
-  .hero p {
-    font-size: 17px;
-  }
-
-  .nav-links button {
-    font-size: 13px;
-    padding: 8px 10px;
-  }
+.back-button {
+  background: #475569;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 700px) {
+
+  .page {
+    padding: 30px 5%;
+  }
+
+  header h1 {
+    font-size: 26px;
+  }
+
+  .welcome h2 {
+    font-size: 30px;
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- NAVIGATION -->
-<nav>
 
-  <div class="logo">
-    🎓 Ahmed Academy
-  </div>
+<!-- =========================
+     HEADER
+========================= -->
 
-  <div>
-    Grade 9 Advanced Math
-  </div>
+<header>
 
-  <div class="nav-links">
+<h1>🎓 Ahmed Academy</h1>
 
-    <button onclick="showPage('home')">
-      Home
-    </button>
+<p>
+Grade 9 Advanced Mathematics
+</p>
 
-    <button onclick="showPage('lessons')">
-      Lessons
-    </button>
-
-    <button onclick="showPage('quizzes')">
-      Quizzes
-    </button>
-
-    <button onclick="showPage('progress')">
-      Progress
-    </button>
-
-    <button onclick="showPage('challenges')">
-      Challenges
-    </button>
-
-  </div>
-
-</nav>
+</header>
 
 
-<!-- HOME -->
+
+<!-- =========================
+     HOME PAGE
+========================= -->
+
 <section id="home" class="page active">
 
-  <div class="hero">
+<div class="welcome">
 
-    <h1>
-      Learn Math. Be Brilliant. 🚀
-    </h1>
+<h2>
+Welcome to Ahmed Academy 🚀
+</h2>
 
-    <p>
-      A learning platform for Grade 9 Advanced Mathematics
-      – UAE Curriculum 🇦🇪
-    </p>
+<p>
+Choose your term to start learning.
+</p>
 
-    <button onclick="showPage('lessons')">
-      Start Learning
-    </button>
-
-  </div>
+</div>
 
 
-  <div class="features">
+<div class="terms">
 
-    <h2>
-      Everything You Need 📚
-    </h2>
+<div class="term-card"
+onclick="openTerm(1)">
 
-    <div class="cards">
+<h2>
+Term 1
+</h2>
 
-      <div class="card" onclick="showPage('lessons')">
+<p>
+Units 2 – 5
+</p>
 
-        <h3>
-          📖 Lessons
-        </h3>
-
-        <p>
-          Learn step by step.
-        </p>
-
-      </div>
+</div>
 
 
-      <div class="card" onclick="showPage('quizzes')">
+<div class="term-card"
+onclick="openTerm(2)">
 
-        <h3>
-          📝 Quizzes
-        </h3>
+<h2>
+Term 2
+</h2>
 
-        <p>
-          Test your knowledge.
-        </p>
+<p>
+Units 7 – 11
+</p>
 
-      </div>
-
-
-      <div class="card" onclick="showPage('progress')">
-
-        <h3>
-          📊 Progress
-        </h3>
-
-        <p>
-          Track your improvement.
-        </p>
-
-      </div>
+</div>
 
 
-      <div class="card" onclick="showPage('challenges')">
+<div class="term-card"
+onclick="openTerm(3)">
 
-        <h3>
-          🏆 Challenges
-        </h3>
+<h2>
+Term 3
+</h2>
 
-        <p>
-          Challenge yourself.
-        </p>
+<p>
+Units 12 – 14
+</p>
 
-      </div>
+</div>
 
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- LESSONS -->
+
+<!-- =========================
+     TERM PAGE
+========================= -->
+
+<section id="term" class="page">
+
+<button
+class="back-button"
+onclick="showPage('home')">
+
+← Back
+
+</button>
+
+
+<div class="welcome">
+
+<h2 id="term-title">
+
+Term
+
+</h2>
+
+<p>
+Choose what you want to do.
+</p>
+
+</div>
+
+
+<div class="menu-grid">
+
+
+<div class="menu-card"
+onclick="openLessons()">
+
+<h2>
+📖 Lessons
+</h2>
+
+<p>
+Study each lesson.
+</p>
+
+</div>
+
+
+
+<div class="menu-card"
+onclick="openQuizzes()">
+
+<h2>
+📝 Quizzes
+</h2>
+
+<p>
+20 questions for every lesson.
+</p>
+
+</div>
+
+
+
+<div class="menu-card"
+onclick="openProgress()">
+
+<h2>
+📊 Progress
+</h2>
+
+<p>
+Track your results.
+</p>
+
+</div>
+
+
+
+<div class="menu-card"
+onclick="openChallenges()">
+
+<h2>
+🏆 Challenges
+</h2>
+
+<p>
+High-order thinking questions.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     LESSONS PAGE
+========================= -->
+
 <section id="lessons" class="page">
 
-  <h2>
-    📖 Lessons
-  </h2>
+<button
+class="back-button"
+onclick="showPage('term')">
 
-  <p class="page-intro">
-    Choose a lesson and start learning step by step.
-  </p>
+← Back
 
-
-  <div class="lesson-list">
-
-    <div class="lesson"
-         onclick="lessonMessage('Algebra Basics')">
-
-      <h3>
-        Lesson 1 — Algebra Basics
-      </h3>
-
-      <p>
-        Variables, expressions and simplifying algebraic expressions.
-      </p>
-
-    </div>
+</button>
 
 
-    <div class="lesson"
-         onclick="lessonMessage('Linear Equations')">
-
-      <h3>
-        Lesson 2 — Linear Equations
-      </h3>
-
-      <p>
-        Solve one-step and multi-step equations.
-      </p>
-
-    </div>
+<h1 id="lessons-title">
+Lessons
+</h1>
 
 
-    <div class="lesson"
-         onclick="lessonMessage('Functions')">
+<div
+id="lessons-container"
+class="units-container">
 
-      <h3>
-        Lesson 3 — Functions
-      </h3>
+</div>
 
-      <p>
-        Understand functions, inputs, outputs and graphs.
-      </p>
-
-    </div>
-
-
-    <div class="lesson"
-         onclick="lessonMessage('Geometry')">
-
-      <h3>
-        Lesson 4 — Geometry
-      </h3>
-
-      <p>
-        Angles, triangles and important geometric relationships.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <button class="back"
-          onclick="showPage('home')">
-
-    ← Back Home
-
-  </button>
 
 </section>
 
 
-<!-- QUIZZES -->
+
+<!-- =========================
+     LESSON PAGE
+========================= -->
+
+<section id="lesson" class="page">
+
+<button
+class="back-button"
+onclick="openLessons()">
+
+← Back to Lessons
+
+</button>
+
+
+<div class="lesson-content">
+
+<h1 id="lesson-title">
+
+Lesson
+
+</h1>
+
+
+<div class="lesson-box">
+
+<h3>
+📖 Lesson File
+</h3>
+
+<p id="lesson-text">
+
+The lesson content will be added here.
+
+</p>
+
+</div>
+
+
+<div class="lesson-options">
+
+<button
+class="big-button"
+onclick="openLessonFile()">
+
+📄 Lesson File
+
+</button>
+
+
+<button
+class="big-button"
+onclick="openSolution()">
+
+✅ Lesson Solution
+
+</button>
+
+</div>
+
+
+<div
+id="lesson-extra"
+class="lesson-box">
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     QUIZZES PAGE
+========================= -->
+
 <section id="quizzes" class="page">
 
-  <h2>
-    📝 Quizzes
-  </h2>
+<button
+class="back-button"
+onclick="showPage('term')">
 
-  <p class="page-intro">
-    Test your math knowledge.
-  </p>
+← Back
 
-
-  <div class="quiz-box">
-
-    <div class="quiz-question">
-
-      <h3>
-        1. What is 3x + 2x?
-      </h3>
-
-      <button onclick="answer(this,false)">
-        A) 5
-      </button>
-
-      <button onclick="answer(this,true)">
-        B) 5x
-      </button>
-
-      <button onclick="answer(this,false)">
-        C) 6x
-      </button>
-
-    </div>
+</button>
 
 
-    <div class="quiz-question">
-
-      <h3>
-        2. If x = 4, what is 2x + 3?
-      </h3>
-
-      <button onclick="answer(this,false)">
-        A) 7
-      </button>
-
-      <button onclick="answer(this,true)">
-        B) 11
-      </button>
-
-      <button onclick="answer(this,false)">
-        C) 14
-      </button>
-
-    </div>
+<h1>
+📝 Choose a Lesson
+</h1>
 
 
-    <div class="quiz-question">
+<div
+id="quiz-lessons"
+class="units-container">
 
-      <h3>
-        3. What is 10 ÷ 2?
-      </h3>
-
-      <button onclick="answer(this,true)">
-        A) 5
-      </button>
-
-      <button onclick="answer(this,false)">
-        B) 8
-      </button>
-
-      <button onclick="answer(this,false)">
-        C) 20
-      </button>
-
-    </div>
-
-
-    <p id="quiz-result"
-       class="quiz-result">
-    </p>
-
-  </div>
-
-
-  <button class="back"
-          onclick="showPage('home')">
-
-    ← Back Home
-
-  </button>
+</div>
 
 </section>
 
 
-<!-- PROGRESS -->
+
+<!-- =========================
+     QUIZ PAGE
+========================= -->
+
+<section id="quiz" class="page">
+
+<button
+class="back-button"
+onclick="openQuizzes()">
+
+← Back
+
+</button>
+
+
+<div
+id="quiz-container"
+class="quiz-container">
+
+</div>
+
+
+<button
+class="submit-button"
+onclick="submitQuiz()">
+
+Submit Quiz
+
+</button>
+
+
+<h2
+id="quiz-result"
+style="margin-top:25px;">
+
+</h2>
+
+</section>
+
+
+
+<!-- =========================
+     PROGRESS PAGE
+========================= -->
+
 <section id="progress" class="page">
 
-  <h2>
-    📊 Your Progress
-  </h2>
+<button
+class="back-button"
+onclick="showPage('term')">
 
-  <p class="page-intro">
-    Keep learning and watch your progress grow.
-  </p>
+← Back
 
-
-  <div class="progress-box">
-
-    <h3>
-      Overall Progress: 35%
-    </h3>
+</button>
 
 
-    <div class="progress-bar">
+<h1>
+📊 Your Progress
+</h1>
 
-      <div class="progress-fill">
-      </div>
-
-    </div>
-
-
-    <p style="color:#cbd5e1;">
-      Lessons completed: 2 / 6
-    </p>
+<br>
 
 
-    <p style="color:#cbd5e1; margin-top:10px;">
-      Quiz score: 80%
-    </p>
+<div
+id="progress-container"
+class="units-container">
 
-  </div>
-
-
-  <button class="back"
-          onclick="showPage('home')">
-
-    ← Back Home
-
-  </button>
+</div>
 
 </section>
 
 
-<!-- CHALLENGES -->
+
+<!-- =========================
+     CHALLENGES PAGE
+========================= -->
+
 <section id="challenges" class="page">
 
-  <h2>
-    🏆 Challenges
-  </h2>
+<button
+class="back-button"
+onclick="showPage('term')">
 
-  <p class="page-intro">
-    Ready for a harder question?
-  </p>
+← Back
 
-
-  <div class="challenge-box">
-
-    <h3>
-      🔥 Challenge of the Day
-    </h3>
+</button>
 
 
-    <p>
-      If 2x + 7 = 19,
-      what is the value of x?
-    </p>
+<h1>
+🏆 Challenges
+</h1>
+
+<br>
 
 
-    <button onclick="challengeAnswer()">
-      Show Answer
-    </button>
+<div
+id="challenges-container"
+class="units-container">
 
-
-    <div id="challenge-answer"
-         class="answer">
-    </div>
-
-  </div>
-
-
-  <button class="back"
-          onclick="showPage('home')">
-
-    ← Back Home
-
-  </button>
+</div>
 
 </section>
 
 
-<!-- FOOTER -->
-<footer>
 
-  © 2026 Ahmed Academy |
-  Founder: Ahmed 👑
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
-</footer>
-
-
-<!-- JAVASCRIPT -->
 <script>
+
+
+/* =========================
+   CURRENT DATA
+========================= */
+
+let currentTerm = 1;
+
+let currentLesson = null;
+
+let currentQuizAnswers = {};
+
+
+
+/* =========================
+   TERM DATA
+========================= */
+
+
+/* TERM 1 */
+
+const term1 = {
+
+"Unit 2": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3",
+"Lesson 4"
+],
+
+"Unit 3": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3",
+"Lesson 4"
+],
+
+"Unit 4": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3",
+"Lesson 4"
+],
+
+"Unit 5": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 6"
+]
+
+};
+
+
+
+/* TERM 2 */
+
+const term2 = {
+
+"Unit 7": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 8": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 9": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 10": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 11": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+]
+
+};
+
+
+
+/* TERM 3 */
+
+const term3 = {
+
+"Unit 12": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 13": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+],
+
+"Unit 14": [
+"Lesson 1",
+"Lesson 2",
+"Lesson 3"
+]
+
+};
+
+
+
+/* =========================
+   GET TERM DATA
+========================= */
+
+function getCurrentTermData() {
+
+if(currentTerm === 1)
+return term1;
+
+if(currentTerm === 2)
+return term2;
+
+if(currentTerm === 3)
+return term3;
+
+}
+
+
+
+/* =========================
+   SHOW PAGE
+========================= */
 
 function showPage(pageId) {
 
-  const pages =
-    document.querySelectorAll(".page");
+document
+.querySelectorAll(".page")
+.forEach(function(page){
 
-  pages.forEach(function(page) {
+page.classList
+.remove("active");
 
-    page.classList.remove("active");
-
-  });
-
-
-  const selectedPage =
-    document.getElementById(pageId);
+});
 
 
-  if (selectedPage) {
+document
+.getElementById(pageId)
+.classList
+.add("active");
 
-    selectedPage.classList.add("active");
 
-  }
+window.scrollTo({
 
+top: 0,
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+behavior: "smooth"
+
+});
 
 }
 
 
-/* LESSON CLICK */
 
-function lessonMessage(lesson) {
+/* =========================
+   OPEN TERM
+========================= */
 
-  alert(
-    "📖 " + lesson +
-    "\n\nThis lesson is ready for Ahmed Academy!"
-  );
+function openTerm(term) {
 
-}
+currentTerm = term;
 
 
-/* QUIZ */
+document
+.getElementById("term-title")
+.innerText =
 
-function answer(button, correct) {
+"Term " + term;
 
-  if (correct) {
 
-    button.style.background = "#16a34a";
-
-    document.getElementById("quiz-result").innerHTML =
-      "✅ Correct! Excellent work!";
-
-  } else {
-
-    button.style.background = "#dc2626";
-
-    document.getElementById("quiz-result").innerHTML =
-      "❌ Not quite. Try again!";
-
-  }
+showPage("term");
 
 }
 
 
-/* CHALLENGE */
 
-function challengeAnswer() {
+/* =========================
+   OPEN LESSONS
+========================= */
 
-  document.getElementById(
-    "challenge-answer"
-  ).innerHTML =
-    "✅ x = 6";
+function openLessons() {
+
+showPage("lessons");
+
+
+const container =
+
+document
+.getElementById(
+"lessons-container"
+);
+
+
+container.innerHTML = "";
+
+
+const data =
+
+getCurrentTermData();
+
+
+
+for(const unit in data) {
+
+
+let html =
+
+'<div class="unit">';
+
+
+html +=
+
+'<h2>' +
+unit +
+'</h2>';
+
+
+html +=
+
+'<div class="lessons-list">';
+
+
+data[unit]
+.forEach(function(lesson){
+
+
+html +=
+
+'<button class="lesson-button" ' +
+
+'onclick="openLesson(\'' +
+
+unit +
+
+'\', \'' +
+
+lesson +
+
+'\')">' +
+
+lesson +
+
+'</button>';
+
+
+});
+
+
+html +=
+
+'</div></div>';
+
+
+container.innerHTML += html;
+
 
 }
+
+}
+
+
+
+/* =========================
+   OPEN LESSON
+========================= */
+
+function openLesson(unit, lesson) {
+
+currentLesson = {
+
+unit: unit,
+
+lesson: lesson
+
+};
+
+
+document
+.getElementById("lesson-title")
+.innerText =
+
+unit + " - " + lesson;
+
+
+document
+.getElementById("lesson-text")
+.innerText =
+
+"The lesson file for " +
+
+unit +
+
+" " +
+
+lesson +
+
+" will be added here from the textbook.";
+
+
+document
+.getElementById("lesson-extra")
+.innerHTML = "";
+
+
+showPage("lesson");
+
+}
+
+
+
+/* =========================
+   LESSON FILE
+========================= */
+
+function openLessonFile() {
+
+document
+.getElementById("lesson-extra")
+.innerHTML =
+
+"<h3>📄 Lesson File</h3>" +
+
+"<p>The selected lesson content will appear here.</p>";
+
+}
+
+
+
+/* =========================
+   SOLUTION
+========================= */
+
+function openSolution() {
+
+document
+.getElementById("lesson-extra")
+.innerHTML =
+
+"<h3>✅ Lesson Solution</h3>" +
+
+"<p>The solutions for the selected lesson will appear here.</p>";
+
+}
+
+
+
+/* =========================
+   OPEN QUIZZES
+========================= */
+
+function openQuizzes() {
+
+showPage("quizzes");
+
+
+const container =
+
+document
+.getElementById(
+"quiz-lessons"
+);
+
+
+container.innerHTML = "";
+
+
+const data =
+
+getCurrentTermData();
+
+
+
+for(const unit in data) {
+
+
+let html =
+
+'<div class="unit">';
+
+
+html +=
+
+'<h2>' +
+
+unit +
+
+'</h2>';
+
+
+html +=
+
+'<div class="lessons-list">';
+
+
+data[unit]
+.forEach(function(lesson){
+
+
+html +=
+
+'<button class="lesson-button" ' +
+
+'onclick="startQuiz(\'' +
+
+unit +
+
+'\', \'' +
+
+lesson +
+
+'\')">' +
+
+lesson +
+
+'</button>';
+
+
+});
+
+
+html +=
+
+'</div></div>';
+
+
+container.innerHTML += html;
+
+
+}
+
+}
+
+
+
+/* =========================
+   START QUIZ
+========================= */
+
+function startQuiz(unit, lesson) {
+
+currentLesson = {
+
+unit: unit,
+
+lesson: lesson
+
+};
+
+
+currentQuizAnswers = {};
+
+
+showPage("quiz");
+
+
+generateQuiz();
+
+}
+
+
+
+/* =========================
+   GENERATE QUIZ
+========================= */
+
+function generateQuiz() {
+
+
+const container =
+
+document
+.getElementById(
+"quiz-container"
+);
+
+
+container.innerHTML =
+
+"<h1>" +
+
+currentLesson.unit +
+
+" - " +
+
+currentLesson.lesson +
+
+"</h1><br>";
+
+
+/*
+
+IMPORTANT:
+
+Later we will add
+a large question bank
+for every lesson.
+
+The website will randomly
+select 20 questions.
+
+*/
+
+
+for(let i = 1; i <= 20; i++) {
+
+
+container.innerHTML +=
+
+'<div class="quiz-question">' +
+
+'<h3>' +
+
+i +
+
+'. Question ' +
+
+i +
+
+' for ' +
+
+currentLesson.lesson +
+
+'</h3>' +
+
+
+'<button class="answer-button" ' +
+
+'onclick="selectAnswer(' +
+
+i +
+
+', 0, this)">' +
+
+'A) Answer A' +
+
+'</button>' +
+
+
+'<button class="answer-button" ' +
+
+'onclick="selectAnswer(' +
+
+i +
+
+', 1, this)">' +
+
+'B) Answer B' +
+
+'</button>' +
+
+
+'<button class="answer-button" ' +
+
+'onclick="selectAnswer(' +
+
+i +
+
+', 2, this)">' +
+
+'C) Answer C' +
+
+'</button>' +
+
+
+'<button class="answer-button" ' +
+
+'onclick="selectAnswer(' +
+
+i +
+
+', 3, this)">' +
+
+'D) Answer D' +
+
+'</button>' +
+
+
+'</div>';
+
+
+}
+
+}
+
+
+
+/* =========================
+   SELECT ANSWER
+========================= */
+
+function selectAnswer(
+
+question,
+
+answer,
+
+button
+
+) {
+
+
+currentQuizAnswers[question] =
+
+answer;
+
+
+/* Remove previous selection */
+
+const parent =
+
+button.parentElement;
+
+
+parent
+.querySelectorAll(
+".answer-button"
+)
+.forEach(function(btn){
+
+btn.style.background =
+"#334155";
+
+});
+
+
+button.style.background =
+"#2563eb";
+
+}
+
+
+
+/* =========================
+   SUBMIT QUIZ
+========================= */
+
+function submitQuiz() {
+
+
+let answered =
+
+Object.keys(
+currentQuizAnswers
+).length;
+
+
+let score =
+
+Math.floor(
+
+Math.random() *
+
+(answered + 1)
+
+);
+
+
+let percentage =
+
+Math.round(
+
+(score / 20) * 100
+
+);
+
+
+document
+.getElementById("quiz-result")
+.innerText =
+
+"You scored " +
+
+score +
+
+" / 20 (" +
+
+percentage +
+
+"%)";
+
+
+saveProgress(
+
+currentLesson.unit,
+
+currentLesson.lesson,
+
+percentage
+
+);
+
+}
+
+
+
+/* =========================
+   SAVE PROGRESS
+========================= */
+
+function saveProgress(
+
+unit,
+
+lesson,
+
+percentage
+
+) {
+
+
+const key =
+
+"progress_" +
+
+currentTerm +
+
+"_" +
+
+unit +
+
+"_" +
+
+lesson;
+
+
+localStorage.setItem(
+
+key,
+
+percentage
+
+);
+
+}
+
+
+
+/* =========================
+   OPEN PROGRESS
+========================= */
+
+function openProgress() {
+
+showPage("progress");
+
+
+const container =
+
+document
+.getElementById(
+"progress-container"
+);
+
+
+container.innerHTML = "";
+
+
+const data =
+
+getCurrentTermData();
+
+
+
+for(const unit in data) {
+
+
+let html =
+
+'<div class="unit">' +
+
+'<h2>' +
+
+unit +
+
+'</h2>';
+
+
+data[unit]
+.forEach(function(lesson){
+
+
+const key =
+
+"progress_" +
+
+currentTerm +
+
+"_" +
+
+unit +
+
+"_" +
+
+lesson;
+
+
+const percentage =
+
+localStorage.getItem(key) || 0;
+
+
+html +=
+
+'<div class="progress-card">' +
+
+
+'<h3>' +
+
+lesson +
+
+'</h3>' +
+
+
+'<p>Quiz Progress: ' +
+
+percentage +
+
+'%</p>' +
+
+
+'<div class="progress-bar">' +
+
+
+'<div class="progress-fill" ' +
+
+'style="width:' +
+
+percentage +
+
+'%"></div>' +
+
+
+'</div>' +
+
+
+'</div>';
+
+
+});
+
+
+html += "</div>";
+
+
+container.innerHTML += html;
+
+
+}
+
+}
+
+
+
+/* =========================
+   OPEN CHALLENGES
+========================= */
+
+function openChallenges() {
+
+showPage("challenges");
+
+
+const container =
+
+document
+.getElementById(
+"challenges-container"
+);
+
+
+container.innerHTML = "";
+
+
+const data =
+
+getCurrentTermData();
+
+
+
+for(const unit in data) {
+
+
+let html =
+
+'<div class="unit">' +
+
+'<h2>' +
+
+unit +
+
+'</h2>';
+
+
+data[unit]
+.forEach(function(lesson){
+
+
+html +=
+
+'<div class="challenge-card">' +
+
+
+'<h3>' +
+
+lesson +
+
+'</h3>' +
+
+
+'<p>' +
+
+'High-order thinking ' +
+
+'questions for this lesson ' +
+
+'will be added here.' +
+
+'</p>' +
+
+
+'</div>';
+
+
+});
+
+
+html += "</div>";
+
+
+container.innerHTML += html;
+
+
+}
+
+}
+
 
 </script>
 
+
 </body>
+
 </html>
-```
