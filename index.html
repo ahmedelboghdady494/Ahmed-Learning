@@ -1,4214 +1,1236 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+```html
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Ahmed Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Academy | Grade 9 Advanced Math</title>
 
 <style>
-:root{
-  --primary:#5b3fd1;
-  --dark:#19153d;
-  --background:#f6f7fb;
-  --card:#ffffff;
-  --text:#172033;
-  --muted:#64748b;
-  --line:#e5e7eb;
-}
-
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--background);
-  color:var(--text);
-}
-
-button,input,select{
-  font:inherit;
+    background:#0f172a;
+    color:#fff;
+    min-height:100vh;
 }
 
 button{
-  cursor:pointer;
-  border:0;
-  border-radius:12px;
-  padding:11px 16px;
-  font-weight:bold;
-}
-
-input{
-  width:100%;
-  padding:13px;
-  border:1px solid #d7dbe5;
-  border-radius:12px;
-  margin:7px 0;
+    cursor:pointer;
+    border:none;
 }
 
 .hidden{
-  display:none !important;
+    display:none !important;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    height:70px;
+    background:#111827;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 35px;
+    border-bottom:1px solid #263247;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#60a5fa;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-btn{
+    background:#1e293b;
+    color:white;
+    padding:10px 16px;
+    border-radius:9px;
+}
+
+.nav-btn:hover{
+    background:#334155;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#2563eb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+.page{
+    padding:45px 0;
+}
+
+/* ================= LOGIN ================= */
+
+.auth-screen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+.auth-box{
+    width:min(430px,100%);
+    background:#111827;
+    border:1px solid #263247;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.auth-logo{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.auth-logo span{
+    color:#60a5fa;
+}
+
+.auth-subtitle{
+    text-align:center;
+    color:#94a3b8;
+    margin-bottom:28px;
+}
+
+.input{
+    width:100%;
+    padding:14px;
+    margin-bottom:14px;
+    border-radius:10px;
+    border:1px solid #334155;
+    background:#0f172a;
+    color:white;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#3b82f6;
 }
 
 .primary{
-  background:var(--primary);
-  color:white;
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
 }
 
-.secondary{
-  background:#e9e7ff;
-  color:#3f2ca0;
+.primary:hover{
+    background:#1d4ed8;
 }
 
-.danger{
-  background:#ef4444;
-  color:white;
+.auth-switch{
+    text-align:center;
+    margin-top:20px;
+    color:#94a3b8;
 }
 
-/* LOGIN */
-
-#login{
-  min-height:100vh;
-  display:grid;
-  place-items:center;
-  padding:20px;
-
-  background:linear-gradient(
-    135deg,
-    #1e1b4b,
-    #5b3fd1,
-    #0ea5e9
-  );
+.link{
+    color:#60a5fa;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.loginbox{
-  width:min(430px,100%);
-  background:white;
-  border-radius:24px;
-  padding:32px;
-  box-shadow:0 25px 70px #0004;
-}
-
-.loginbox h1{
-  text-align:center;
-  margin:0 0 8px;
-}
-
-.loginbox p{
-  text-align:center;
-  color:var(--muted);
-}
-
-.remember{
-  font-size:14px;
-  color:var(--muted);
-  display:block;
-  margin:8px 0;
-}
-
-/* HEADER */
-
-header{
-  height:68px;
-  background:var(--dark);
-  color:white;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 5%;
-
-  position:sticky;
-  top:0;
-  z-index:5;
-}
-
-.logo{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.nav{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-
-.nav button{
-  padding:9px 12px;
-}
-
-select{
-  padding:9px;
-  border-radius:10px;
-  border:0;
-}
-
-/* MAIN */
-
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:30px 20px;
-}
+/* ================= HERO ================= */
 
 .hero{
-  text-align:center;
-  margin:10px 0 28px;
+    text-align:center;
+    padding:65px 20px 45px;
 }
 
 .hero h1{
-  margin-bottom:8px;
+    font-size:48px;
+    margin-bottom:15px;
 }
 
-/* GRIDS */
-
-.grid{
-  display:grid;
-  gap:18px;
+.hero h1 span{
+    color:#60a5fa;
 }
 
-.terms{
-  grid-template-columns:
-  repeat(auto-fit,minmax(230px,1fr));
+.hero p{
+    color:#94a3b8;
+    font-size:18px;
+    max-width:700px;
+    margin:auto;
+    line-height:1.6;
 }
 
-.cards{
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
+/* ================= TERMS ================= */
+
+.term-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin-top:35px;
 }
 
-.stats{
-  grid-template-columns:
-  repeat(auto-fit,minmax(150px,1fr));
-
-  margin:22px 0;
+.term-card{
+    background:#111827;
+    border:1px solid #263247;
+    border-radius:18px;
+    padding:35px 25px;
+    text-align:center;
+    transition:.25s;
 }
 
-/* CARDS */
-
-.card{
-  background:var(--card);
-
-  border:1px solid var(--line);
-
-  border-radius:20px;
-
-  padding:25px;
-
-  box-shadow:
-  0 8px 28px #1f29370a;
+.term-card:hover{
+    transform:translateY(-5px);
+    border-color:#3b82f6;
 }
 
-.card h2{
-  margin-top:0;
+.term-icon{
+    font-size:45px;
+    margin-bottom:15px;
 }
 
-.stat{
-  text-align:center;
+.term-card h2{
+    margin-bottom:10px;
 }
 
-.stat b{
-  font-size:28px;
-  color:var(--primary);
-  display:block;
+.term-card p{
+    color:#94a3b8;
+    margin-bottom:22px;
 }
 
-/* UNITS */
-
-.unit{
-  background:white;
-
-  border:1px solid var(--line);
-
-  border-radius:18px;
-
-  margin:14px 0;
-
-  overflow:hidden;
+.term-card button{
+    background:#2563eb;
+    color:white;
+    padding:12px 22px;
+    border-radius:9px;
 }
 
-.unit h2{
-  margin:0;
-
-  padding:16px 18px;
-
-  background:#211b52;
-
-  color:white;
-
-  font-size:17px;
-}
-
-.lesson{
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:12px;
-
-  align-items:center;
-
-  padding:15px 18px;
-
-  border-top:1px solid var(--line);
-}
-
-.lesson small{
-  color:var(--muted);
-}
-
-/* BACK */
+/* ================= TERM PAGE ================= */
 
 .back{
-  margin-bottom:15px;
-
-  background:#64748b;
-
-  color:white;
+    background:#1e293b;
+    color:white;
+    padding:10px 16px;
+    border-radius:9px;
+    margin-bottom:25px;
 }
 
-/* QUIZ GRID */
-
-.listgrid{
-  display:grid;
-
-  grid-template-columns:
-  repeat(auto-fit,minmax(140px,1fr));
-
-  gap:12px;
+.term-title{
+    font-size:36px;
+    margin-bottom:8px;
 }
 
-.item{
-  background:white;
-
-  border:1px solid var(--line);
-
-  padding:17px;
-
-  border-radius:15px;
-
-  text-align:center;
+.term-description{
+    color:#94a3b8;
+    margin-bottom:30px;
 }
 
-/* QUESTIONS */
-
-.question{
-  background:white;
-
-  border:1px solid var(--line);
-
-  border-radius:16px;
-
-  padding:20px;
-
-  margin:14px 0;
+.section-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
 }
 
-.opt{
-  display:block;
-
-  width:100%;
-
-  text-align:left;
-
-  background:#f1f5f9;
-
-  color:#172033;
-
-  margin:8px 0;
+.section-card{
+    background:#111827;
+    border:1px solid #263247;
+    border-radius:16px;
+    padding:27px 18px;
+    text-align:center;
+    transition:.2s;
 }
 
-.opt.selected{
-  outline:3px solid #a5b4fc;
-
-  background:#e9e7ff;
+.section-card:hover{
+    transform:translateY(-4px);
+    border-color:#60a5fa;
 }
 
-/* PROGRESS */
-
-.score{
-  font-weight:bold;
-  color:var(--primary);
+.section-card .icon{
+    font-size:38px;
+    margin-bottom:12px;
 }
 
-/* NOTICE */
-
-.notice{
-  background:#fff7ed;
-
-  border:1px solid #fed7aa;
-
-  padding:14px;
-
-  border-radius:12px;
-
-  color:#9a3412;
+.section-card p{
+    color:#94a3b8;
+    font-size:14px;
+    margin-top:8px;
 }
 
-/* TABLE */
+/* ================= CONTENT ================= */
 
-table{
-  width:100%;
-
-  border-collapse:collapse;
-
-  background:white;
+.content-box{
+    background:#111827;
+    border:1px solid #263247;
+    border-radius:16px;
+    padding:25px;
+    margin-top:25px;
 }
 
-th,
-td{
-  border:1px solid var(--line);
-
-  padding:11px;
-
-  text-align:start;
+.unit{
+    border:1px solid #263247;
+    border-radius:12px;
+    margin-bottom:15px;
+    overflow:hidden;
 }
 
-th{
-  background:#f1f5f9;
+.unit-header{
+    padding:17px;
+    background:#172033;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* RTL */
-
-[dir="rtl"] .opt{
-  text-align:right;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-header{
-  padding:0 12px;
-}
-
-.logo{
-  font-size:16px;
-}
-
-.nav{
-  gap:4px;
-}
-
-.nav button{
-  padding:7px;
+.lesson-list{
+    padding:12px;
 }
 
 .lesson{
-  align-items:flex-start;
-  flex-direction:column;
+    padding:13px 15px;
+    background:#0f172a;
+    border-radius:8px;
+    margin-bottom:8px;
+    cursor:pointer;
 }
 
+.lesson:hover{
+    background:#1e293b;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-box{
+    max-width:650px;
+    margin:auto;
+    background:#111827;
+    border:1px solid #263247;
+    border-radius:18px;
+    padding:30px;
+}
+
+.profile-avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    font-weight:bold;
+    margin:0 auto 20px;
+}
+
+.profile-name{
+    text-align:center;
+    font-size:25px;
+}
+
+.profile-email{
+    text-align:center;
+    color:#94a3b8;
+    margin-top:7px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:850px){
+    .term-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero h1{
+        font-size:37px;
+    }
+}
+
+@media(max-width:500px){
+    nav{
+        padding:0 15px;
+    }
+
+    .section-grid{
+        grid-template-columns:1fr;
+    }
+
+    .nav-btn{
+        padding:8px 10px;
+        font-size:13px;
+    }
 }
 </style>
 </head>
 
-
 <body>
 
+<!-- ================= LOGIN ================= -->
 
-<!-- LOGIN PAGE -->
+<div id="authScreen" class="auth-screen">
 
-<section id="login">
+    <div class="auth-box">
 
-<div class="loginbox">
+        <div class="auth-logo">
+            Ahmed <span>Academy</span>
+        </div>
 
-<h1>🎓 Ahmed Academy</h1>
+        <div class="auth-subtitle">
+            Grade 9 Advanced Mathematics
+        </div>
 
-<p>Sign in to continue</p>
+        <!-- LOGIN -->
 
-<input
-id="username"
-placeholder="Username"
-autocomplete="username"
->
+        <div id="loginForm">
 
-<input
-id="password"
-type="password"
-placeholder="Password"
-autocomplete="current-password"
->
+            <h2 style="margin-bottom:18px;">Welcome Back 👋</h2>
 
-<label class="remember">
+            <input
+                id="loginEmail"
+                class="input"
+                type="email"
+                placeholder="Email"
+            >
 
-<input
-id="remember"
-type="checkbox"
-style="width:auto"
->
+            <input
+                id="loginPassword"
+                class="input"
+                type="password"
+                placeholder="Password"
+            >
 
-Remember me on this device
+            <button class="primary" onclick="login()">
+                Login
+            </button>
 
-</label>
+            <div class="auth-switch">
+                Don't have an account?
+                <span class="link" onclick="showRegister()">
+                    Create Account
+                </span>
+            </div>
 
-<button
-class="primary"
-style="width:100%"
-onclick="login()"
->
+        </div>
 
-Login
+        <!-- REGISTER -->
 
-</button>
+        <div id="registerForm" class="hidden">
 
-<p style="font-size:12px">
+            <h2 style="margin-bottom:18px;">Create Account 🚀</h2>
 
-Demo version
+            <input
+                id="registerName"
+                class="input"
+                type="text"
+                placeholder="Full Name"
+            >
 
-</p>
+            <input
+                id="registerEmail"
+                class="input"
+                type="email"
+                placeholder="Email"
+            >
 
-</div>
+            <input
+                id="registerPassword"
+                class="input"
+                type="password"
+                placeholder="Password"
+            >
 
-</section>
+            <button class="primary" onclick="register()">
+                Create Account
+            </button>
 
+            <div class="auth-switch">
+                Already have an account?
+                <span class="link" onclick="showLogin()">
+                    Login
+                </span>
+            </div>
 
+        </div>
 
-<!-- WEBSITE -->
-
-<div id="app" class="hidden">
-
-
-<header>
-
-<div class="logo">
-
-🎓 Ahmed Academy
-
-</div>
-
-
-<div class="nav">
-
-
-<select
-id="lang"
-onchange="setLang(this.value)"
->
-
-<option value="en">
-
-English
-
-</option>
-
-<option value="ar">
-
-العربية
-
-</option>
-
-</select>
-
-
-<button
-class="secondary hidden"
-id="teacherNav"
-onclick="showAdmin()"
->
-
-Teacher
-
-</button>
-
-
-<button
-class="secondary"
-onclick="goHome()"
->
-
-Home
-
-</button>
-
-
-<button
-class="danger"
-onclick="logout()"
->
-
-Logout
-
-</button>
-
+    </div>
 
 </div>
 
-</header>
+
+<!-- ================= WEBSITE ================= -->
+
+<div id="website" class="hidden">
+
+<nav>
+
+    <div class="logo">
+        Ahmed <span>Academy</span>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="nav-btn" onclick="showHome()">
+            Home
+        </button>
+
+        <button class="nav-btn" onclick="showProfile()">
+            Profile
+        </button>
+
+        <div id="avatar" class="avatar">
+            A
+        </div>
+
+        <button class="nav-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</nav>
 
 
+<!-- ================= HOME ================= -->
 
-<main class="container">
+<div id="homePage" class="page">
 
+    <div class="container">
 
+        <section class="hero">
 
-<!-- HOME -->
+            <h1>
+                Learn Math.
+                <span>Be Brilliant.</span> 🚀
+            </h1>
 
-<section id="home">
+            <p>
+                Welcome to Ahmed Academy —
+                your learning platform for
+                Grade 9 Advanced Mathematics,
+                UAE Curriculum 🇦🇪
+            </p>
 
-
-<div class="hero">
-
-<h1 id="homeTitle">
-
-Welcome to Ahmed Academy 🚀
-
-</h1>
-
-<p id="homeSub">
-
-Choose a term to start learning.
-
-</p>
-
-</div>
+        </section>
 
 
+        <h2 style="text-align:center;">
+            Choose Your Term
+        </h2>
 
-<div class="grid stats">
+        <div class="term-grid">
 
+            <div class="term-card">
 
-<div class="card stat">
+                <div class="term-icon">📘</div>
 
-<b>3</b>
+                <h2>Term 1</h2>
 
-<span id="sTerms">
+                <p>
+                    Learn the lessons and
+                    activities included in Term 1.
+                </p>
 
-Terms
+                <button onclick="openTerm(1)">
+                    Enter Term 1
+                </button>
 
-</span>
-
-</div>
-
-
-
-<div class="card stat">
-
-<b>4</b>
-
-<span id="sModules">
-
-Modules in Term 1
-
-</span>
-
-</div>
+            </div>
 
 
+            <div class="term-card">
 
-<div class="card stat">
+                <div class="term-icon">📗</div>
 
-<b id="lessonTotal">
+                <h2>Term 2</h2>
 
-25
+                <p>
+                    Continue your Grade 9
+                    Advanced Math journey.
+                </p>
 
-</b>
+                <button onclick="openTerm(2)">
+                    Enter Term 2
+                </button>
 
-<span id="sLessons">
-
-Lessons in Term 1
-
-</span>
-
-</div>
-
-
-</div>
+            </div>
 
 
+            <div class="term-card">
 
-<div
-class="grid terms"
-id="termCards"
->
+                <div class="term-icon">📕</div>
+
+                <h2>Term 3</h2>
+
+                <p>
+                    Complete the final term
+                    and challenge yourself.
+                </p>
+
+                <button onclick="openTerm(3)">
+                    Enter Term 3
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 
-</section>
+<!-- ================= TERM PAGE ================= -->
+
+<div id="termPage" class="page hidden">
+
+    <div class="container">
+
+        <button class="back" onclick="showHome()">
+            ← Back
+        </button>
+
+        <h1 id="termTitle" class="term-title">
+            Term 1
+        </h1>
+
+        <p class="term-description">
+            Choose what you want to study.
+        </p>
 
 
+        <div class="section-grid">
 
-<!-- TERM -->
+            <div class="section-card"
+                 onclick="openSection('challenges')">
 
-<section
-id="term"
-class="hidden"
->
+                <div class="icon">🔥</div>
 
+                <h2>Challenges</h2>
 
-<button
-class="back"
-onclick="goHome()"
->
+                <p>
+                    Higher-thinking questions
+                    to test your skills.
+                </p>
 
-← Back
-
-</button>
+            </div>
 
 
+            <div class="section-card"
+                 onclick="openSection('progress')">
 
-<div class="hero">
+                <div class="icon">📊</div>
 
-<h1 id="termTitle">
+                <h2>Progress</h2>
 
-Term 1
+                <p>
+                    Track your performance
+                    lesson by lesson.
+                </p>
 
-</h1>
-
-<p id="termSub">
-
-Choose a section
-
-</p>
-
-</div>
+            </div>
 
 
+            <div class="section-card"
+                 onclick="openSection('quizzes')">
 
-<div class="grid cards">
+                <div class="icon">📝</div>
 
+                <h2>Quizzes</h2>
 
-<!-- LESSONS -->
+                <p>
+                    Practice with questions
+                    for each lesson.
+                </p>
 
-<div class="card">
-
-<h2>
-
-📖 Lessons
-
-</h2>
-
-<p>
-
-Units and lesson files
-
-</p>
-
-<button
-class="primary"
-onclick="showLessons()"
->
-
-Open
-
-</button>
-
-</div>
+            </div>
 
 
+            <div class="section-card"
+                 onclick="openSection('lessons')">
 
-<!-- QUIZZES -->
+                <div class="icon">📚</div>
 
-<div class="card">
+                <h2>Lessons</h2>
 
-<h2>
+                <p>
+                    Study units and lessons
+                    from your textbook.
+                </p>
 
-📝 Quizzes
+            </div>
 
-</h2>
+        </div>
 
-<p>
-
-60 quizzes × 10 questions per lesson
-
-</p>
-
-<button
-class="primary"
-onclick="showQuizLessons()"
->
-
-Open
-
-</button>
+    </div>
 
 </div>
 
 
+<!-- ================= SECTION PAGE ================= -->
 
-<!-- CHALLENGES -->
+<div id="sectionPage" class="page hidden">
 
-<div class="card">
+    <div class="container">
 
-<h2>
+        <button class="back" onclick="backToTerm()">
+            ← Back
+        </button>
 
-🧠 Challenges
+        <h1 id="sectionTitle">
+            Lessons
+        </h1>
 
-</h2>
+        <div id="sectionContent" class="content-box"></div>
 
-<p>
-
-30 challenges × 10 questions per lesson
-
-</p>
-
-<button
-class="primary"
-onclick="showChallengeLessons()"
->
-
-Open
-
-</button>
+    </div>
 
 </div>
 
 
+<!-- ================= PROFILE ================= -->
 
-<!-- PROGRESS -->
+<div id="profilePage" class="page hidden">
 
-<div class="card">
+    <div class="container">
 
-<h2>
+        <button class="back" onclick="showHome()">
+            ← Back
+        </button>
 
-📊 Progress
+        <div class="profile-box">
 
-</h2>
+            <div id="profileAvatar" class="profile-avatar">
+                A
+            </div>
 
-<p>
+            <div id="profileName" class="profile-name">
+                Ahmed
+            </div>
 
-Every quiz has its own result
+            <div id="profileEmail" class="profile-email">
+                email@example.com
+            </div>
 
-</p>
+            <hr style="border-color:#263247;margin:25px 0;">
 
-<button
-class="primary"
-onclick="showProgress()"
->
+            <h3>Learning Profile</h3>
 
-Open
+            <p style="color:#94a3b8;margin-top:10px;">
+                Grade 9 Advanced Mathematics
+            </p>
 
-</button>
+        </div>
 
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- LESSONS -->
-
-<section
-id="lessons"
-class="hidden"
->
-
-<button
-class="back"
-onclick="showTerm()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1>
-
-📖 Lessons
-
-</h1>
+    </div>
 
 </div>
 
-
-<div id="lessonUnits">
-
 </div>
-
-
-</section>
-
-
-
-<!-- LESSON DETAIL -->
-
-<section
-id="lessonDetail"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showLessons()"
->
-
-← Back
-
-</button>
-
-
-<div class="card">
-
-
-<h1 id="lessonName">
-
-</h1>
-
-
-<p>
-
-Lesson materials
-
-</p>
-
-
-
-<div class="grid cards">
-
-
-<div class="card">
-
-<h2>
-
-📄 Practice PDF
-
-</h2>
-
-<p>
-
-Questions without solutions
-
-</p>
-
-<button
-class="primary"
-id="practiceBtn"
->
-
-Open PDF
-
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>
-
-✅ Solutions PDF
-
-</h2>
-
-<p>
-
-The same questions with solutions
-
-</p>
-
-<button
-class="primary"
-id="solutionBtn"
->
-
-Open PDF
-
-</button>
-
-</div>
-
-
-</div>
-
-
-
-<div class="notice">
-
-PDF files are not included yet.
-
-Later we will add them
-inside the GitHub project.
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- QUIZ LESSONS -->
-
-<section
-id="quizLessons"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showTerm()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1>
-
-📝 Quizzes
-
-</h1>
-
-<p>
-
-Choose Unit → Lesson
-
-</p>
-
-</div>
-
-
-<div id="quizUnits">
-
-</div>
-
-
-</section>
-
-
-
-<!-- QUIZ LIST -->
-
-<section
-id="quizList"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showQuizLessons()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1 id="quizListTitle">
-
-</h1>
-
-<p>
-
-Quiz 1 to Quiz 60
-
-</p>
-
-</div>
-
-
-<div
-id="quizGrid"
-class="listgrid"
->
-
-</div>
-
-
-</section>
-
-
-
-<!-- CHALLENGE LESSONS -->
-
-<section
-id="challengeLessons"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showTerm()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1>
-
-🧠 Challenges
-
-</h1>
-
-<p>
-
-Choose Unit → Lesson
-
-</p>
-
-</div>
-
-
-<div id="challengeUnits">
-
-</div>
-
-
-</section>
-
-
-
-<!-- CHALLENGE LIST -->
-
-<section
-id="challengeList"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showChallengeLessons()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1 id="challengeListTitle">
-
-</h1>
-
-<p>
-
-Challenge 1 to Challenge 30
-
-</p>
-
-</div>
-
-
-<div
-id="challengeGrid"
-class="listgrid"
->
-
-</div>
-
-
-</section>
-
-
-
-<!-- TEST -->
-
-<section
-id="test"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="backFromTest()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1 id="testTitle">
-
-</h1>
-
-<p id="testInfo">
-
-</p>
-
-</div>
-
-
-<div id="questions">
-
-</div>
-
-
-<button
-class="primary"
-onclick="finishTest()"
->
-
-Finish
-
-</button>
-
-
-</section>
-
-
-
-<!-- PROGRESS -->
-
-<section
-id="progress"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="showTerm()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1>
-
-📊 Progress
-
-</h1>
-
-<p>
-
-Each Quiz has its own result
-
-</p>
-
-</div>
-
-
-<div id="progressUnits">
-
-</div>
-
-
-</section>
-
-
-
-<!-- ADMIN -->
-
-<section
-id="admin"
-class="hidden"
->
-
-
-<button
-class="back"
-onclick="goHome()"
->
-
-← Back
-
-</button>
-
-
-<div class="hero">
-
-<h1>
-
-👨‍🏫 Teacher Dashboard
-
-</h1>
-
-<p>
-
-Teacher account only
-
-</p>
-
-</div>
-
-
-
-<div class="grid stats">
-
-
-<div class="card stat">
-
-<b id="visitCount">
-
-0
-
-</b>
-
-<span>
-
-Visits
-
-</span>
-
-</div>
-
-
-
-<div class="card stat">
-
-<b id="studentCount">
-
-0
-
-</b>
-
-<span>
-
-Local Students
-
-</span>
-
-</div>
-
-
-</div>
-
-
-
-<div class="card">
-
-<h2>
-
-Local Users
-
-</h2>
-
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-
-Username
-
-</th>
-
-<th>
-
-Type
-
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="userTable">
-
-</tbody>
-
-
-</table>
-
-
-</div>
-
-
-
-<div class="notice">
-
-GitHub Pages alone cannot create
-a real online database.
-
-This dashboard is currently local.
-
-</div>
-
-
-</section>
-
-
-
-</main>
-
-</div>
-
 
 
 <script>
 
-
-/* =========================
-
-TEACHER LOGIN
-
-========================= */
-
-
-/*
-
-IMPORTANT:
-
-This is NOT secure authentication.
-
-Because this is a static
-GitHub Pages website.
-
-Later we can connect
-a real database.
-
-*/
-
-
-const TEACHER_USERNAME = "AHMED";
-
-const TEACHER_PASSWORD = "Ahmed2012$";
-
-
-
-/* =========================
-
-MODULES AND LESSONS
-
-TERM 1
-
-========================= */
-
-
-const modules = [
-
-
-{
-
-unit:"Module 2: Equations in One Variable",
-
-lessons:[
-
-
-["2-1",
-"Writing and Interpreting Equations"],
-
-
-["2-2",
-"Solving One-Step Equations"],
-
-
-["2-3",
-"Solving Multi-Step Equations"],
-
-
-["2-4",
-"Solving Equations with the Variable on Each Side"],
-
-
-["2-5",
-"Solving Equations Involving Absolute Value"],
-
-
-["2-6",
-"Solving Proportions"],
-
-
-["2-7",
-"Using Formulas"]
-
-
-]
-
-
-},
-
-
-
-{
-
-unit:"Module 3: Relations and Functions",
-
-lessons:[
-
-
-["3-1",
-"Representing Relations"],
-
-
-["3-2",
-"Functions"],
-
-
-["3-3",
-"Linear and Continuous Graphs"],
-
-
-["3-4",
-"Intercepts of Graphs"],
-
-
-["3-5",
-"Shapes of Graphs"],
-
-
-["3-6",
-"Sketching Graphs and Comparing Functions"]
-
-
-]
-
-
-},
-
-
-
-{
-
-unit:"Module 4: Linear and Nonlinear Functions",
-
-lessons:[
-
-
-["4-1",
-"Graphing Linear Functions"],
-
-
-["4-2",
-"Rate of Change and Slope"],
-
-
-["4-3",
-"Proving the Slope Criteria"],
-
-
-["4-4",
-"Slope-Intercept Form"],
-
-
-["4-5",
-"Arithmetic Sequences"],
-
-
-["4-6",
-"Piecewise and Step Functions"],
-
-
-["4-7",
-"Absolute Value Functions"]
-
-
-]
-
-
-},
-
-
-
-{
-
-unit:"Module 5: Creating Linear Equations",
-
-lessons:[
-
-
-["5-3",
-"Scatter Plots and Lines of Fit"],
-
-
-["5-4",
-"Correlation and Causation"],
-
-
-["5-5",
-"Linear Regression"]
-
-
-]
-
-
-}
-
-
-];
-
-
-
-const totalLessons =
-modules.reduce(
-
-(a,u)=>a+u.lessons.length,
-
-0
-
-);
-
+/* =====================================================
+   TEMPORARY ACCOUNT SYSTEM
+   =====================================================
+
+   IMPORTANT:
+   This is only a temporary local version.
+
+   Later we will replace these functions with:
+   Firebase Authentication
+   + Firestore
+
+   That will make accounts real and online.
+===================================================== */
 
 
 let currentUser = null;
-
-let currentLesson = null;
-
-let currentKind = null;
-
-let currentNumber = null;
-
-let currentQuestions = [];
-
-let answers = {};
-
-let lang = "en";
+let currentTerm = null;
+let currentSection = null;
 
 
+/* ================= AUTH ================= */
 
-/* =========================
+function showRegister(){
 
-HELPER FUNCTIONS
+    document.getElementById("loginForm")
+        .classList.add("hidden");
 
-========================= */
-
-
-function $(id){
-
-return document.getElementById(id);
-
+    document.getElementById("registerForm")
+        .classList.remove("hidden");
 }
 
 
+function showLogin(){
 
-function hideAll(){
+    document.getElementById("registerForm")
+        .classList.add("hidden");
 
-document
-.querySelectorAll("main section")
-.forEach(
-
-section =>
-
-section.classList.add("hidden")
-
-);
-
+    document.getElementById("loginForm")
+        .classList.remove("hidden");
 }
 
 
+function register(){
 
-function show(id){
+    const name =
+        document.getElementById("registerName").value.trim();
 
-hideAll();
+    const email =
+        document.getElementById("registerEmail").value.trim();
 
-$(id)
-.classList
-.remove("hidden");
+    const password =
+        document.getElementById("registerPassword").value;
 
-window.scrollTo(0,0);
+    if(!name || !email || !password){
 
+        alert("Please fill in all fields.");
+
+        return;
+    }
+
+    if(password.length < 6){
+
+        alert("Password must be at least 6 characters.");
+
+        return;
+    }
+
+    const user = {
+        name:name,
+        email:email,
+        password:password
+    };
+
+    localStorage.setItem(
+        "ahmedAcademyUser",
+        JSON.stringify(user)
+    );
+
+    currentUser = user;
+
+    enterWebsite();
 }
-
-
-
-/* =========================
-
-INITIALIZE
-
-========================= */
-
-
-function init(){
-
-
-$("lessonTotal")
-.textContent =
-totalLessons;
-
-
-
-let visits =
-Number(
-localStorage.getItem(
-"aa_visits"
-) || 0
-);
-
-
-visits++;
-
-
-localStorage.setItem(
-
-"aa_visits",
-
-visits
-
-);
-
-
-
-renderTerms();
-
-
-
-const saved =
-localStorage.getItem(
-"aa_remember"
-);
-
-
-
-if(saved){
-
-
-try{
-
-
-currentUser =
-JSON.parse(saved);
-
-
-$("login")
-.classList
-.add("hidden");
-
-
-$("app")
-.classList
-.remove("hidden");
-
-
-
-if(currentUser.teacher){
-
-$("teacherNav")
-.classList
-.remove("hidden");
-
-}
-
-
-goHome();
-
-
-}
-
-
-catch(error){
-
-
-console.log(error);
-
-
-}
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-LOGIN
-
-========================= */
 
 
 function login(){
 
+    const email =
+        document.getElementById("loginEmail").value.trim();
 
-const username =
-$("username")
-.value
-.trim();
+    const password =
+        document.getElementById("loginPassword").value;
 
+    const saved =
+        localStorage.getItem("ahmedAcademyUser");
 
-const password =
-$("password")
-.value;
+    if(!saved){
 
+        alert("No account found. Please create an account first.");
 
+        return;
+    }
 
-if(
+    const user = JSON.parse(saved);
 
-!username ||
+    if(user.email !== email ||
+       user.password !== password){
 
-!password
+        alert("Incorrect email or password.");
 
-){
+        return;
+    }
 
+    currentUser = user;
 
-alert(
-
-"Enter username and password."
-
-);
-
-
-return;
-
-
+    enterWebsite();
 }
-
-
-
-const teacher =
-
-username === TEACHER_USERNAME &&
-
-password === TEACHER_PASSWORD;
-
-
-
-currentUser = {
-
-username:username,
-
-teacher:teacher
-
-};
-
-
-
-let users =
-JSON.parse(
-
-localStorage.getItem(
-"aa_users"
-) || "[]"
-
-);
-
-
-
-if(
-
-!users.some(
-
-user =>
-
-user.username === username
-
-)
-
-){
-
-
-users.push({
-
-username:username,
-
-teacher:teacher
-
-});
-
-
-}
-
-
-
-localStorage.setItem(
-
-"aa_users",
-
-JSON.stringify(users)
-
-);
-
-
-
-if(
-
-$("remember").checked
-
-){
-
-
-localStorage.setItem(
-
-"aa_remember",
-
-JSON.stringify(currentUser)
-
-);
-
-
-}
-
-else{
-
-
-localStorage.removeItem(
-"aa_remember"
-);
-
-
-}
-
-
-
-$("login")
-.classList
-.add("hidden");
-
-
-$("app")
-.classList
-.remove("hidden");
-
-
-
-if(teacher){
-
-
-$("teacherNav")
-.classList
-.remove("hidden");
-
-
-}
-
-
-
-goHome();
-
-
-}
-
-
-
-/* =========================
-
-LOGOUT
-
-========================= */
 
 
 function logout(){
 
+    currentUser = null;
 
-localStorage.removeItem(
-"aa_remember"
-);
+    document.getElementById("website")
+        .classList.add("hidden");
 
+    document.getElementById("authScreen")
+        .classList.remove("hidden");
 
-currentUser = null;
-
-
-
-$("app")
-.classList
-.add("hidden");
+    showLogin();
+}
 
 
-$("login")
-.classList
-.remove("hidden");
+/* ================= WEBSITE ================= */
+
+function enterWebsite(){
+
+    document.getElementById("authScreen")
+        .classList.add("hidden");
+
+    document.getElementById("website")
+        .classList.remove("hidden");
+
+    updateProfile();
+
+    showHome();
+}
 
 
-$("teacherNav")
-.classList
-.add("hidden");
+function hideAllPages(){
 
+    document.getElementById("homePage")
+        .classList.add("hidden");
+
+    document.getElementById("termPage")
+        .classList.add("hidden");
+
+    document.getElementById("sectionPage")
+        .classList.add("hidden");
+
+    document.getElementById("profilePage")
+        .classList.add("hidden");
+}
+
+
+function showHome(){
+
+    hideAllPages();
+
+    document.getElementById("homePage")
+        .classList.remove("hidden");
+}
+
+
+function showProfile(){
+
+    hideAllPages();
+
+    document.getElementById("profilePage")
+        .classList.remove("hidden");
+
+    updateProfile();
+}
+
+
+/* ================= TERMS ================= */
+
+function openTerm(term){
+
+    currentTerm = term;
+
+    hideAllPages();
+
+    document.getElementById("termPage")
+        .classList.remove("hidden");
+
+    document.getElementById("termTitle")
+        .innerText = "Term " + term;
+}
+
+
+function backToTerm(){
+
+    openTerm(currentTerm);
+}
+
+
+/* ================= SECTIONS ================= */
+
+function openSection(section){
+
+    currentSection = section;
+
+    hideAllPages();
+
+    document.getElementById("sectionPage")
+        .classList.remove("hidden");
+
+    const title =
+        section.charAt(0).toUpperCase()
+        + section.slice(1);
+
+    document.getElementById("sectionTitle")
+        .innerText = title;
+
+    loadSection(section);
+}
+
+
+function loadSection(section){
+
+    const content =
+        document.getElementById("sectionContent");
+
+    if(section === "lessons"){
+
+        content.innerHTML = `
+
+            <div class="unit">
+
+                <div class="unit-header">
+                    Unit 2
+                </div>
+
+                <div class="lesson-list">
+
+                    <div class="lesson"
+                         onclick="openLesson('Unit 2','Lesson 1')">
+                        Lesson 1 — Writing and Interpreting Equations
+                    </div>
+
+                    <div class="lesson"
+                         onclick="openLesson('Unit 2','Lesson 2')">
+                        Lesson 2 — Solving One-Step Equations
+                    </div>
+
+                    <div class="lesson"
+                         onclick="openLesson('Unit 2','Lesson 3')">
+                        Lesson 3 — Solving Multi-Step Equations
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="unit">
+
+                <div class="unit-header">
+                    Unit 3
+                </div>
+
+                <div class="lesson-list">
+
+                    <div class="lesson">
+                        Lessons will be added from your textbook.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="unit">
+
+                <div class="unit-header">
+                    Unit 4
+                </div>
+
+                <div class="lesson-list">
+
+                    <div class="lesson">
+                        Lessons will be added from your textbook.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="unit">
+
+                <div class="unit-header">
+                    Unit 5
+                </div>
+
+                <div class="lesson-list">
+
+                    <div class="lesson">
+                        Lessons will be added from your textbook.
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(section === "quizzes"){
+
+        content.innerHTML = `
+
+            <h2>📝 Quizzes</h2>
+
+            <p style="color:#94a3b8;margin-top:10px;">
+                Quizzes will be organized by Unit → Lesson.
+                Each lesson will eventually contain
+                20 questions.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    if(section === "challenges"){
+
+        content.innerHTML = `
+
+            <h2>🔥 Challenges</h2>
+
+            <p style="color:#94a3b8;margin-top:10px;">
+                Higher-order thinking challenges
+                will be added from the textbook.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    if(section === "progress"){
+
+        content.innerHTML = `
+
+            <h2>📊 Your Progress</h2>
+
+            <p style="color:#94a3b8;margin-top:10px;">
+                Your progress will appear here
+                lesson by lesson.
+            </p>
+
+        `;
+
+        return;
+    }
 
 }
 
 
+/* ================= LESSON ================= */
 
-/* =========================
+function openLesson(unit,lesson){
 
-LANGUAGE
+    const content =
+        document.getElementById("sectionContent");
 
-========================= */
+    content.innerHTML = `
 
+        <button class="back"
+                onclick="loadSection('lessons')">
+            ← Back to Lessons
+        </button>
 
-function setLang(value){
+        <h2 style="margin-top:15px;">
+            ${lesson}
+        </h2>
 
+        <p style="color:#94a3b8;margin-top:10px;">
+            ${unit}
+        </p>
 
-lang = value;
+        <div class="content-box">
 
+            <h3>📖 Lesson File</h3>
 
-document.documentElement.lang =
-value;
+            <p style="color:#94a3b8;margin-top:10px;">
+                The lesson file from your textbook
+                will be placed here.
+            </p>
 
+        </div>
 
-document.documentElement.dir =
+        <div class="content-box">
 
-value === "ar"
+            <h3>✅ Lesson Solution</h3>
 
-?
+            <p style="color:#94a3b8;margin-top:10px;">
+                The lesson solution file will be
+                placed here.
+            </p>
 
-"rtl"
+        </div>
 
-:
-
-"ltr";
-
-
-applyLanguage();
-
-
+    `;
 }
 
 
+/* ================= PROFILE ================= */
 
-function applyLanguage(){
+function updateProfile(){
 
+    if(!currentUser) return;
 
-if(lang === "ar"){
+    const firstLetter =
+        currentUser.name.charAt(0).toUpperCase();
 
+    document.getElementById("avatar")
+        .innerText = firstLetter;
 
-$("homeTitle").textContent =
+    document.getElementById("profileAvatar")
+        .innerText = firstLetter;
 
-"مرحبًا بك في أكاديمية أحمد 🚀";
+    document.getElementById("profileName")
+        .innerText = currentUser.name;
 
-
-$("homeSub").textContent =
-
-"اختر الترم لبدء التعلم.";
-
-
-$("sTerms").textContent =
-
-"الترمات";
-
-
-$("sModules").textContent =
-
-"الوحدات في الترم الأول";
-
-
-$("sLessons").textContent =
-
-"الدروس في الترم الأول";
-
-
+    document.getElementById("profileEmail")
+        .innerText = currentUser.email;
 }
 
 
-else{
+/* ================= AUTO LOGIN ================= */
 
+window.onload = function(){
 
-$("homeTitle").textContent =
+    const saved =
+        localStorage.getItem("ahmedAcademyUser");
 
-"Welcome to Ahmed Academy 🚀";
+    if(saved){
 
+        currentUser = JSON.parse(saved);
 
-$("homeSub").textContent =
+        /*
+        We intentionally do not automatically
+        log the user in here yet.
+        */
 
-"Choose a term to start learning.";
-
-
-$("sTerms").textContent =
-
-"Terms";
-
-
-$("sModules").textContent =
-
-"Modules in Term 1";
-
-
-$("sLessons").textContent =
-
-"Lessons in Term 1";
-
-
-}
-
-
-renderTerms();
-
-
-}
-
-
-
-/* =========================
-
-TERMS
-
-========================= */
-
-
-function renderTerms(){
-
-
-const container =
-$("termCards");
-
-
-container.innerHTML = "";
-
-
-
-for(
-
-let i = 1;
-
-i <= 3;
-
-i++
-
-){
-
-
-const active =
-
-i === 1;
-
-
-
-let title =
-
-lang === "ar"
-
-?
-
-"الترم " + i
-
-:
-
-"Term " + i;
-
-
-
-let status =
-
-active
-
-?
-
-(
-
-lang === "ar"
-
-?
-
-"متاح الآن"
-
-:
-
-"Available Now"
-
-)
-
-:
-
-(
-
-lang === "ar"
-
-?
-
-"قريبًا"
-
-:
-
-"Coming Soon"
-
-);
-
-
-
-container.innerHTML += `
-
-
-<div class="card">
-
-
-<h2>
-
-📘 ${title}
-
-</h2>
-
-
-<p>
-
-${status}
-
-</p>
-
-
-${
-
-active
-
-?
-
-`
-
-<button
-class="primary"
-onclick="showTerm()"
->
-
-${lang === "ar" ? "دخول" : "Enter"}
-
-</button>
-
-`
-
-:
-
-`
-
-<button
-class="secondary"
-disabled
->
-
-${status}
-
-</button>
-
-`
-
-}
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-HOME
-
-========================= */
-
-
-function goHome(){
-
-
-show("home");
-
-
-applyLanguage();
-
-
-}
-
-
-
-/* =========================
-
-TERM
-
-========================= */
-
-
-function showTerm(){
-
-
-show("term");
-
-
-$("termTitle").textContent =
-
-lang === "ar"
-
-?
-
-"الترم الأول"
-
-:
-
-"Term 1";
-
-
-}
-
-
-
-/* =========================
-
-GENERATE UNIT HTML
-
-========================= */
-
-
-function createUnitHTML(action){
-
-
-let output = "";
-
-
-
-modules.forEach(
-
-
-unit => {
-
-
-output += `
-
-
-<div class="unit">
-
-
-<h2>
-
-${unit.unit}
-
-</h2>
-
-
-`;
-
-
-
-unit.lessons.forEach(
-
-
-lesson => {
-
-
-const id = lesson[0];
-
-const name = lesson[1];
-
-
-
-output += `
-
-
-<div class="lesson">
-
-
-<div>
-
-
-<b>
-
-Lesson ${id}
-
-</b>
-
-
-<br>
-
-
-<small>
-
-${name}
-
-</small>
-
-
-</div>
-
-
-<button
-class="primary"
-onclick="${action}('${id}','${name}')"
->
-
-Open
-
-</button>
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-
-);
-
-
-
-output +=
-
-"</div>";
-
-
-}
-
-
-);
-
-
-
-return output;
-
-
-}
-
-
-
-/* =========================
-
-LESSONS
-
-========================= */
-
-
-function showLessons(){
-
-
-show("lessons");
-
-
-$("lessonUnits").innerHTML =
-
-createUnitHTML(
-"openLesson"
-);
-
-
-}
-
-
-
-function openLesson(
-
-id,
-
-name
-
-){
-
-
-currentLesson = {
-
-id:id,
-
-name:name
+    }
 
 };
-
-
-
-show("lessonDetail");
-
-
-$("lessonName").textContent =
-
-"Lesson " +
-
-id +
-
-": " +
-
-name;
-
-
-
-$("practiceBtn").onclick =
-
-
-function(){
-
-
-openPDF(
-
-"files/" +
-
-id +
-
-"-practice.pdf"
-
-);
-
-
-};
-
-
-
-$("solutionBtn").onclick =
-
-
-function(){
-
-
-openPDF(
-
-"files/" +
-
-id +
-
-"-solutions.pdf"
-
-);
-
-
-};
-
-
-}
-
-
-
-function openPDF(path){
-
-
-window.open(
-
-path,
-
-"_blank"
-
-);
-
-
-}
-
-
-
-/* =========================
-
-QUIZZES
-
-========================= */
-
-
-function showQuizLessons(){
-
-
-show("quizLessons");
-
-
-$("quizUnits").innerHTML =
-
-createUnitHTML(
-"openQuizList"
-);
-
-
-}
-
-
-
-function openQuizList(
-
-id,
-
-name
-
-){
-
-
-currentLesson = {
-
-id:id,
-
-name:name
-
-};
-
-
-
-show("quizList");
-
-
-$("quizListTitle").textContent =
-
-"Lesson " +
-
-id +
-
-": " +
-
-name;
-
-
-
-const grid =
-
-$("quizGrid");
-
-
-grid.innerHTML = "";
-
-
-
-for(
-
-let i = 1;
-
-i <= 60;
-
-i++
-
-){
-
-
-grid.innerHTML += `
-
-
-<div class="item">
-
-
-<b>
-
-Quiz ${i}
-
-</b>
-
-
-<p>
-
-10 Questions
-
-</p>
-
-
-<button
-class="primary"
-onclick="startTest('quiz',${i})"
->
-
-Start
-
-</button>
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-CHALLENGES
-
-========================= */
-
-
-function showChallengeLessons(){
-
-
-show("challengeLessons");
-
-
-$("challengeUnits").innerHTML =
-
-createUnitHTML(
-"openChallengeList"
-);
-
-
-}
-
-
-
-function openChallengeList(
-
-id,
-
-name
-
-){
-
-
-currentLesson = {
-
-id:id,
-
-name:name
-
-};
-
-
-
-show("challengeList");
-
-
-$("challengeListTitle").textContent =
-
-"Lesson " +
-
-id +
-
-": " +
-
-name;
-
-
-
-const grid =
-
-$("challengeGrid");
-
-
-grid.innerHTML = "";
-
-
-
-for(
-
-let i = 1;
-
-i <= 30;
-
-i++
-
-){
-
-
-grid.innerHTML += `
-
-
-<div class="item">
-
-
-<b>
-
-Challenge ${i}
-
-</b>
-
-
-<p>
-
-10 Questions
-
-</p>
-
-
-<button
-class="primary"
-onclick="startTest('challenge',${i})"
->
-
-Start
-
-</button>
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-RANDOM FUNCTION
-
-========================= */
-
-
-function random(seed){
-
-
-let value =
-
-Math.sin(seed) *
-10000;
-
-
-return
-
-value -
-
-Math.floor(value);
-
-
-}
-
-
-
-/* =========================
-
-GENERATE QUESTIONS
-
-========================= */
-
-
-function generateQuestion(
-
-seed,
-
-hard = false
-
-){
-
-
-const type =
-
-Math.floor(
-
-random(seed) * 5
-
-);
-
-
-
-const a =
-
-2 +
-
-Math.floor(
-
-random(seed + 1) * 12
-
-);
-
-
-
-const b =
-
-1 +
-
-Math.floor(
-
-random(seed + 2) * 15
-
-);
-
-
-
-const x =
-
-1 +
-
-Math.floor(
-
-random(seed + 3) * 12
-
-);
-
-
-
-let question;
-
-let correct;
-
-
-
-if(type === 0){
-
-
-correct = x;
-
-
-question =
-
-`Solve:
-
-${a}x + ${b}
-
-=
-
-${a*x+b}`;
-
-
-}
-
-
-
-else if(type === 1){
-
-
-correct = x;
-
-
-question =
-
-`Solve:
-
-${a}x - ${b}
-
-=
-
-${a*x-b}`;
-
-
-}
-
-
-
-else if(type === 2){
-
-
-correct = x;
-
-
-question =
-
-`Solve:
-
-${a}(x + ${b})
-
-=
-
-${a*(x+b)}`;
-
-
-}
-
-
-
-else if(type === 3){
-
-
-correct = x;
-
-
-question =
-
-`Solve the proportion:
-
-x/${a}
-
-=
-
-${x*b}/${a*b}`;
-
-
-}
-
-
-
-else{
-
-
-if(hard){
-
-
-correct = x;
-
-
-question =
-
-`A linear relationship is
-
-y = ${a}x + ${b}.
-
-Find x when
-
-y = ${a*x+b}.`;
-
-
-}
-
-
-else{
-
-
-correct =
-
-a*x+b;
-
-
-question =
-
-`If
-
-y = ${a}x + ${b},
-
-find y when
-
-x = ${x}.`;
-
-
-}
-
-
-}
-
-
-
-/* ANSWERS */
-
-
-let options = [
-
-
-correct,
-
-
-correct +
-
-1 +
-
-(seed % 3),
-
-
-Math.max(
-
-0,
-
-correct -
-
-1 -
-
-(seed % 2)
-
-),
-
-
-correct +
-
-2 +
-
-(seed % 4)
-
-
-];
-
-
-
-options =
-
-options.filter(
-
-
-(value,index,array) =>
-
-array.indexOf(value)
-
-===
-
-index
-
-
-);
-
-
-
-while(
-
-options.length < 4
-
-){
-
-
-options.push(
-
-correct +
-
-options.length +
-
-3
-
-);
-
-
-}
-
-
-
-options.sort(
-
-
-() =>
-
-Math.random() - 0.5
-
-
-);
-
-
-
-return{
-
-
-question:question,
-
-correct:correct,
-
-options:
-
-options.slice(0,4)
-
-
-};
-
-
-}
-
-
-
-/* =========================
-
-START QUIZ / CHALLENGE
-
-========================= */
-
-
-function startTest(
-
-kind,
-
-number
-
-){
-
-
-currentKind = kind;
-
-
-currentNumber = number;
-
-
-answers = {};
-
-
-currentQuestions = [];
-
-
-
-const hard =
-
-kind === "challenge";
-
-
-
-for(
-
-let i = 0;
-
-i < 10;
-
-i++
-
-){
-
-
-const seed =
-
-currentLesson.id
-.charCodeAt(0)
-
-*
-
-10000
-
-+
-
-parseInt(
-
-currentLesson.id
-.replace("-","")
-
-)
-
-*
-
-1000
-
-+
-
-number
-
-*
-
-31
-
-+
-
-i
-
-*
-
-17
-
-+
-
-(
-
-hard
-
-?
-
-999
-
-:
-
-0
-
-);
-
-
-
-currentQuestions.push(
-
-
-generateQuestion(
-
-seed,
-
-hard
-
-)
-
-
-);
-
-
-}
-
-
-
-show("test");
-
-
-$("testTitle").textContent =
-
-kind === "quiz"
-
-?
-
-"Quiz " + number
-
-:
-
-"Challenge " + number;
-
-
-
-$("testInfo").textContent =
-
-"Lesson " +
-
-currentLesson.id +
-
-": " +
-
-currentLesson.name;
-
-
-
-const container =
-
-$("questions");
-
-
-container.innerHTML = "";
-
-
-
-currentQuestions.forEach(
-
-
-(question,index) => {
-
-
-const div =
-
-document.createElement("div");
-
-
-div.className =
-
-"question";
-
-
-div.innerHTML = `
-
-
-<b>
-
-Question ${index+1}
-
-</b>
-
-
-<p>
-
-${question.question}
-
-</p>
-
-
-`;
-
-
-
-question.options.forEach(
-
-
-option => {
-
-
-const button =
-
-document.createElement("button");
-
-
-button.className =
-
-"opt";
-
-
-button.textContent =
-
-option;
-
-
-
-button.onclick =
-
-function(){
-
-
-selectAnswer(
-
-index,
-
-option,
-
-button
-
-);
-
-
-};
-
-
-
-div.appendChild(button);
-
-
-}
-
-
-);
-
-
-
-container.appendChild(div);
-
-
-}
-
-
-);
-
-
-}
-
-
-
-/* =========================
-
-SELECT ANSWER
-
-========================= */
-
-
-function selectAnswer(
-
-question,
-
-answer,
-
-button
-
-){
-
-
-answers[question] =
-
-answer;
-
-
-
-button
-.parentElement
-.querySelectorAll(".opt")
-.forEach(
-
-
-element =>
-
-
-element.classList
-.remove("selected")
-
-
-);
-
-
-
-button.classList
-.add("selected");
-
-
-}
-
-
-
-/* =========================
-
-SAVE RESULT KEY
-
-========================= */
-
-
-function resultKey(){
-
-
-return
-
-"aa_"
-
-+
-
-currentUser.username
-
-+
-
-"_"
-
-+
-
-currentLesson.id
-
-+
-
-"_"
-
-+
-
-currentKind
-
-+
-
-"_"
-
-+
-
-currentNumber;
-
-
-}
-
-
-
-/* =========================
-
-FINISH TEST
-
-========================= */
-
-
-function finishTest(){
-
-
-let correct = 0;
-
-
-
-currentQuestions.forEach(
-
-
-(question,index) => {
-
-
-if(
-
-Number(
-
-answers[index]
-
-)
-
-===
-
-Number(
-
-question.correct
-
-)
-
-){
-
-
-correct++;
-
-
-}
-
-
-}
-
-
-);
-
-
-
-const wrong =
-
-10 - correct;
-
-
-
-const percentage =
-
-correct * 10;
-
-
-
-localStorage.setItem(
-
-
-resultKey(),
-
-
-JSON.stringify({
-
-
-correct:correct,
-
-
-wrong:wrong,
-
-
-percentage:percentage,
-
-
-date:
-
-new Date()
-.toLocaleString()
-
-
-})
-
-
-);
-
-
-
-alert(
-
-
-"Result: " +
-
-percentage +
-
-"%\n\nCorrect: " +
-
-correct +
-
-"/10\n\nWrong: " +
-
-wrong
-
-
-);
-
-
-
-backFromTest();
-
-
-}
-
-
-
-/* =========================
-
-BACK FROM TEST
-
-========================= */
-
-
-function backFromTest(){
-
-
-if(
-
-currentKind === "quiz"
-
-){
-
-
-openQuizList(
-
-currentLesson.id,
-
-currentLesson.name
-
-);
-
-
-}
-
-
-else{
-
-
-openChallengeList(
-
-currentLesson.id,
-
-currentLesson.name
-
-);
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-PROGRESS
-
-========================= */
-
-
-function showProgress(){
-
-
-show("progress");
-
-
-const container =
-
-$("progressUnits");
-
-
-container.innerHTML = "";
-
-
-
-modules.forEach(
-
-
-unit => {
-
-
-let html = `
-
-
-<div class="unit">
-
-
-<h2>
-
-${unit.unit}
-
-</h2>
-
-
-`;
-
-
-
-unit.lessons.forEach(
-
-
-lesson => {
-
-
-const id = lesson[0];
-
-const name = lesson[1];
-
-
-
-html += `
-
-
-<div class="lesson">
-
-
-<div>
-
-
-<b>
-
-Lesson ${id}
-
-</b>
-
-
-<br>
-
-
-<small>
-
-${name}
-
-</small>
-
-
-</div>
-
-
-<button
-class="primary"
-onclick="showLessonProgress('${id}','${name}')"
->
-
-View Results
-
-</button>
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-);
-
-
-
-html +=
-
-"</div>";
-
-
-
-container.innerHTML +=
-
-html;
-
-
-}
-
-
-);
-
-
-}
-
-
-
-/* =========================
-
-LESSON PROGRESS
-
-========================= */
-
-
-function showLessonProgress(
-
-id,
-
-name
-
-){
-
-
-currentLesson = {
-
-id:id,
-
-name:name
-
-};
-
-
-
-show("progress");
-
-
-const container =
-
-$("progressUnits");
-
-
-
-container.innerHTML = `
-
-
-<button
-class="back"
-onclick="showProgress()"
->
-
-← Back
-
-</button>
-
-
-<h2>
-
-Lesson ${id}:
-
-${name}
-
-</h2>
-
-
-`;
-
-
-
-createProgress(
-
-
-"quiz",
-
-60,
-
-"Quizzes"
-
-
-);
-
-
-
-createProgress(
-
-
-"challenge",
-
-30,
-
-"Challenges"
-
-
-);
-
-
-}
-
-
-
-/* =========================
-
-CREATE PROGRESS
-
-========================= */
-
-
-function createProgress(
-
-kind,
-
-maximum,
-
-title
-
-){
-
-
-const container =
-
-$("progressUnits");
-
-
-
-let html =
-
-
-`<h3>
-
-${title}
-
-</h3>
-
-
-<div class="listgrid">`;
-
-
-
-for(
-
-let i = 1;
-
-i <= maximum;
-
-i++
-
-){
-
-
-const key =
-
-
-"aa_"
-
-+
-
-currentUser.username
-
-+
-
-"_"
-
-+
-
-currentLesson.id
-
-+
-
-"_"
-
-+
-
-kind
-
-+
-
-"_"
-
-+
-
-i;
-
-
-
-const saved =
-
-localStorage.getItem(key);
-
-
-
-let result = null;
-
-
-
-if(saved){
-
-
-result =
-
-JSON.parse(saved);
-
-
-}
-
-
-
-html += `
-
-
-<div class="item">
-
-
-<b>
-
-${
-
-kind === "quiz"
-
-?
-
-"Quiz"
-
-:
-
-"Challenge"
-
-}
-
-${i}
-
-</b>
-
-
-<p class="score">
-
-
-${
-
-result
-
-?
-
-result.percentage +
-
-"% (" +
-
-result.correct +
-
-"/10)"
-
-:
-
-"Not completed"
-
-}
-
-
-</p>
-
-
-${
-
-result
-
-?
-
-"<small>Wrong: " +
-
-result.wrong +
-
-"</small>"
-
-:
-
-""
-
-}
-
-
-</div>
-
-
-`;
-
-
-}
-
-
-
-html +=
-
-"</div>";
-
-
-
-container.innerHTML +=
-
-html;
-
-
-}
-
-
-
-/* =========================
-
-TEACHER DASHBOARD
-
-========================= */
-
-
-function showAdmin(){
-
-
-if(
-
-!currentUser ||
-
-!currentUser.teacher
-
-){
-
-
-alert(
-
-"Teacher access only."
-
-);
-
-
-return;
-
-
-}
-
-
-
-show("admin");
-
-
-
-$("visitCount")
-.textContent =
-
-localStorage.getItem(
-"aa_visits"
-)
-
-||
-
-0;
-
-
-
-const users =
-
-JSON.parse(
-
-
-localStorage.getItem(
-"aa_users"
-)
-
-||
-
-"[]"
-
-
-);
-
-
-
-$("studentCount")
-.textContent =
-
-users.filter(
-
-
-user =>
-
-!user.teacher
-
-
-).length;
-
-
-
-const table =
-
-$("userTable");
-
-
-table.innerHTML = "";
-
-
-
-if(
-
-users.length === 0
-
-){
-
-
-table.innerHTML =
-
-
-"<tr><td colspan='2'>" +
-
-"No users yet."
-
-+
-
-"</td></tr>";
-
-
-}
-
-
-
-else{
-
-
-users.forEach(
-
-
-user => {
-
-
-table.innerHTML += `
-
-
-<tr>
-
-
-<td>
-
-${user.username}
-
-</td>
-
-
-<td>
-
-${
-
-user.teacher
-
-?
-
-"Teacher"
-
-:
-
-"Student"
-
-}
-
-</td>
-
-
-</tr>
-
-
-`;
-
-
-}
-
-
-);
-
-
-}
-
-
-}
-
-
-
-/* =========================
-
-START WEBSITE
-
-========================= */
-
-
-init();
-
 
 </script>
 
-
 </body>
-
 </html>
+```
