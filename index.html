@@ -1,710 +1,1416 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ahmed Academy | Grade 9 Advanced Math</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      min-height: 100vh;
-    }
-
-    button {
-      font-family: inherit;
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* =========================
-       LOGIN
-    ========================= */
-
-    #loginPage {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background:
-        radial-gradient(circle at top, #1e3a8a 0%, #0f172a 45%);
-    }
-
-    .login-box {
-      width: 100%;
-      max-width: 430px;
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 22px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .academy-name {
-      font-size: 30px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .login-subtitle {
-      color: #94a3b8;
-      margin-bottom: 30px;
-    }
-
-    .input-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 7px;
-      color: #cbd5e1;
-      font-weight: 600;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #475569;
-      background: #0f172a;
-      color: white;
-      outline: none;
-      font-size: 16px;
-    }
-
-    .input-group input:focus {
-      border-color: #38bdf8;
-    }
-
-    .login-btn {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
-      font-size: 17px;
-      font-weight: 700;
-      margin-top: 8px;
-    }
-
-    .login-btn:hover {
-      background: #1d4ed8;
-    }
-
-    #loginMessage {
-      margin-top: 15px;
-      color: #f87171;
-      min-height: 20px;
-    }
-
-    /* =========================
-       APP
-    ========================= */
-
-    #app {
-      min-height: 100vh;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 23, 42, .95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #1e293b;
-    }
-
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-logo {
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .nav-right {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .student-name {
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    .logout-btn {
-      border: 1px solid #475569;
-      background: transparent;
-      color: white;
-      padding: 9px 14px;
-      border-radius: 8px;
-    }
-
-    .logout-btn:hover {
-      background: #1e293b;
-    }
-
-    /* =========================
-       HOME
-    ========================= */
-
-    .home {
-      max-width: 1200px;
-      margin: auto;
-      padding: 70px 20px;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 55px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      padding: 8px 14px;
-      background: #172554;
-      border: 1px solid #1d4ed8;
-      border-radius: 999px;
-      color: #93c5fd;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 70px);
-      line-height: 1.05;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 span {
-      color: #38bdf8;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      color: #94a3b8;
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    /* =========================
-       TERMS
-    ========================= */
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 30px;
-    }
-
-    .terms-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .term-card {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 20px;
-      padding: 30px;
-      transition: .2s;
-      text-align: center;
-    }
-
-    .term-card:hover {
-      transform: translateY(-5px);
-      border-color: #38bdf8;
-    }
-
-    .term-icon {
-      font-size: 45px;
-      margin-bottom: 15px;
-    }
-
-    .term-card h3 {
-      font-size: 25px;
-      margin-bottom: 10px;
-    }
-
-    .term-card p {
-      color: #94a3b8;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .open-term {
-      width: 100%;
-      padding: 13px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .open-term:hover {
-      background: #1d4ed8;
-    }
-
-    /* =========================
-       TERM PAGE
-    ========================= */
-
-    .page {
-      max-width: 1200px;
-      margin: auto;
-      padding: 35px 20px 70px;
-    }
-
-    .back-btn {
-      background: #1e293b;
-      color: white;
-      border: 1px solid #475569;
-      padding: 10px 16px;
-      border-radius: 9px;
-      margin-bottom: 30px;
-    }
-
-    .back-btn:hover {
-      background: #334155;
-    }
-
-    .term-heading {
-      margin-bottom: 30px;
-    }
-
-    .term-heading h2 {
-      font-size: 38px;
-      margin-bottom: 8px;
-    }
-
-    .term-heading p {
-      color: #94a3b8;
-    }
-
-    /* =========================
-       MAIN SECTIONS
-    ========================= */
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-bottom: 40px;
-    }
-
-    .section-card {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 24px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .section-card:hover {
-      border-color: #38bdf8;
-      transform: translateY(-3px);
-    }
-
-    .section-card .icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .section-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .section-card p {
-      color: #94a3b8;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    /* =========================
-       CONTENT
-    ========================= */
-
-    .content-box {
-      background: #111827;
-      border: 1px solid #334155;
-      border-radius: 18px;
-      padding: 28px;
-    }
-
-    .content-box h2 {
-      margin-bottom: 10px;
-    }
-
-    .content-box > p {
-      color: #94a3b8;
-      margin-bottom: 25px;
-    }
-
-    /* =========================
-       UNITS
-    ========================= */
-
-    .unit {
-      border: 1px solid #334155;
-      border-radius: 14px;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-
-    .unit-header {
-      padding: 18px;
-      background: #172033;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .unit-header h3 {
-      font-size: 18px;
-    }
-
-    .unit-header span {
-      color: #38bdf8;
-    }
-
-    .lessons {
-      padding: 12px;
-      display: none;
-    }
-
-    .unit.open .lessons {
-      display: block;
-    }
-
-    .lesson {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 15px;
-      border-bottom: 1px solid #263244;
-    }
-
-    .lesson:last-child {
-      border-bottom: none;
-    }
-
-    .lesson-info strong {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .lesson-info small {
-      color: #64748b;
-    }
-
-    .lesson-btn {
-      background: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 9px 14px;
-      white-space: nowrap;
-    }
-
-    /* =========================
-       QUIZ / CHALLENGES
-    ========================= */
-
-    .quiz-card {
-      padding: 20px;
-      border: 1px solid #334155;
-      border-radius: 14px;
-      margin-bottom: 14px;
-    }
-
-    .quiz-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .quiz-card p {
-      color: #94a3b8;
-      margin-bottom: 15px;
-    }
-
-    /* =========================
-       PROGRESS
-    ========================= */
-
-    .progress-item {
-      padding: 18px;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      margin-bottom: 14px;
-    }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .progress-bar {
-      height: 10px;
-      background: #1e293b;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: #38bdf8;
-      transition: .3s;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 850px) {
-      .terms-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 550px) {
-      .login-box {
-        padding: 25px;
-      }
-
-      .section-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        align-items: flex-start;
-      }
-
-      .student-name {
-        display: none;
-      }
-
-      .lesson {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ahmed Academy | Grade 9 Advanced Math</title>
+
+<style>
+:root{
+  --bg:#0b1220;
+  --panel:#111827;
+  --panel2:#172033;
+  --line:#28364a;
+  --text:#f8fafc;
+  --muted:#9fb0c8;
+  --accent:#38bdf8;
+  --accent2:#2563eb;
+  --good:#22c55e;
+  --bad:#ef4444;
+  --shadow:0 18px 60px rgba(0,0,0,.35)
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(circle at top,#13213c 0%,var(--bg) 42%);
+  color:var(--text)
+}
+
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+a{color:inherit}
+
+.container{
+  width:min(1200px,calc(100% - 32px));
+  margin:auto
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(11,18,32,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)
+}
+
+.nav{
+  min-height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px
+}
+
+.brand{
+  font-weight:900;
+  letter-spacing:.2px
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
+.user-pill,.chip{
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#0f172a;
+  color:var(--muted);
+  font-size:13px
+}
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 15px;
+  font-weight:800;
+  transition:.18s
+}
+
+.btn-primary{
+  background:var(--accent2);
+  color:#fff
+}
+
+.btn-primary:hover{
+  filter:brightness(1.12)
+}
+
+.btn-ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--line)
+}
+
+.btn-ghost:hover{
+  background:#162033
+}
+
+.btn-small{
+  padding:8px 11px;
+  font-size:13px
+}
+
+.page{
+  padding:34px 0 60px
+}
+
+.center{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:20px
+}
+
+.auth-card{
+  width:min(470px,100%);
+  background:rgba(17,24,39,.95);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:34px;
+  box-shadow:var(--shadow)
+}
+
+.logo-mark{
+  font-size:48px
+}
+
+.title{
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.02;
+  margin:10px 0
+}
+
+.subtitle{
+  color:var(--muted);
+  line-height:1.65
+}
+
+.form-row{
+  margin-top:16px
+}
+
+.form-row label{
+  display:block;
+  margin:0 0 7px;
+  font-weight:800
+}
+
+.input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#0c1423;
+  color:#fff;
+  outline:0
+}
+
+.input:focus{
+  border-color:var(--accent)
+}
+
+.auth-error{
+  min-height:22px;
+  margin-top:10px;
+  color:#fb7185
+}
+
+.auth-switch{
+  margin-top:18px;
+  color:var(--muted);
+  text-align:center;
+  font-size:14px
+}
+
+.link-btn{
+  background:transparent;
+  border:0;
+  color:#7dd3fc;
+  font-weight:800
+}
+
+.hero{
+  padding:40px 0 30px;
+  text-align:center
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid #1d4ed8;
+  background:#10214a;
+  color:#bfdbfe;
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:13px;
+  font-weight:800
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,78px);
+  margin:16px 0 12px;
+  line-height:.98
+}
+
+.hero h1 span{
+  color:var(--accent)
+}
+
+.hero p{
+  max-width:740px;
+  margin:auto;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.65
+}
+
+.term-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:28px
+}
+
+.card{
+  background:rgba(17,24,39,.88);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.18)
+}
+
+.term-card{
+  padding:28px;
+  text-align:center;
+  transition:.18s
+}
+
+.term-card:hover{
+  transform:translateY(-4px);
+  border-color:#40607e
+}
+
+.term-icon{
+  font-size:43px
+}
+
+.term-card h3{
+  font-size:28px;
+  margin:12px 0 8px
+}
+
+.term-card p{
+  color:var(--muted);
+  line-height:1.55;
+  min-height:72px
+}
+
+.term-card .btn{
+  width:100%;
+  margin-top:8px
+}
+
+.term-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:22px
+}
+
+.term-head h2{
+  font-size:40px;
+  margin:0 0 7px
+}
+
+.term-head p{
+  color:var(--muted);
+  margin:0
+}
+
+.section-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+
+.section-card{
+  padding:22px;
+  cursor:pointer
+}
+
+.section-card:hover{
+  border-color:#40607e
+}
+
+.section-card .ico{
+  font-size:31px
+}
+
+.section-card h3{
+  margin:10px 0 7px
+}
+
+.section-card p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+  margin:0
+}
+
+.content{
+  margin-top:20px;
+  padding:24px
+}
+
+.content h2{
+  margin:0 0 8px
+}
+
+.content>.muted{
+  margin:0 0 20px
+}
+
+.muted{
+  color:var(--muted)
+}
+
+.unit{
+  border:1px solid var(--line);
+  border-radius:15px;
+  overflow:hidden;
+  margin-bottom:12px
+}
+
+.unit-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 18px;
+  background:var(--panel2);
+  cursor:pointer
+}
+
+.unit-head strong{
+  font-size:17px
+}
+
+.unit-body{
+  display:none;
+  padding:8px 12px
+}
+
+.unit.open .unit-body{
+  display:block
+}
+
+.lesson-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 8px;
+  border-bottom:1px solid rgba(40,54,74,.7)
+}
+
+.lesson-row:last-child{
+  border-bottom:0
+}
+
+.lesson-meta small{
+  display:block;
+  color:#6f829e;
+  margin-top:4px
+}
+
+.row-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.subnav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 18px
+}
+
+.tab{
+  border:1px solid var(--line);
+  background:#0e1726;
+  color:var(--muted);
+  padding:9px 12px;
+  border-radius:9px;
+  font-weight:800
+}
+
+.tab.active{
+  color:#fff;
+  border-color:#375a78;
+  background:#15253a
+}
+
+.back{
+  margin-bottom:18px
+}
+
+.selector-list{
+  display:grid;
+  gap:10px
+}
+
+.selector{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--line);
+  background:#0e1726;
+  color:#fff;
+  padding:14px 15px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+.selector:hover{
+  border-color:#4b6985
+}
+
+.quiz-list,.challenge-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+
+.mode-card{
+  padding:18px
+}
+
+.mode-card h4{
+  margin:0 0 6px;
+  font-size:17px
+}
+
+.mode-card p{
+  margin:0 0 13px;
+  color:var(--muted);
+  font-size:13px
+}
+
+.qwrap{
+  max-width:900px;
+  margin:auto
+}
+
+.question{
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-bottom:13px;
+  background:#0d1625
+}
+
+.question h4{
+  margin:0 0 10px
+}
+
+.option{
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+  padding:10px 11px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:8px 0;
+  background:#111b2b
+}
+
+.option input{
+  margin-top:4px
+}
+
+.score-box{
+  padding:20px;
+  border-radius:15px;
+  border:1px solid var(--line);
+  background:#0d1625;
+  margin:18px 0
+}
+
+.score-big{
+  font-size:43px;
+  font-weight:900
+}
+
+.result-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  color:var(--muted)
+}
+
+.good{color:var(--good)}
+.bad{color:var(--bad)}
+
+.progress-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+
+.stat{
+  padding:17px
+}
+
+.bar{
+  height:10px;
+  background:#1b2738;
+  border-radius:999px;
+  overflow:hidden
+}
+
+.bar>span{
+  display:block;
+  height:100%;
+  background:var(--accent2)
+}
+
+.teacher-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px
+}
+
+.stat-box{
+  padding:22px
+}
+
+.stat-num{
+  font-size:35px;
+  font-weight:900;
+  margin-top:4px
+}
+
+.visitor-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:18px
+}
+
+.visitor-table th,
+.visitor-table td{
+  padding:11px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-size:13px
+}
+
+.visitor-table th{
+  color:#a9bad0
+}
+
+.admin-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0 4px
+}
+
+.notice{
+  padding:13px 14px;
+  border:1px dashed #48637f;
+  border-radius:12px;
+  color:var(--muted);
+  background:#0d1624;
+  line-height:1.5
+}
+
+.empty{
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed var(--line);
+  border-radius:14px
+}
+
+.lang-menu{
+  position:relative
+}
+
+.lang-panel{
+  position:absolute;
+  right:0;
+  top:45px;
+  min-width:170px;
+  background:#0d1625;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:7px;
+  box-shadow:var(--shadow)
+}
+
+.lang-opt{
+  width:100%;
+  text-align:left;
+  background:transparent;
+  color:#fff;
+  border:0;
+  padding:10px;
+  border-radius:9px
+}
+
+.lang-opt:hover{
+  background:#18253a
+}
+
+footer{
+  padding:30px 0;
+  color:#6f829e;
+  text-align:center;
+  font-size:12px
+}
+
+@media (max-width:920px){
+  .term-grid,
+  .section-grid,
+  .teacher-grid{
+    grid-template-columns:1fr
+  }
+
+  .quiz-list,
+  .challenge-list,
+  .progress-grid{
+    grid-template-columns:1fr
+  }
+
+  .term-head{
+    flex-direction:column
+  }
+
+  .nav{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:12px 0
+  }
+
+  .nav-actions{
+    width:100%;
+    justify-content:flex-end
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     LOGIN PAGE
-===================================================== -->
+<div id="app"></div>
 
-<div id="loginPage">
+<script>
 
-  <div class="login-box">
+const TEACHER = {
+  username: 'Ahmed',
+  password: '123456'
+};
 
-    <div class="logo">🎓</div>
+const STORE_KEY = 'ahmedAcademy_v2';
+const LANG_KEY = 'ahmedAcademy_lang';
 
-    <div class="academy-name">
-      Ahmed Academy
+const defaultState = {
+  students: {},
+  currentUser: null,
+  currentRole: null,
+  visits: [],
+
+  course: {
+    terms: {
+
+      1: [
+        {
+          unit: 'Unit 2',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 3',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 4',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 5',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4',
+            'Lesson 5',
+            'Lesson 6'
+          ]
+        }
+      ],
+
+      2: [
+        {
+          unit: 'Unit 2',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 3',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 4',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 5',
+          lessons: [
+            'Lesson 1',
+            'Lesson 5',
+            'Lesson 6'
+          ]
+        }
+      ],
+
+      3: [
+        {
+          unit: 'Unit 2',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 3',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 4',
+          lessons: [
+            'Lesson 1',
+            'Lesson 2',
+            'Lesson 3',
+            'Lesson 4'
+          ]
+        },
+
+        {
+          unit: 'Unit 5',
+          lessons: [
+            'Lesson 1',
+            'Lesson 5',
+            'Lesson 6'
+          ]
+        }
+      ]
+    }
+  }
+};
+
+function clone(obj){
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function loadState(){
+
+  try{
+
+    const saved =
+      JSON.parse(localStorage.getItem(STORE_KEY));
+
+    if(!saved){
+      return clone(defaultState);
+    }
+
+    const merged = clone(defaultState);
+
+    merged.students = saved.students || {};
+    merged.currentUser = saved.currentUser || null;
+    merged.currentRole = saved.currentRole || null;
+    merged.visits = saved.visits || [];
+
+    return merged;
+
+  }catch(e){
+
+    return clone(defaultState);
+
+  }
+
+}
+
+function saveState(){
+  localStorage.setItem(
+    STORE_KEY,
+    JSON.stringify(state)
+  );
+}
+
+function now(){
+  return new Date().toLocaleString();
+}
+
+function esc(value){
+
+  return String(value)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+
+}
+
+function logVisit(username,role){
+
+  state.visits.push({
+    username,
+    role,
+    time: now()
+  });
+
+}
+
+function tx(key){
+
+  const dictionary = {
+
+    en: {
+
+      login:'Login',
+      create:'Create student account',
+      username:'Username',
+      password:'Password',
+      teacher:'Teacher',
+      student:'Student',
+      welcome:'Welcome to Ahmed Academy',
+
+      term1:'Term 1',
+      term2:'Term 2',
+      term3:'Term 3',
+
+      lessons:'Lessons',
+      quizzes:'Quizzes',
+      challenges:'Challenges',
+      progress:'Progress',
+
+      open:'Open',
+      back:'Back',
+      logout:'Logout',
+
+      chooseTerm:'Choose Your Term',
+      uac:'Grade 9 Advanced Mathematics • UAE Curriculum',
+
+      lessonFile:'Lesson File',
+      solutionFile:'Lesson Solution',
+
+      startQuiz:'Start Quiz',
+      startChallenge:'Start Challenge',
+
+      quiz:'Quiz',
+      challenge:'Challenge',
+
+      questions:'questions',
+
+      submit:'Submit',
+
+      score:'Score',
+      correct:'Correct',
+      wrong:'Wrong',
+      result:'Result',
+
+      language:'Language',
+      english:'English',
+      arabic:'العربية',
+
+      createAccount:'Create Account',
+      haveAccount:'Already have an account?',
+      needAccount:'New student?',
+
+      teacherOnly:'Teacher area',
+      studentOnly:'Student area',
+
+      teacherPanel:'Teacher Dashboard',
+      students:'Students',
+      visitorCount:'Visits',
+      visitorsTitle:'Student Accounts & Visits',
+      studentName:'Student Name',
+      lastVisit:'Last Visit',
+
+      reset:'Reset Student Data',
+      saved:'Saved',
+
+      overall:'Quiz Average',
+      challengeAvg:'Challenge Average',
+
+      savedProgress:'Your results are saved on this device.',
+      noData:'No results yet.',
+
+      demo:'Question content is a placeholder until the textbook is added.',
+
+      loginError:'Incorrect username or password.',
+      createError:'Please complete all fields and make sure both passwords match.',
+      exists:'That username already exists.',
+      accountCreated:'Account created successfully.'
+    },
+
+    ar: {
+
+      login:'تسجيل الدخول',
+      create:'إنشاء حساب طالب',
+      username:'اسم المستخدم',
+      password:'كلمة المرور',
+      teacher:'المدرس',
+      student:'الطالب',
+      welcome:'مرحباً بك في Ahmed Academy',
+
+      term1:'الترم الأول',
+      term2:'الترم الثاني',
+      term3:'الترم الثالث',
+
+      lessons:'الدروس',
+      quizzes:'الاختبارات',
+      challenges:'التحديات',
+      progress:'التقدم',
+
+      open:'فتح',
+      back:'رجوع',
+      logout:'تسجيل الخروج',
+
+      chooseTerm:'اختر الترم',
+      uac:'رياضيات متقدمة للصف التاسع • منهج الإمارات',
+
+      lessonFile:'ملف الدرس',
+      solutionFile:'حل الدرس',
+
+      startQuiz:'ابدأ الاختبار',
+      startChallenge:'ابدأ التحدي',
+
+      quiz:'اختبار',
+      challenge:'تحدي',
+
+      questions:'أسئلة',
+
+      submit:'إرسال',
+
+      score:'النتيجة',
+      correct:'صحيح',
+      wrong:'خطأ',
+      result:'النتيجة',
+
+      language:'اللغة',
+      english:'English',
+      arabic:'العربية',
+
+      createAccount:'إنشاء الحساب',
+      haveAccount:'لديك حساب بالفعل؟',
+      needAccount:'طالب جديد؟',
+
+      teacherOnly:'منطقة المدرس',
+      studentOnly:'منطقة الطالب',
+
+      teacherPanel:'لوحة المدرس',
+      students:'الطلاب',
+      visitorCount:'الزيارات',
+      visitorsTitle:'حسابات الطلاب والزيارات',
+      studentName:'اسم الطالب',
+      lastVisit:'آخر زيارة',
+
+      reset:'مسح بيانات الطلاب',
+      saved:'محفوظ',
+
+      overall:'متوسط الاختبارات',
+      challengeAvg:'متوسط التحديات',
+
+      savedProgress:'يتم حفظ نتائجك على هذا الجهاز.',
+      noData:'لا توجد نتائج بعد.',
+
+      demo:'محتوى الأسئلة تجريبي حتى يتم إضافة الكتاب.',
+
+      loginError:'اسم المستخدم أو كلمة المرور غير صحيحة.',
+      createError:'أكمل جميع البيانات وتأكد من تطابق كلمتي المرور.',
+      exists:'اسم المستخدم موجود بالفعل.',
+      accountCreated:'تم إنشاء الحساب بنجاح.'
+    }
+
+  };
+
+  return dictionary[lang][key] || key;
+
+}
+
+function setLanguage(next){
+
+  lang = next;
+
+  localStorage.setItem(
+    LANG_KEY,
+    lang
+  );
+
+  document.documentElement.lang =
+    lang === 'ar' ? 'ar' : 'en';
+
+  document.documentElement.dir =
+    lang === 'ar' ? 'rtl' : 'ltr';
+
+  render();
+
+}
+
+function shell(inner){
+
+  return `
+
+  <div>
+
+    <div class="topbar">
+
+      <div class="container nav">
+
+        <div class="brand">
+          🎓 Ahmed Academy
+        </div>
+
+        <div class="nav-actions">
+
+          ${
+            state.currentUser
+              ?
+              `
+              <span class="user-pill">
+                ${esc(state.currentUser)}
+              </span>
+              `
+              :
+              ''
+          }
+
+          <div class="lang-menu">
+
+            <button
+              class="btn btn-ghost btn-small"
+              onclick="toggleLang();event.stopPropagation()"
+            >
+              🌐 ${tx('language')} ▾
+            </button>
+
+            <div
+              id="langPanel"
+              class="lang-panel hidden"
+            >
+
+              <button
+                class="lang-opt"
+                onclick="setLanguage('en')"
+              >
+                🇺🇸 ${tx('english')}
+              </button>
+
+              <button
+                class="lang-opt"
+                onclick="setLanguage('ar')"
+              >
+                🇦🇪 ${tx('arabic')}
+              </button>
+
+            </div>
+
+          </div>
+
+          ${
+            state.currentUser
+              ?
+              `
+              <button
+                class="btn btn-ghost btn-small"
+                onclick="logout()"
+              >
+                ${tx('logout')}
+              </button>
+              `
+              :
+              ''
+          }
+
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="login-subtitle">
-      Grade 9 Advanced Mathematics
-    </div>
+    ${inner}
 
-    <div class="input-group">
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        placeholder="Enter your username"
-      >
-    </div>
-
-    <div class="input-group">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="Enter your password"
-      >
-    </div>
-
-    <button class="login-btn" onclick="login()">
-      Login
-    </button>
-
-    <div id="loginMessage"></div>
+    <footer>
+      Ahmed Academy • Grade 9 Advanced Mathematics
+    </footer>
 
   </div>
 
-</div>
+  `;
+
+}
+
+function render(){
+
+  document.documentElement.lang =
+    lang === 'ar' ? 'ar' : 'en';
+
+  document.documentElement.dir =
+    lang === 'ar' ? 'rtl' : 'ltr';
+
+  const app =
+    document.getElementById('app');
+
+  if(route.screen === 'login'){
+    app.innerHTML = loginView();
+    return;
+  }
+
+  if(route.screen === 'create'){
+    app.innerHTML = createView();
+    return;
+  }
+
+  if(route.screen === 'teacher'){
+    app.innerHTML = teacherView();
+    return;
+  }
+
+  if(route.screen === 'home'){
+    app.innerHTML = homeView();
+    return;
+  }
+
+  if(route.screen === 'term'){
+    app.innerHTML = termView();
+    return;
+  }
+
+  if(route.screen === 'lesson'){
+    app.innerHTML = lessonView();
+    return;
+  }
+
+  if(route.screen === 'quizRun'){
+    app.innerHTML = runView(false);
+    return;
+  }
+
+  if(route.screen === 'challengeRun'){
+    app.innerHTML = runView(true);
+    return;
+  }
+
+}
+
+let route = {
+  screen:'login',
+  term:1,
+  section:null,
+  unit:null,
+  lesson:null,
+  mode:null,
+  index:null,
+  questions:[]
+};
+
+let state = loadState();
+
+let lang =
+  localStorage.getItem(LANG_KEY) || 'en';
 
 
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
+function loginView(){
 
-<div id="app" class="hidden">
+  return `
 
-  <header>
+  <main class="center">
 
-    <div class="nav">
+    <div class="auth-card">
 
-      <div class="nav-logo">
-        🎓 Ahmed Academy
+      <div class="logo-mark">🎓</div>
+
+      <h1 class="title">
+        Ahmed Academy
+      </h1>
+
+      <p class="subtitle">
+        ${tx('studentOnly')} • Grade 9 Advanced Mathematics
+      </p>
+
+      <div class="form-row">
+
+        <label>
+          ${tx('username')}
+        </label>
+
+        <input
+          id="loginUser"
+          class="input"
+          type="text"
+          autocomplete="username"
+        >
+
       </div>
 
-      <div class="nav-right">
+      <div class="form-row">
 
-        <span class="student-name" id="studentName">
-          Student
-        </span>
+        <label>
+          ${tx('password')}
+        </label>
 
-        <button class="logout-btn" onclick="logout()">
-          Logout
+        <input
+          id="loginPass"
+          class="input"
+          type="password"
+          autocomplete="current-password"
+        >
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        style="width:100%;margin-top:18px"
+        onclick="studentLogin()"
+      >
+        ${tx('login')}
+      </button>
+
+      <div
+        id="loginError"
+        class="auth-error"
+      ></div>
+
+      <div class="auth-switch">
+
+        ${tx('needAccount')}
+
+        <button
+          class="link-btn"
+          onclick="route.screen='create';render()"
+        >
+          ${tx('create')}
+        </button>
+
+        <br><br>
+
+        <button
+          class="link-btn"
+          onclick="route.screen='teacherLogin';render()"
+        >
+          ${tx('teacher')}
         </button>
 
       </div>
 
     </div>
 
-  </header>
+  </main>
 
+  `;
 
-  <!-- HOME -->
+}
 
-  <main id="homePage">
+function createView(){
 
-    <div class="home">
+  return `
 
-      <section class="hero">
+  <main class="center">
 
-        <div class="hero-badge">
-          🇦🇪 UAE Curriculum
-        </div>
+    <div class="auth-card">
 
-        <h1>
-          Learn Math.<br>
-          <span>Be Brilliant.</span> 🚀
-        </h1>
+      <div class="logo-mark">👨‍🎓</div>
 
-        <p>
-          Welcome to Ahmed Academy.
-          Your learning platform for Grade 9 Advanced Mathematics.
-        </p>
+      <h1 class="title" style="font-size:40px">
+        ${tx('createAccount')}
+      </h1>
 
-      </section>
+      <div class="form-row">
 
+        <label>
+          Student Name
+        </label>
 
-      <h2 class="section-title">
-        Choose Your Term
-      </h2>
+        <input
+          id="newName"
+          class="input"
+          type="text"
+        >
 
+      </div>
 
-      <div class="terms-grid">
+      <div class="form-row">
 
-        <div class="term-card">
+        <label>
+          ${tx('username')}
+        </label>
 
-          <div class="term-icon">📘</div>
+        <input
+          id="newUser"
+          class="input"
+          type="text"
+        >
 
-          <h3>Term 1</h3>
+      </div>
 
-          <p>
-            Explore the lessons, quizzes,
-            challenges and progress for Term 1.
-          </p>
+      <div class="form-row">
 
-          <button
-            class="open-term"
-            onclick="openTerm(1)"
-          >
-            Enter Term 1
-          </button>
+        <label>
+          ${tx('password')}
+        </label>
 
-        </div>
+        <input
+          id="newPass"
+          class="input"
+          type="password"
+        >
 
+      </div>
 
-        <div class="term-card">
+      <div class="form-row">
 
-          <div class="term-icon">📗</div>
+        <label>
+          Confirm Password
+        </label>
 
-          <h3>Term 2</h3>
+        <input
+          id="newPass2"
+          class="input"
+          type="password"
+        >
 
-          <p>
-            Continue your Grade 9 Advanced
-            Mathematics journey.
-          </p>
+      </div>
 
-          <button
-            class="open-term"
-            onclick="openTerm(2)"
-          >
-            Enter Term 2
-          </button>
+      <button
+        class="btn btn-primary"
+        style="width:100%;margin-top:18px"
+        onclick="createStudent()"
+      >
+        ${tx('createAccount')}
+      </button>
 
-        </div>
+      <div
+        id="createError"
+        class="auth-error"
+      ></div>
 
+      <div class="auth-switch">
 
-        <div class="term-card">
-
-          <div class="term-icon">📕</div>
-
-          <h3>Term 3</h3>
-
-          <p>
-            Finish the year with advanced
-            lessons and challenging problems.
-          </p>
-
-          <button
-            class="open-term"
-            onclick="openTerm(3)"
-          >
-            Enter Term 3
-          </button>
-
-        </div>
+        <button
+          class="link-btn"
+          onclick="route.screen='login';render()"
+        >
+          ← ${tx('back')}
+        </button>
 
       </div>
 
@@ -712,668 +1418,519 @@
 
   </main>
 
+  `;
 
-  <!-- TERM PAGE -->
+}
 
-  <main id="termPage" class="page hidden">
+function teacherLoginView(){
 
-    <button class="back-btn" onclick="goHome()">
-      ← Back to Terms
-    </button>
+  return `
 
-    <div class="term-heading">
+  <main class="center">
 
-      <h2 id="termTitle">
-        Term 1
-      </h2>
+    <div class="auth-card">
 
-      <p id="termDescription">
-        Grade 9 Advanced Mathematics
+      <div class="logo-mark">👨‍🏫</div>
+
+      <h1 class="title" style="font-size:40px">
+        ${tx('teacher')}
+      </h1>
+
+      <p class="subtitle">
+        ${tx('teacherOnly')}
       </p>
 
-    </div>
+      <div class="form-row">
 
+        <label>
+          ${tx('username')}
+        </label>
 
-    <!-- FOUR SECTIONS -->
-
-    <div class="section-grid">
-
-      <div
-        class="section-card"
-        onclick="showSection('lessons')"
-      >
-
-        <div class="icon">📚</div>
-
-        <h3>Lessons</h3>
-
-        <p>
-          Study each unit and lesson
-          in the correct order.
-        </p>
+        <input
+          id="teacherUser"
+          class="input"
+          type="text"
+        >
 
       </div>
 
+      <div class="form-row">
 
-      <div
-        class="section-card"
-        onclick="showSection('quizzes')"
-      >
+        <label>
+          ${tx('password')}
+        </label>
 
-        <div class="icon">📝</div>
-
-        <h3>Quizzes</h3>
-
-        <p>
-          Test your understanding with
-          lesson-based quizzes.
-        </p>
+        <input
+          id="teacherPass"
+          class="input"
+          type="password"
+        >
 
       </div>
 
+      <button
+        class="btn btn-primary"
+        style="width:100%;margin-top:18px"
+        onclick="teacherLogin()"
+      >
+        ${tx('login')}
+      </button>
 
       <div
-        class="section-card"
-        onclick="showSection('challenges')"
-      >
+        id="teacherError"
+        class="auth-error"
+      ></div>
 
-        <div class="icon">🧠</div>
+      <div class="auth-switch">
 
-        <h3>Challenges</h3>
-
-        <p>
-          Solve higher-thinking
-          mathematics problems.
-        </p>
-
-      </div>
-
-
-      <div
-        class="section-card"
-        onclick="showSection('progress')"
-      >
-
-        <div class="icon">📊</div>
-
-        <h3>Progress</h3>
-
-        <p>
-          Track your progress
-          lesson by lesson.
-        </p>
+        <button
+          class="link-btn"
+          onclick="route.screen='login';render()"
+        >
+          ← ${tx('back')}
+        </button>
 
       </div>
-
-    </div>
-
-
-    <!-- CONTENT AREA -->
-
-    <div id="contentArea" class="content-box">
-
-      <h2>Choose a section</h2>
-
-      <p>
-        Select Lessons, Quizzes, Challenges,
-        or Progress above.
-      </p>
 
     </div>
 
   </main>
 
-</div>
+  `;
 
+}
 
-<script>
+function homeView(){
 
-  /* =====================================================
-     LOGIN
-  ===================================================== */
+  return shell(`
 
-  function login() {
+    <main class="page">
 
-    const username =
-      document.getElementById("username").value.trim();
+      <div class="container">
 
-    const password =
-      document.getElementById("password").value.trim();
+        <section class="hero">
 
-    const message =
-      document.getElementById("loginMessage");
+          <div class="badge">
+            🇦🇪 ${tx('uac')}
+          </div>
 
+          <h1>
+            Learn Math.
+            <br>
+            <span>Be Brilliant.</span> 🚀
+          </h1>
 
-    /*
-      DEMO LOGIN
+          <p>
+            ${tx('welcome')}
+          </p>
 
-      We will replace this later with
-      real user accounts/database.
-    */
+        </section>
 
-    const DEMO_USERNAME = "Ahmed";
+        <h2 style="text-align:center">
+          ${tx('chooseTerm')}
+        </h2>
 
-    const DEMO_PASSWORD = "123456";
+        <div class="term-grid">
 
+          ${[1,2,3].map(t=>`
 
-    if (
-      username === DEMO_USERNAME &&
-      password === DEMO_PASSWORD
-    ) {
+            <div class="card term-card">
 
-      localStorage.setItem(
-        "ahmedAcademyLoggedIn",
-        "true"
-      );
+              <div class="term-icon">
+                ${t===1?'📘':t===2?'📗':'📕'}
+              </div>
 
-      localStorage.setItem(
-        "ahmedAcademyUser",
-        username
-      );
+              <h3>
+                ${tx('term'+t)}
+              </h3>
 
-      showApp();
+              <p>
+                ${tx('uac')}
+              </p>
 
-    } else {
+              <button
+                class="btn btn-primary"
+                onclick="openTerm(${t})"
+              >
+                ${tx('open')}
+              </button>
 
-      message.textContent =
-        "Incorrect username or password.";
+            </div>
 
-    }
+          `).join('')}
 
+        </div>
+
+      </div>
+
+    </main>
+
+  `);
+
+}
+
+function termView(){
+
+  let content = '';
+
+  if(route.section === 'lessons'){
+    content = lessonsView();
   }
 
-
-  function showApp() {
-
-    document
-      .getElementById("loginPage")
-      .classList.add("hidden");
-
-    document
-      .getElementById("app")
-      .classList.remove("hidden");
-
-    const user =
-      localStorage.getItem("ahmedAcademyUser") || "Student";
-
-    document
-      .getElementById("studentName")
-      .textContent = user;
-
+  else if(route.section === 'quizzes'){
+    content = modePickerView('quiz');
   }
 
-
-  function logout() {
-
-    localStorage.removeItem(
-      "ahmedAcademyLoggedIn"
-    );
-
-    localStorage.removeItem(
-      "ahmedAcademyUser"
-    );
-
-    location.reload();
-
+  else if(route.section === 'challenges'){
+    content = modePickerView('challenge');
   }
 
-
-  /* =====================================================
-     TERM DATA
-  ===================================================== */
-
-  let currentTerm = 1;
-
-
-  const termData = {
-
-    1: {
-      title: "Term 1",
-      description:
-        "Grade 9 Advanced Mathematics — Term 1"
-    },
-
-    2: {
-      title: "Term 2",
-      description:
-        "Grade 9 Advanced Mathematics — Term 2"
-    },
-
-    3: {
-      title: "Term 3",
-      description:
-        "Grade 9 Advanced Mathematics — Term 3"
-    }
-
-  };
-
-
-  function openTerm(termNumber) {
-
-    currentTerm = termNumber;
-
-    document
-      .getElementById("homePage")
-      .classList.add("hidden");
-
-    document
-      .getElementById("termPage")
-      .classList.remove("hidden");
-
-
-    document
-      .getElementById("termTitle")
-      .textContent =
-      termData[termNumber].title;
-
-
-    document
-      .getElementById("termDescription")
-      .textContent =
-      termData[termNumber].description;
-
-
-    document
-      .getElementById("contentArea")
-      .innerHTML = `
-
-        <h2>Welcome to ${termData[termNumber].title}</h2>
-
-        <p>
-          Choose one of the four sections above
-          to start learning.
-        </p>
-
-      `;
-
+  else if(route.section === 'progress'){
+    content = progressView();
   }
 
+  else{
 
-  function goHome() {
+    content = `
 
-    document
-      .getElementById("termPage")
-      .classList.add("hidden");
-
-    document
-      .getElementById("homePage")
-      .classList.remove("hidden");
-
-  }
-
-
-  /* =====================================================
-     LESSON DATA
-  ===================================================== */
-
-  const units = {
-
-    1: [
-
-      {
-        name: "Unit 2",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 3",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 4",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 5",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4",
-          "Lesson 5",
-          "Lesson 6"
-        ]
-      }
-
-    ],
-
-
-    2: [
-
-      {
-        name: "Unit 2",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 3",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 4",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 5",
-        lessons: [
-          "Lesson 1",
-          "Lesson 5",
-          "Lesson 6"
-        ]
-      }
-
-    ],
-
-
-    3: [
-
-      {
-        name: "Unit 2",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 3",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 4",
-        lessons: [
-          "Lesson 1",
-          "Lesson 2",
-          "Lesson 3",
-          "Lesson 4"
-        ]
-      },
-
-      {
-        name: "Unit 5",
-        lessons: [
-          "Lesson 1",
-          "Lesson 5",
-          "Lesson 6"
-        ]
-      }
-
-    ]
-
-  };
-
-
-  /* =====================================================
-     SHOW SECTION
-  ===================================================== */
-
-  function showSection(section) {
-
-    const content =
-      document.getElementById("contentArea");
-
-
-    if (section === "lessons") {
-
-      showLessons(content);
-
-    }
-
-    else if (section === "quizzes") {
-
-      showQuizzes(content);
-
-    }
-
-    else if (section === "challenges") {
-
-      showChallenges(content);
-
-    }
-
-    else if (section === "progress") {
-
-      showProgress(content);
-
-    }
-
-  }
-
-
-  /* =====================================================
-     LESSONS
-  ===================================================== */
-
-  function showLessons(content) {
-
-    let html = `
-
-      <h2>📚 Lessons</h2>
-
-      <p>
-        ${termData[currentTerm].title} —
-        Choose a unit to see its lessons.
-      </p>
+      <div class="empty">
+        ${tx('chooseTerm')}
+      </div>
 
     `;
 
+  }
 
-    units[currentTerm].forEach((unit, index) => {
+  return shell(`
 
-      html += `
+    <main class="page">
+
+      <div class="container">
+
+        <div class="back">
+
+          <button
+            class="btn btn-ghost btn-small"
+            onclick="goHome()"
+          >
+            ← ${tx('back')}
+          </button>
+
+        </div>
+
+        <div class="term-head">
+
+          <div>
+
+            <h2>
+              ${
+                route.term===1
+                ? tx('term1')
+                : route.term===2
+                ? tx('term2')
+                : tx('term3')
+              }
+            </h2>
+
+            <p>
+              ${tx('uac')}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div class="section-grid">
+
+          <div
+            class="card section-card"
+            onclick="openSection('lessons')"
+          >
+            <div class="ico">📚</div>
+            <h3>${tx('lessons')}</h3>
+            <p>Units and lessons</p>
+          </div>
+
+          <div
+            class="card section-card"
+            onclick="openSection('quizzes')"
+          >
+            <div class="ico">📝</div>
+            <h3>${tx('quizzes')}</h3>
+            <p>60 quizzes per lesson</p>
+          </div>
+
+          <div
+            class="card section-card"
+            onclick="openSection('challenges')"
+          >
+            <div class="ico">🧠</div>
+            <h3>${tx('challenges')}</h3>
+            <p>30 challenges per lesson</p>
+          </div>
+
+          <div
+            class="card section-card"
+            onclick="openSection('progress')"
+          >
+            <div class="ico">📊</div>
+            <h3>${tx('progress')}</h3>
+            <p>Saved student results</p>
+          </div>
+
+        </div>
+
+        <div class="card content">
+          ${content}
+        </div>
+
+      </div>
+
+    </main>
+
+  `);
+
+}
+
+function unitsForTerm(){
+
+  return state.course.terms[route.term] || [];
+
+}
+
+function lessonsView(){
+
+  return `
+
+    <h2>
+      📚 ${tx('lessons')}
+    </h2>
+
+    <p class="muted">
+      Choose a unit.
+    </p>
+
+    ${unitsForTerm().map((u,i)=>`
+
+      <div class="unit">
+
+        <div
+          class="unit-head"
+          onclick="this.parentElement.classList.toggle('open')"
+        >
+
+          <strong>
+            ${esc(u.unit)}
+          </strong>
+
+          <span>▼</span>
+
+        </div>
+
+        <div class="unit-body">
+
+          ${u.lessons.map(l=>`
+
+            <div class="lesson-row">
+
+              <div class="lesson-meta">
+
+                <strong>
+                  ${esc(l)}
+                </strong>
+
+                <small>
+                  ${esc(u.unit)}
+                </small>
+
+              </div>
+
+              <div class="row-actions">
+
+                <button
+                  class="btn btn-primary btn-small"
+                  onclick="openLesson(
+                    '${encodeURIComponent(u.unit)}',
+                    '${encodeURIComponent(l)}'
+                  )"
+                >
+                  ${tx('open')}
+                </button>
+
+              </div>
+
+            </div>
+
+          `).join('')}
+
+        </div>
+
+      </div>
+
+    `).join('')}
+
+  `;
+
+}
+
+function lessonView(){
+
+  return `
+
+    <button
+      class="btn btn-ghost btn-small"
+      onclick="openSection('lessons')"
+    >
+      ← ${tx('back')}
+    </button>
+
+    <h2 style="margin-top:18px">
+      📖 ${esc(route.unit)} — ${esc(route.lesson)}
+    </h2>
+
+    <div class="card mode-card">
+
+      <h4>
+        📘 ${tx('lessonFile')}
+      </h4>
+
+      <p>
+        Lesson file will be added from the textbook.
+      </p>
+
+      <button
+        class="btn btn-primary btn-small"
+        onclick="alert('Lesson file will be added here.')"
+      >
+        ${tx('open')}
+      </button>
+
+    </div>
+
+    <div class="card mode-card" style="margin-top:12px">
+
+      <h4>
+        ✅ ${tx('solutionFile')}
+      </h4>
+
+      <p>
+        Solution file will be added separately.
+      </p>
+
+      <button
+        class="btn btn-primary btn-small"
+        onclick="alert('Solution file will be added here.')"
+      >
+        ${tx('open')}
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+function unitLessonPicker(mode){
+
+  const label =
+    mode === 'quiz'
+      ? tx('quiz')
+      : tx('challenge');
+
+  return `
+
+    <h2>
+      ${mode==='quiz'?'📝':'🧠'} ${label}
+    </h2>
+
+    <p class="muted">
+      First choose a unit, then a lesson.
+    </p>
+
+    ${
+      unitsForTerm().map(u=>`
 
         <div class="unit">
 
           <div
-            class="unit-header"
-            onclick="toggleUnit(this)"
+            class="unit-head"
+            onclick="this.parentElement.classList.toggle('open')"
           >
 
-            <h3>
-              ${unit.name}
-            </h3>
+            <strong>
+              ${esc(u.unit)}
+            </strong>
 
-            <span>
-              ▼
-            </span>
+            <span>▼</span>
 
           </div>
 
-          <div class="lessons">
+          <div class="unit-body">
 
-      `;
+            ${u.lessons.map(l=>`
 
+              <button
+                class="selector"
+                onclick="selectModeLesson(
+                  '${mode}',
+                  '${encodeURIComponent(u.unit)}',
+                  '${encodeURIComponent(l)}'
+                )"
+              >
 
-      unit.lessons.forEach((lesson, lessonIndex) => {
+                <span>
+                  ${esc(l)}
+                </span>
 
-        html += `
+                <span>
+                  →
+                </span>
 
-          <div class="lesson">
+              </button>
 
-            <div class="lesson-info">
-
-              <strong>
-                ${lesson}
-              </strong>
-
-              <small>
-                ${unit.name}
-              </small>
-
-            </div>
-
-            <button
-              class="lesson-btn"
-              onclick="openLesson(
-                '${unit.name}',
-                '${lesson}'
-              )"
-            >
-              Open Lesson
-            </button>
-
-          </div>
-
-        `;
-
-      });
-
-
-      html += `
+            `).join('')}
 
           </div>
 
         </div>
 
-      `;
+      `).join('')
+    }
 
-    });
+  `;
 
+}
 
-    content.innerHTML = html;
+function lessonButtons(mode){
 
-  }
+  const total = mode === 'quiz' ? 60 : 30;
 
+  let html = '';
 
-  function toggleUnit(header) {
+  for(let i=1;i<=total;i++){
 
-    header
-      .parentElement
-      .classList
-      .toggle("open");
+    html += `
 
-  }
+      <div class="card mode-card">
 
-
-  /* =====================================================
-     OPEN LESSON
-  ===================================================== */
-
-  function openLesson(unit, lesson) {
-
-    const content =
-      document.getElementById("contentArea");
-
-
-    content.innerHTML = `
-
-      <button
-        class="back-btn"
-        onclick="showSection('lessons')"
-      >
-        ← Back to Lessons
-      </button>
-
-      <h2>
-        📖 ${unit} — ${lesson}
-      </h2>
-
-      <p>
-        This lesson page is ready for the
-        textbook content and solution file.
-      </p>
-
-
-      <div class="quiz-card">
-
-        <h3>
-          📘 Lesson File
-        </h3>
+        <h4>
+          ${mode==='quiz'?'📝':'🧠'}
+          ${mode==='quiz'?tx('quiz'):tx('challenge')} ${i}
+        </h4>
 
         <p>
-          The textbook lesson file will
-          appear here.
+          10 ${tx('questions')}
         </p>
 
         <button
-          class="lesson-btn"
-          onclick="alert('Lesson file will be added here.')"
+          class="btn btn-primary btn-small"
+          onclick="startSet('${mode}',${i})"
         >
-          Open Lesson File
-        </button>
-
-      </div>
-
-
-      <div class="quiz-card">
-
-        <h3>
-          ✅ Lesson Solution
-        </h3>
-
-        <p>
-          The separate solution file will
-          appear here.
-        </p>
-
-        <button
-          class="lesson-btn"
-          onclick="alert('Solution file will be added here.')"
-        >
-          Open Solution
-        </button>
-
-      </div>
-
-
-      <div class="quiz-card">
-
-        <h3>
-          📝 Quiz
-        </h3>
-
-        <p>
-          This lesson will eventually have
-          20 generated questions.
-        </p>
-
-        <button
-          class="lesson-btn"
-          onclick="alert('The 20-question quiz will be added here.')"
-        >
-          Start Quiz
+          ${
+            mode==='quiz'
+              ? tx('startQuiz')
+              : tx('startChallenge')
+          }
         </button>
 
       </div>
@@ -1382,342 +1939,1276 @@
 
   }
 
+  return `
 
-  /* =====================================================
-     QUIZZES
-  ===================================================== */
+    <div class="${
+      mode==='quiz'
+        ? 'quiz-list'
+        : 'challenge-list'
+    }">
 
-  function showQuizzes(content) {
+      ${html}
 
-    let html = `
+    </div>
 
-      <h2>📝 Quizzes</h2>
+  `;
 
-      <p>
-        Choose a lesson to start its
-        20-question quiz.
-      </p>
+}
 
-    `;
+function modePickerView(mode){
 
+  if(!route.unit || !route.lesson){
 
-    units[currentTerm].forEach(unit => {
-
-      html += `
-
-        <div class="quiz-card">
-
-          <h3>
-            ${unit.name}
-          </h3>
-
-      `;
-
-
-      unit.lessons.forEach(lesson => {
-
-        html += `
-
-          <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:10px;
-            padding:10px 0;
-            border-top:1px solid #263244;
-          ">
-
-            <span>
-              ${lesson}
-            </span>
-
-            <button
-              class="lesson-btn"
-              onclick="startQuiz(
-                '${unit.name}',
-                '${lesson}'
-              )"
-            >
-              Start
-            </button>
-
-          </div>
-
-        `;
-
-      });
-
-
-      html += `
-
-        </div>
-
-      `;
-
-    });
-
-
-    content.innerHTML = html;
+    return unitLessonPicker(mode);
 
   }
 
+  return `
 
-  function startQuiz(unit, lesson) {
+    <button
+      class="btn btn-ghost btn-small"
+      onclick="clearLessonPicker('${mode}')"
+    >
+      ← ${tx('back')}
+    </button>
 
-    const content =
-      document.getElementById("contentArea");
+    <h2 style="margin-top:18px">
+      ${mode==='quiz'?'📝':'🧠'}
+      ${esc(route.unit)} —
+      ${esc(route.lesson)}
+    </h2>
 
+    <p class="muted">
+      ${
+        mode==='quiz'
+          ? '60 quizzes • 10 questions each'
+          : '30 challenges • 10 questions each'
+      }
+    </p>
 
-    content.innerHTML = `
+    ${lessonButtons(mode)}
 
-      <button
-        class="back-btn"
-        onclick="showSection('quizzes')"
-      >
-        ← Back to Quizzes
-      </button>
+  `;
 
-      <h2>
-        📝 ${unit} — ${lesson}
-      </h2>
+}
 
-      <p>
-        20-question quiz
-      </p>
+function progressStore(user){
 
+  const s = state.students[user];
 
-      <div class="quiz-card">
+  if(!s.progress){
+    s.progress={};
+  }
 
-        <h3>
-          Quiz Ready
-        </h3>
+  return s.progress;
 
-        <p>
-          The question engine will generate
-          a fresh set of 20 questions each time
-          the student starts the quiz.
-        </p>
+}
 
-        <button
-          class="lesson-btn"
-          onclick="alert('Question engine will be connected here.')"
-        >
-          Begin 20 Questions
-        </button>
+function keyFor(term,unit,lesson,mode,index){
 
-      </div>
+  return `t${term}|${unit}|${lesson}|${mode}|${index}`;
 
-    `;
+}
+
+function hash(str){
+
+  let h=2166136261;
+
+  for(let i=0;i<str.length;i++){
+
+    h ^= str.charCodeAt(i);
+
+    h=Math.imul(h,16777619);
 
   }
 
+  return h>>>0;
 
-  /* =====================================================
-     CHALLENGES
-  ===================================================== */
+}
 
-  function showChallenges(content) {
+function shuffle(arr,seed){
 
-    let html = `
+  let a=[...arr];
+  let h=hash(seed);
 
-      <h2>🧠 Challenges</h2>
+  for(let i=a.length-1;i>0;i--){
 
-      <p>
-        Higher-thinking mathematics challenges
-        organized by lesson.
-      </p>
+    h=(Math.imul(h^i,16777619)>>>0);
 
-    `;
+    const j=h%(i+1);
 
-
-    units[currentTerm].forEach(unit => {
-
-      html += `
-
-        <div class="quiz-card">
-
-          <h3>
-            ${unit.name}
-          </h3>
-
-      `;
-
-
-      unit.lessons.forEach(lesson => {
-
-        html += `
-
-          <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:10px 0;
-            border-top:1px solid #263244;
-          ">
-
-            <span>
-              ${lesson}
-            </span>
-
-            <button
-              class="lesson-btn"
-              onclick="startChallenge(
-                '${unit.name}',
-                '${lesson}'
-              )"
-            >
-              Challenge
-            </button>
-
-          </div>
-
-        `;
-
-      });
-
-
-      html += `
-
-        </div>
-
-      `;
-
-    });
-
-
-    content.innerHTML = html;
+    [a[i],a[j]]=[a[j],a[i]];
 
   }
 
+  return a;
 
-  function startChallenge(unit, lesson) {
+}
 
-    alert(
-      "The high-thinking challenge for " +
-      unit +
-      " — " +
-      lesson +
-      " will be added here."
-    );
+function generateQuestions(
+  term,
+  unit,
+  lesson,
+  mode,
+  index
+){
 
-  }
+  const qs=[];
 
+  const seed =
+    `${term}|${unit}|${lesson}|${mode}|${index}|${Date.now()}`;
 
-  /* =====================================================
-     PROGRESS
-  ===================================================== */
+  for(let i=1;i<=10;i++){
 
-  function showProgress(content) {
+    const base =
+      Math.abs(hash(seed+'|'+i))%40+1;
 
-    content.innerHTML = `
+    const b =
+      Math.abs(hash(seed+'|b|'+i))%20+2;
 
-      <h2>📊 My Progress</h2>
+    let op;
 
-      <p>
-        Your progress will be tracked
-        separately for every lesson.
-      </p>
+    if(mode==='challenge'){
 
+      op =
+        i%3===0
+          ? '×'
+          : i%2===0
+          ? '+'
+          : '−';
 
-      <div class="progress-item">
+    }else{
 
-        <div class="progress-top">
+      op =
+        i%2===0
+          ? '+'
+          : '−';
 
-          <strong>
-            Overall Progress
-          </strong>
+    }
 
-          <strong>
-            0%
-          </strong>
+    let answer;
 
-        </div>
+    if(op==='+'){
+      answer=base+b;
+    }
+    else if(op==='−'){
+      answer=base-b;
+    }
+    else{
+      answer=base*b;
+    }
 
-        <div class="progress-bar">
+    let opts=[
+      answer,
+      answer+1,
+      answer-2,
+      answer+5
+    ];
 
-          <div
-            class="progress-fill"
-            style="width:0%"
-          ></div>
+    opts=[...new Set(opts)];
 
-        </div>
+    while(opts.length<4){
 
-      </div>
-
-
-      <div class="progress-item">
-
-        <div class="progress-top">
-
-          <strong>
-            Correct Answers
-          </strong>
-
-          <span>
-            0
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="progress-item">
-
-        <div class="progress-top">
-
-          <strong>
-            Wrong Answers
-          </strong>
-
-          <span>
-            0
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="progress-item">
-
-        <div class="progress-top">
-
-          <strong>
-            Lessons Completed
-          </strong>
-
-          <span>
-            0
-          </span>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* =====================================================
-     AUTO LOGIN
-  ===================================================== */
-
-  window.addEventListener("DOMContentLoaded", () => {
-
-    const loggedIn =
-      localStorage.getItem(
-        "ahmedAcademyLoggedIn"
+      opts.push(
+        answer+opts.length+7
       );
 
-    if (loggedIn === "true") {
+    }
 
-      showApp();
+    opts=shuffle(
+      opts,
+      seed+'|o|'+i
+    );
+
+    qs.push({
+      id:i,
+      text:
+        mode==='challenge'
+        ? `Think carefully: ${base} ${op} ${b} = ?`
+        : `Question ${i}: ${base} ${op} ${b} = ?`,
+      options:opts,
+      answer:answer
+    });
+
+  }
+
+  return qs;
+
+}
+
+function selectModeLesson(
+  mode,
+  unit,
+  lesson
+){
+
+  route.unit =
+    decodeURIComponent(unit);
+
+  route.lesson =
+    decodeURIComponent(lesson);
+
+  route.mode=mode;
+
+  render();
+
+}
+
+function clearLessonPicker(){
+
+  route.unit=null;
+  route.lesson=null;
+  route.mode=null;
+  route.index=null;
+  route.questions=[];
+
+  render();
+
+}
+
+function startSet(mode,index){
+
+  route.mode=mode;
+  route.index=index;
+
+  route.questions =
+    generateQuestions(
+      route.term,
+      route.unit,
+      route.lesson,
+      mode,
+      index
+    );
+
+  route.screen =
+    mode==='quiz'
+      ? 'quizRun'
+      : 'challengeRun';
+
+  render();
+
+}
+
+function runView(isChallenge){
+
+  const mode =
+    isChallenge
+      ? 'challenge'
+      : 'quiz';
+
+  return shell(`
+
+    <main class="page">
+
+      <div class="container qwrap">
+
+        <div class="back">
+
+          <button
+            class="btn btn-ghost btn-small"
+            onclick="backFromRun()"
+          >
+            ← ${tx('back')}
+          </button>
+
+        </div>
+
+        <div class="card content">
+
+          <h2>
+            ${isChallenge?'🧠':'📝'}
+
+            ${esc(route.unit)}
+            —
+            ${esc(route.lesson)}
+            —
+            ${mode==='quiz'
+              ? tx('quiz')
+              : tx('challenge')}
+            ${route.index}
+          </h2>
+
+          <p class="muted">
+            10 ${tx('questions')}
+          </p>
+
+          <div id="questionForm">
+
+            ${route.questions.map(q=>`
+
+              <div class="question">
+
+                <h4>
+                  ${q.id}.
+                  ${esc(q.text)}
+                </h4>
+
+                ${
+                  q.options.map(o=>`
+
+                    <label class="option">
+
+                      <input
+                        type="radio"
+                        name="q${q.id}"
+                        value="${encodeURIComponent(o)}"
+                      >
+
+                      <span>
+                        ${esc(o)}
+                      </span>
+
+                    </label>
+
+                  `).join('')
+                }
+
+              </div>
+
+            `).join('')}
+
+            <button
+              class="btn btn-primary"
+              onclick="submitSet()"
+            >
+              ${tx('submit')}
+            </button>
+
+          </div>
+
+          <div
+            class="notice"
+            style="margin-top:14px"
+          >
+            ${tx('demo')}
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  `);
+
+}
+
+function backFromRun(){
+
+  route.screen='term';
+
+  route.section =
+    route.mode==='quiz'
+      ? 'quizzes'
+      : 'challenges';
+
+  route.mode=null;
+  route.index=null;
+
+  render();
+
+}
+
+function submitSet(){
+
+  let correct=0;
+
+  route.questions.forEach(q=>{
+
+    const el =
+      document.querySelector(
+        `input[name="q${q.id}"]:checked`
+      );
+
+    if(
+      el &&
+      Number(decodeURIComponent(el.value))
+        === Number(q.answer)
+    ){
+
+      correct++;
 
     }
 
   });
+
+  const total=10;
+
+  const pct =
+    Math.round(
+      correct/total*100
+    );
+
+  const key =
+    keyFor(
+      route.term,
+      route.unit,
+      route.lesson,
+      route.mode,
+      route.index
+    );
+
+  const prog =
+    progressStore(
+      state.currentUser
+    );
+
+  prog[key]={
+    term:route.term,
+    unit:route.unit,
+    lesson:route.lesson,
+    mode:route.mode,
+    index:route.index,
+    correct,
+    total,
+    pct,
+    updatedAt:now()
+  };
+
+  saveState();
+
+  route.screen='term';
+
+  route.section='progress';
+
+  alert(
+    `${tx('result')}: ${correct}/${total} = ${pct}%`
+  );
+
+  render();
+
+}
+
+function progressView(){
+
+  const p =
+    state.students[state.currentUser]?.progress || {};
+
+  const rows=[];
+
+  unitsForTerm().forEach(u=>{
+
+    u.lessons.forEach(l=>{
+
+      rows.push({
+        u:u.unit,
+        l,
+        quizzes:[],
+        challenges:[]
+      });
+
+    });
+
+  });
+
+  rows.forEach(r=>{
+
+    for(let i=1;i<=60;i++){
+
+      const x =
+        p[
+          keyFor(
+            route.term,
+            r.u,
+            r.l,
+            'quiz',
+            i
+          )
+        ];
+
+      if(x){
+        r.quizzes.push(x);
+      }
+
+    }
+
+    for(let i=1;i<=30;i++){
+
+      const x =
+        p[
+          keyFor(
+            route.term,
+            r.u,
+            r.l,
+            'challenge',
+            i
+          )
+        ];
+
+      if(x){
+        r.challenges.push(x);
+      }
+
+    }
+
+  });
+
+  return `
+
+    <h2>
+      📊 ${tx('progress')}
+    </h2>
+
+    <p class="muted">
+      ${tx('savedProgress')}
+    </p>
+
+    ${
+      rows.map(r=>{
+
+        const qa =
+          r.quizzes.length
+          ? r.quizzes.reduce(
+              (s,x)=>s+x.pct,
+              0
+            )/r.quizzes.length
+          : 0;
+
+        const ca =
+          r.challenges.length
+          ? r.challenges.reduce(
+              (s,x)=>s+x.pct,
+              0
+            )/r.challenges.length
+          : 0;
+
+        return `
+
+          <div
+            class="card mode-card"
+            style="margin-bottom:12px"
+          >
+
+            <h4>
+              ${esc(r.u)}
+              —
+              ${esc(r.l)}
+            </h4>
+
+            <div class="progress-grid">
+
+              <div>
+
+                <div class="result-row">
+
+                  <span>
+                    ${tx('overall')}
+                    (${r.quizzes.length}/60)
+                  </span>
+
+                  <strong>
+                    ${Math.round(qa)}%
+                  </strong>
+
+                </div>
+
+                <div
+                  class="bar"
+                  style="margin-top:8px"
+                >
+
+                  <span
+                    style="width:${qa}%"
+                  ></span>
+
+                </div>
+
+              </div>
+
+              <div>
+
+                <div class="result-row">
+
+                  <span>
+                    ${tx('challengeAvg')}
+                    (${r.challenges.length}/30)
+                  </span>
+
+                  <strong>
+                    ${Math.round(ca)}%
+                  </strong>
+
+                </div>
+
+                <div
+                  class="bar"
+                  style="margin-top:8px"
+                >
+
+                  <span
+                    style="width:${ca}%"
+                  ></span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            ${
+              r.quizzes.length ||
+              r.challenges.length
+
+              ?
+
+              `
+
+              <div
+                style="margin-top:14px"
+                class="subnav"
+              >
+
+                ${r.quizzes.map(x=>`
+
+                  <span class="chip">
+                    Q${x.index}: ${x.pct}%
+                  </span>
+
+                `).join('')}
+
+                ${r.challenges.map(x=>`
+
+                  <span class="chip">
+                    C${x.index}: ${x.pct}%
+                  </span>
+
+                `).join('')}
+
+              </div>
+
+              `
+
+              :
+
+              `
+
+              <div
+                class="empty"
+                style="margin-top:12px"
+              >
+                ${tx('noData')}
+              </div>
+
+              `
+
+            }
+
+          </div>
+
+        `;
+
+      }).join('')
+    }
+
+  `;
+
+}
+
+function teacherView(){
+
+  const studentNames =
+    Object.keys(state.students);
+
+  const totalVisits =
+    state.visits.length;
+
+  return shell(`
+
+    <main class="page">
+
+      <div class="container">
+
+        <div class="term-head">
+
+          <div>
+
+            <h2>
+              👨‍🏫 ${tx('teacherPanel')}
+            </h2>
+
+            <p>
+              ${tx('teacherOnly')}
+            </p>
+
+          </div>
+
+          <span class="chip">
+            Ahmed
+          </span>
+
+        </div>
+
+        <div class="teacher-grid">
+
+          <div class="card stat-box">
+
+            <div class="muted">
+              ${tx('students')}
+            </div>
+
+            <div class="stat-num">
+              ${studentNames.length}
+            </div>
+
+          </div>
+
+          <div class="card stat-box">
+
+            <div class="muted">
+              ${tx('visitorCount')}
+            </div>
+
+            <div class="stat-num">
+              ${totalVisits}
+            </div>
+
+          </div>
+
+          <div class="card stat-box">
+
+            <div class="muted">
+              ${tx('saved')}
+            </div>
+
+            <div class="stat-num">
+              ✓
+            </div>
+
+          </div>
+
+        </div>
+
+        <div
+          class="card content"
+          style="margin-top:16px"
+        >
+
+          <h2>
+            ${tx('visitorsTitle')}
+          </h2>
+
+          <div class="admin-actions">
+
+            <button
+              class="btn btn-ghost btn-small"
+              onclick="downloadState()"
+            >
+              Export Data
+            </button>
+
+            <button
+              class="btn btn-ghost btn-small"
+              onclick="clearStudentData()"
+            >
+              ${tx('reset')}
+            </button>
+
+          </div>
+
+          ${
+            studentNames.length
+
+            ?
+
+            `
+
+            <table class="visitor-table">
+
+              <thead>
+
+                <tr>
+                  <th>${tx('studentName')}</th>
+                  <th>${tx('username')}</th>
+                  <th>${tx('lastVisit')}</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                ${
+                  studentNames.map(n=>{
+
+                    const s =
+                      state.students[n];
+
+                    return `
+
+                      <tr>
+
+                        <td>
+                          ${esc(s.name||n)}
+                        </td>
+
+                        <td>
+                          ${esc(n)}
+                        </td>
+
+                        <td>
+                          ${esc(s.lastLogin||'—')}
+                        </td>
+
+                      </tr>
+
+                    `;
+
+                  }).join('')
+                }
+
+              </tbody>
+
+            </table>
+
+            `
+
+            :
+
+            `
+
+            <div
+              class="empty"
+              style="margin-top:12px"
+            >
+              ${tx('noData')}
+            </div>
+
+            `
+
+          }
+
+          <h3 style="margin-top:26px">
+            Recent Visits
+          </h3>
+
+          <table class="visitor-table">
+
+            <thead>
+
+              <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Time</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                state.visits
+                  .slice()
+                  .reverse()
+                  .slice(0,20)
+                  .map(v=>`
+
+                    <tr>
+
+                      <td>
+                        ${esc(v.username)}
+                      </td>
+
+                      <td>
+                        ${esc(v.role)}
+                      </td>
+
+                      <td>
+                        ${esc(v.time)}
+                      </td>
+
+                    </tr>
+
+                  `).join('')
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  `);
+
+}
+
+function studentLogin(){
+
+  const u =
+    document.getElementById('loginUser')
+      .value
+      .trim();
+
+  const p =
+    document.getElementById('loginPass')
+      .value;
+
+  if(!u || !p){
+
+    document.getElementById('loginError')
+      .textContent =
+        tx('loginError');
+
+    return;
+
+  }
+
+  const s =
+    state.students[u];
+
+  if(!s || s.password!==p){
+
+    document.getElementById('loginError')
+      .textContent =
+        tx('loginError');
+
+    return;
+
+  }
+
+  s.lastLogin=now();
+
+  state.currentUser=u;
+  state.currentRole='student';
+
+  logVisit(u,'student');
+
+  saveState();
+
+  route.screen='home';
+
+  render();
+
+}
+
+function createStudent(){
+
+  const name =
+    document.getElementById('newName')
+      .value
+      .trim();
+
+  const u =
+    document.getElementById('newUser')
+      .value
+      .trim();
+
+  const p =
+    document.getElementById('newPass')
+      .value;
+
+  const p2 =
+    document.getElementById('newPass2')
+      .value;
+
+  const err =
+    document.getElementById('createError');
+
+  if(
+    !name ||
+    !u ||
+    !p ||
+    p!==p2
+  ){
+
+    err.textContent =
+      tx('createError');
+
+    return;
+
+  }
+
+  if(state.students[u]){
+
+    err.textContent =
+      tx('exists');
+
+    return;
+
+  }
+
+  state.students[u]={
+    name,
+    password:p,
+    createdAt:now(),
+    lastLogin:now(),
+    progress:{}
+  };
+
+  state.currentUser=u;
+  state.currentRole='student';
+
+  state.visits.push({
+    username:u,
+    role:'student',
+    time:now()
+  });
+
+  saveState();
+
+  route.screen='home';
+
+  alert(
+    tx('accountCreated')
+  );
+
+  render();
+
+}
+
+function teacherLogin(){
+
+  const u =
+    document.getElementById('teacherUser')
+      .value
+      .trim();
+
+  const p =
+    document.getElementById('teacherPass')
+      .value;
+
+  const e =
+    document.getElementById('teacherError');
+
+  if(
+    u!==TEACHER.username ||
+    p!==TEACHER.password
+  ){
+
+    e.textContent =
+      tx('loginError');
+
+    return;
+
+  }
+
+  state.currentUser='Ahmed';
+  state.currentRole='teacher';
+
+  logVisit(
+    'Ahmed',
+    'teacher'
+  );
+
+  saveState();
+
+  route.screen='teacher';
+
+  render();
+
+}
+
+function logout(){
+
+  state.currentUser=null;
+  state.currentRole=null;
+
+  route={
+    screen:'login',
+    term:1,
+    section:null,
+    unit:null,
+    lesson:null,
+    mode:null,
+    index:null,
+    questions:[]
+  };
+
+  saveState();
+
+  render();
+
+}
+
+function goHome(){
+
+  route.screen='home';
+  route.section=null;
+  route.unit=null;
+  route.lesson=null;
+
+  render();
+
+}
+
+function openTerm(t){
+
+  route.term=t;
+  route.section=null;
+  route.unit=null;
+  route.lesson=null;
+  route.screen='term';
+
+  render();
+
+}
+
+function openSection(s){
+
+  route.section=s;
+  route.unit=null;
+  route.lesson=null;
+  route.screen='term';
+
+  render();
+
+}
+
+function openLesson(unit,lesson){
+
+  route.unit=
+    decodeURIComponent(unit);
+
+  route.lesson=
+    decodeURIComponent(lesson);
+
+  route.section='lessons';
+  route.screen='lesson';
+
+  render();
+
+}
+
+function toggleLang(){
+
+  const panel =
+    document.getElementById('langPanel');
+
+  if(panel){
+    panel.classList.toggle('hidden');
+  }
+
+}
+
+function downloadState(){
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          state,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
+
+  const a =
+    document.createElement('a');
+
+  a.href =
+    URL.createObjectURL(blob);
+
+  a.download =
+    'ahmed-academy-data.json';
+
+  a.click();
+
+  URL.revokeObjectURL(a.href);
+
+}
+
+function clearStudentData(){
+
+  if(
+    confirm(
+      'Clear all local student accounts and progress?'
+    )
+  ){
+
+    state.students={};
+    state.visits=[];
+
+    saveState();
+
+    render();
+
+  }
+
+}
+
+window.addEventListener(
+  'click',
+  e=>{
+
+    if(!e.target.closest('.lang-menu')){
+
+      document
+        .getElementById('langPanel')
+        ?.classList
+        .add('hidden');
+
+    }
+
+  }
+);
+
+/*
+  Add teacher screen to renderer.
+*/
+
+const oldRender = render;
+
+render = function(){
+
+  document.documentElement.lang =
+    lang === 'ar'
+      ? 'ar'
+      : 'en';
+
+  document.documentElement.dir =
+    lang === 'ar'
+      ? 'rtl'
+      : 'ltr';
+
+  const app =
+    document.getElementById('app');
+
+  if(route.screen==='teacherLogin'){
+
+    app.innerHTML =
+      teacherLoginView();
+
+    return;
+
+  }
+
+  oldRender();
+
+};
+
+if(
+  state.currentRole==='teacher'
+){
+
+  route.screen='teacher';
+
+}
+
+else if(
+  state.currentRole==='student' &&
+  state.currentUser
+){
+
+  route.screen='home';
+
+}
+
+else{
+
+  state.currentUser=null;
+  state.currentRole=null;
+
+  route.screen='login';
+
+}
+
+render();
 
 </script>
 
