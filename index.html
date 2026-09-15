@@ -3,71 +3,1924 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmed Academy | Grade 9 Advanced Math</title>
+
+<title>Ahmed Academy</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-  font-family:Arial, sans-serif;
-  background:#07111f;
-  color:#f8fafc;
-  min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#06101d;
+    color:white;
+    min-height:100vh;
 }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#0b1728;
-  border-bottom:1px solid #243b55;
-  padding:12px 18px;
-  display:flex;
-  align-items:center;
-  gap:15px;
+/* =========================
+   LOGIN SYSTEM
+========================= */
+
+.authPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #123b61,
+        #06101d 55%
+    );
+}
+
+.authBox{
+    width:100%;
+    max-width:430px;
+
+    background:#0c1b2e;
+
+    border:1px solid #294b6c;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+}
+
+.mathLogo{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.authBox h1{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.authBox h1 span{
+    color:#38bdf8;
+}
+
+.subtitle{
+    text-align:center;
+    color:#9db1c9;
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.inputLabel{
+    display:block;
+    margin-top:15px;
+    margin-bottom:7px;
+    color:#dcecff;
+    font-weight:bold;
+}
+
+.input{
+    width:100%;
+
+    background:#07111f;
+    color:white;
+
+    border:1px solid #294866;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    outline:none;
+
+    font-size:16px;
+}
+
+.input:focus{
+    border-color:#38bdf8;
+}
+
+.loginButton{
+    width:100%;
+
+    margin-top:20px;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    color:#00101d;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.loginButton:hover{
+    transform:translateY(-1px);
+}
+
+.authLinks{
+    margin-top:20px;
+
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.authLink{
+    color:#38bdf8;
+
+    background:none;
+
+    border:0;
+
+    cursor:pointer;
+
+    font-size:15px;
+}
+
+.authLink.teacher{
+    color:#fbbf24;
+}
+
+.authMessage{
+    margin-top:15px;
+
+    text-align:center;
+
+    color:#fb7185;
+
+    min-height:20px;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    display:none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    min-height:65px;
+
+    background:#0a1727;
+
+    border-bottom:1px solid #203b57;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:10px 15px;
+
+    gap:15px;
 }
 
 .logo{
-  font-size:20px;
-  font-weight:bold;
-  cursor:pointer;
-  white-space:nowrap;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    white-space:nowrap;
 }
 
 .logo span{
-  color:#38bdf8;
+    color:#38bdf8;
 }
 
-nav{
-  display:flex;
-  gap:7px;
-  flex:1;
-  overflow-x:auto;
+
+/* MENU */
+
+.menuButton{
+
+    display:none;
+
+    background:#102238;
+
+    color:white;
+
+    border:1px solid #294866;
+
+    border-radius:10px;
+
+    padding:9px 12px;
+
+    cursor:pointer;
+
+    font-size:20px;
 }
 
-nav button{
-  background:#102238;
-  color:white;
-  border:1px solid #294866;
-  padding:9px 13px;
-  border-radius:10px;
-  cursor:pointer;
-  white-space:nowrap;
+
+/* NAV */
+
+.nav{
+
+    display:flex;
+
+    gap:7px;
+
+    flex:1;
+
+    overflow-x:auto;
 }
 
-nav button:hover{
-  background:#173653;
-  border-color:#38bdf8;
+.nav button{
+
+    background:#102238;
+
+    color:white;
+
+    border:1px solid #294866;
+
+    border-radius:10px;
+
+    padding:9px 12px;
+
+    cursor:pointer;
+
+    white-space:nowrap;
 }
 
-/* PROFILE IN TOP CORNER */
+.nav button:hover{
+
+    border-color:#38bdf8;
+
+}
+
+
+/* =========================
+   PROFILE TOP CORNER
+========================= */
+
 .profileButton{
-  display:flex;
-  align-items:center;
+
+    margin-left:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#102238;
+
+    color:white;
+
+    border:1px solid #315474;
+
+    border-radius:30px;
+
+    padding:5px 12px 5px 5px;
+
+    cursor:pointer;
+
+    white-space:nowrap;
+}
+
+.avatar{
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #8b5cf6
+    );
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:25px 18px 80px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    background:
+    linear-gradient(
+        135deg,
+        #102d4b,
+        #091525
+    );
+
+    border:1px solid #294866;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    gap:25px;
+
+    align-items:center;
+}
+
+.hero h1{
+
+    font-size:
+    clamp(35px,6vw,65px);
+
+    margin:12px 0;
+}
+
+.hero p{
+
+    color:#a9bdd3;
+
+    font-size:18px;
+
+    line-height:1.6;
+
+}
+
+.heroImage{
+
+    width:100%;
+
+    border-radius:20px;
+
+    border:1px solid #315474;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        auto-fit,
+        minmax(220px,1fr)
+    );
+
+    gap:15px;
+}
+
+.card{
+
+    background:
+    linear-gradient(
+        145deg,
+        #102238,
+        #091525
+    );
+
+    border:1px solid #294866;
+
+    border-radius:18px;
+
+    padding:20px;
+}
+
+.card:hover{
+    border-color:#38bdf8;
+}
+
+.card h2,
+.card h3{
+    margin:8px 0;
+}
+
+.muted{
+    color:#9db1c9;
+    line-height:1.5;
+}
+
+.icon{
+    font-size:42px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+
+    border:0;
+
+    border-radius:11px;
+
+    padding:11px 16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    color:#00101d;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:10px;
+}
+
+.btn.secondary{
+
+    background:#122840;
+
+    color:white;
+
+    border:1px solid #315474;
+}
+
+.btn.gold{
+
+    background:
+    linear-gradient(
+        135deg,
+        #fbbf24,
+        #f59e0b
+    );
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+    .header{
+        flex-wrap:wrap;
+    }
+
+    .menuButton{
+        display:block;
+    }
+
+    .logo{
+        font-size:17px;
+    }
+
+    .nav{
+
+        display:none;
+
+        order:5;
+
+        width:100%;
+
+        flex-direction:column;
+
+        padding-top:10px;
+    }
+
+    .nav.open{
+        display:flex;
+    }
+
+    .nav button{
+        width:100%;
+        text-align:left;
+    }
+
+    .profileButton{
+
+        margin-left:auto;
+
+    }
+
+    .profileButton span:last-child{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    z-index:500;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modalBox{
+
+    width:100%;
+
+    max-width:500px;
+
+    background:#0c1b2e;
+
+    border:1px solid #315474;
+
+    border-radius:20px;
+
+    padding:25px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+
+    position:fixed;
+
+    right:15px;
+
+    bottom:15px;
+
+    background:#102a43;
+
+    border:1px solid #38bdf8;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    display:none;
+
+    z-index:600;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     STUDENT LOGIN PAGE
+================================================== -->
+
+<section id="loginPage" class="authPage">
+
+    <div class="authBox">
+
+        <div class="mathLogo">
+            🎓📐
+        </div>
+
+        <h1>
+            <span>Ahmed</span> Academy
+        </h1>
+
+        <p class="subtitle">
+            Grade 9 Advanced Mathematics<br>
+            UAE Curriculum 🇦🇪
+        </p>
+
+
+        <label class="inputLabel">
+            Username
+        </label>
+
+        <input
+            id="loginUsername"
+            class="input"
+            type="text"
+            placeholder="Enter your username"
+        >
+
+
+        <label class="inputLabel">
+            Password
+        </label>
+
+        <input
+            id="loginPassword"
+            class="input"
+            type="password"
+            placeholder="Enter your password"
+        >
+
+
+        <button
+            class="loginButton"
+            onclick="studentLogin()">
+
+            🔐 Login
+
+        </button>
+
+
+        <div class="authLinks">
+
+            <button
+                class="authLink"
+                onclick="showCreateAccount()">
+
+                ✨ Create Account
+
+            </button>
+
+
+            <button
+                class="authLink teacher"
+                onclick="showTeacherLogin()">
+
+                👨‍🏫 Teacher Login
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="loginMessage"
+            class="authMessage">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CREATE ACCOUNT PAGE
+================================================== -->
+
+<section
+    id="createAccountPage"
+    class="authPage"
+    style="display:none;">
+
+    <div class="authBox">
+
+        <div class="mathLogo">
+            🧑‍🎓
+        </div>
+
+        <h1>
+            Create <span>Account</span>
+        </h1>
+
+        <p class="subtitle">
+            Create your Ahmed Academy student account.
+        </p>
+
+
+        <label class="inputLabel">
+            Username
+        </label>
+
+        <input
+            id="createUsername"
+            class="input"
+            type="text"
+            placeholder="Choose a username"
+        >
+
+
+        <label class="inputLabel">
+            Password
+        </label>
+
+        <input
+            id="createPassword"
+            class="input"
+            type="password"
+            placeholder="Choose a password"
+        >
+
+
+        <label class="inputLabel">
+            Confirm Password
+        </label>
+
+        <input
+            id="createPassword2"
+            class="input"
+            type="password"
+            placeholder="Repeat your password"
+        >
+
+
+        <button
+            class="loginButton"
+            onclick="createAccount()">
+
+            ✨ Create Account
+
+        </button>
+
+
+        <div class="authLinks">
+
+            <button
+                class="authLink"
+                onclick="showLogin()">
+
+                ← Back to Login
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="createMessage"
+            class="authMessage">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     TEACHER LOGIN PAGE
+================================================== -->
+
+<section
+    id="teacherLoginPage"
+    class="authPage"
+    style="display:none;">
+
+    <div class="authBox">
+
+        <div class="mathLogo">
+            👨‍🏫📊
+        </div>
+
+        <h1>
+            Teacher <span>Login</span>
+        </h1>
+
+        <p class="subtitle">
+            Ahmed Academy Teacher Portal
+        </p>
+
+
+        <label class="inputLabel">
+            Teacher Username
+        </label>
+
+        <input
+            id="teacherUsername"
+            class="input"
+            type="text"
+            placeholder="Teacher username"
+        >
+
+
+        <label class="inputLabel">
+            Teacher Password
+        </label>
+
+        <input
+            id="teacherPassword"
+            class="input"
+            type="password"
+            placeholder="Teacher password"
+        >
+
+
+        <button
+            class="loginButton"
+            onclick="teacherLogin()">
+
+            👨‍🏫 Login as Teacher
+
+        </button>
+
+
+        <div class="authLinks">
+
+            <button
+                class="authLink"
+                onclick="showLogin()">
+
+                ← Back to Student Login
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="teacherMessage"
+            class="authMessage">
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     MAIN ACADEMY
+================================================== -->
+
+<div id="app">
+
+
+<header class="header">
+
+    <button
+        class="menuButton"
+        onclick="toggleMenu()">
+
+        ☰
+
+    </button>
+
+
+    <div
+        class="logo"
+        onclick="showPage('home')">
+
+        🎓 <span>Ahmed</span> Academy
+
+    </div>
+
+
+    <nav
+        id="mainNav"
+        class="nav">
+
+        <button
+            onclick="showPage('home')">
+
+            Home
+
+        </button>
+
+        <button
+            onclick="showPage('lessons')">
+
+            Lessons
+
+        </button>
+
+        <button
+            onclick="showPage('quizzes')">
+
+            Quizzes
+
+        </button>
+
+        <button
+            onclick="showPage('challenges')">
+
+            Challenges
+
+        </button>
+
+        <button
+            onclick="showPage('progress')">
+
+            Progress
+
+        </button>
+
+        <button
+            onclick="showPage('rewards')">
+
+            🏆 Rewards
+
+        </button>
+
+    </nav>
+
+
+    <!-- PROFILE ALWAYS IN TOP CORNER -->
+
+    <button
+        class="profileButton"
+        onclick="openProfile()">
+
+        <div
+            id="navAvatar"
+            class="avatar">
+
+            A
+
+        </div>
+
+        <span id="navName">
+            Student
+        </span>
+
+    </button>
+
+</header>
+
+
+
+<main>
+
+
+<!-- HOME -->
+
+<section
+    id="home"
+    class="page active">
+
+
+    <div class="hero">
+
+        <div>
+
+            <div class="eyebrow">
+                UAE Curriculum • Grade 9 Advanced
+            </div>
+
+            <h1>
+                Welcome to<br>
+                Ahmed Academy 👋
+            </h1>
+
+            <p>
+                Learn Math. Be Brilliant. 🚀
+            </p>
+
+            <p>
+                Your Grade 9 Advanced Mathematics
+                learning platform.
+            </p>
+
+            <button
+                class="btn"
+                onclick="showPage('term1')">
+
+                🚀 Start Term 1
+
+            </button>
+
+        </div>
+
+
+        <img
+            class="heroImage"
+            src="academy-hero.svg"
+            alt="Mathematics"
+        >
+
+    </div>
+
+
+    <div style="margin-top:25px">
+
+        <h2>
+            📚 Choose Your Term
+        </h2>
+
+    </div>
+
+
+    <div
+        class="grid"
+        style="margin-top:15px">
+
+
+        <div
+            class="card"
+            onclick="showPage('term1')"
+            style="cursor:pointer">
+
+            <div class="icon">
+                📘
+            </div>
+
+            <h2>
+                Term 1
+            </h2>
+
+            <p class="muted">
+                Available now.
+            </p>
+
+            <button class="btn">
+                Open Term 1
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔒
+            </div>
+
+            <h2>
+                Term 2
+            </h2>
+
+            <p class="muted">
+                Coming soon.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔒
+            </div>
+
+            <h2>
+                Term 3
+            </h2>
+
+            <p class="muted">
+                Coming soon.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- TERM 1 -->
+
+<section
+    id="term1"
+    class="page">
+
+    <button
+        class="btn secondary"
+        onclick="showPage('home')">
+
+        ← Home
+
+    </button>
+
+
+    <div class="card">
+
+        <div class="eyebrow">
+            TERM 1
+        </div>
+
+        <h1>
+            Term 1 📚
+        </h1>
+
+        <p class="muted">
+            Choose your learning path.
+        </p>
+
+    </div>
+
+
+    <div
+        class="grid"
+        style="margin-top:15px">
+
+
+        <div
+            class="card"
+            onclick="showPage('lessons')"
+            style="cursor:pointer">
+
+            <div class="icon">
+                📖
+            </div>
+
+            <h2>
+                Lessons
+            </h2>
+
+            <p class="muted">
+                Study every module and lesson.
+            </p>
+
+            <button class="btn">
+                Open Lessons
+            </button>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('quizzes')"
+            style="cursor:pointer">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h2>
+                Quizzes
+            </h2>
+
+            <p class="muted">
+                60 quizzes for each lesson.
+            </p>
+
+            <button class="btn">
+                Open Quizzes
+            </button>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('challenges')"
+            style="cursor:pointer">
+
+            <div class="icon">
+                🧠
+            </div>
+
+            <h2>
+                Challenges
+            </h2>
+
+            <p class="muted">
+                Difficult thinking challenges.
+            </p>
+
+            <button class="btn gold">
+                Open Challenges
+            </button>
+
+        </div>
+
+
+        <div
+            class="card"
+            onclick="showPage('progress')"
+            style="cursor:pointer">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h2>
+                Progress
+            </h2>
+
+            <p class="muted">
+                Track every activity separately.
+            </p>
+
+            <button class="btn">
+                View Progress
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- LESSONS -->
+
+<section
+    id="lessons"
+    class="page">
+
+    <div class="card">
+
+        <h1>
+            📖 Lessons
+        </h1>
+
+        <p class="muted">
+            Select a module to continue.
+        </p>
+
+    </div>
+
+
+    <div
+        id="lessonsModules"
+        class="grid"
+        style="margin-top:15px">
+    </div>
+
+</section>
+
+
+
+<!-- QUIZZES -->
+
+<section
+    id="quizzes"
+    class="page">
+
+    <div class="card">
+
+        <h1>
+            📝 Quizzes
+        </h1>
+
+        <p class="muted">
+            Choose a module, then a lesson,
+            then your quiz.
+        </p>
+
+    </div>
+
+
+    <div
+        id="quizModules"
+        class="grid"
+        style="margin-top:15px">
+    </div>
+
+</section>
+
+
+
+<!-- CHALLENGES -->
+
+<section
+    id="challenges"
+    class="page">
+
+    <div class="card">
+
+        <h1>
+            🧠 Challenges
+        </h1>
+
+        <p class="muted">
+            High-thinking mathematics challenges.
+        </p>
+
+    </div>
+
+
+    <div
+        id="challengeModules"
+        class="grid"
+        style="margin-top:15px">
+    </div>
+
+</section>
+
+
+
+<!-- PROGRESS -->
+
+<section
+    id="progress"
+    class="page">
+
+    <div class="card">
+
+        <h1>
+            📊 Progress
+        </h1>
+
+        <p class="muted">
+            Your results are saved separately
+            for every quiz and challenge.
+        </p>
+
+    </div>
+
+
+    <div
+        id="progressList"
+        class="grid"
+        style="margin-top:15px">
+    </div>
+
+</section>
+
+
+
+<!-- REWARDS -->
+
+<section
+    id="rewards"
+    class="page">
+
+    <div class="card">
+
+        <h1>
+            🏆 Rewards
+        </h1>
+
+        <p class="muted">
+            Complete quizzes and challenges
+            to unlock rewards.
+        </p>
+
+    </div>
+
+
+    <div
+        class="grid"
+        style="margin-top:15px">
+
+
+        <div class="card">
+
+            <div class="icon">
+                🌱
+            </div>
+
+            <h2>
+                First Steps
+            </h2>
+
+            <p class="muted">
+                Complete your first quiz.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔥
+            </div>
+
+            <h2>
+                Quiz Runner
+            </h2>
+
+            <p class="muted">
+                Complete 10 quizzes.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                💯
+            </div>
+
+            <h2>
+                Perfect Score
+            </h2>
+
+            <p class="muted">
+                Get 100% on a quiz.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                👑
+            </div>
+
+            <h2>
+                Academy Legend
+            </h2>
+
+            <p class="muted">
+                Complete 60 quizzes.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+</div>
+
+
+
+<!-- PROFILE MODAL -->
+
+<div
+    id="profileModal"
+    class="modal">
+
+    <div class="modalBox">
+
+        <h2>
+            👤 My Profile
+        </h2>
+
+        <p
+            class="muted"
+            style="margin-top:8px">
+
+            Your profile
+        </p>
+
+
+        <label class="inputLabel">
+            Username
+        </label>
+
+        <input
+            id="profileName"
+            class="input"
+        >
+
+
+        <button
+            class="btn"
+            onclick="saveProfile()">
+
+            Save
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="closeProfile()">
+
+            Close
+
+        </button>
+
+
+        <button
+            class="btn secondary"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+
+<script>
+
+
+/* ==================================================
+   ACCOUNTS
+================================================== */
+
+let currentUser =
+    localStorage.getItem("ahmedAcademyCurrentUser") || "";
+
+
+/* ==================================================
+   PAGE SWITCHING
+================================================== */
+
+function hideAuthPages(){
+
+    document.getElementById(
+        "loginPage"
+    ).style.display="none";
+
+    document.getElementById(
+        "createAccountPage"
+    ).style.display="none";
+
+    document.getElementById(
+        "teacherLoginPage"
+    ).style.display="none";
+
+}
+
+
+function showLogin(){
+
+    hideAuthPages();
+
+    document.getElementById(
+        "loginPage"
+    ).style.display="flex";
+
+}
+
+
+function showCreateAccount(){
+
+    hideAuthPages();
+
+    document.getElementById(
+        "createAccountPage"
+    ).style.display="flex";
+
+}
+
+
+function showTeacherLogin(){
+
+    hideAuthPages();
+
+    document.getElementById(
+        "teacherLoginPage"
+    ).style.display="flex";
+
+}
+
+
+/* ==================================================
+   CREATE ACCOUNT
+================================================== */
+
+function createAccount(){
+
+    const username =
+        document.getElementById(
+            "createUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "createPassword"
+        ).value;
+
+    const password2 =
+        document.getElementById(
+            "createPassword2"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "createMessage"
+        );
+
+
+    if(!username || !password){
+
+        message.textContent =
+            "Please fill in all fields.";
+
+        return;
+
+    }
+
+
+    if(password !== password2){
+
+        message.textContent =
+            "Passwords do not match.";
+
+        return;
+
+    }
+
+
+    if(username.toLowerCase()==="ahmed"){
+
+        message.textContent =
+            "This username is reserved.";
+
+        return;
+
+    }
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem(
+                "ahmedAcademyUsers"
+            ) || "{}"
+        );
+
+
+    if(users[username]){
+
+        message.textContent =
+            "Username already exists.";
+
+        return;
+
+    }
+
+
+    users[username]={
+        password:password,
+        created:new Date().toLocaleString()
+    };
+
+
+    localStorage.setItem(
+        "ahmedAcademyUsers",
+        JSON.stringify(users)
+    );
+
+
+    message.style.color="#22c55e";
+
+    message.textContent =
+        "Account created! Returning to login...";
+
+
+    setTimeout(()=>{
+
+        showLogin();
+
+        document.getElementById(
+            "loginUsername"
+        ).value=username;
+
+    },800);
+
+}
+
+
+/* ==================================================
+   STUDENT LOGIN
+================================================== */
+
+function studentLogin(){
+
+    const username =
+        document.getElementById(
+            "loginUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    if(!username || !password){
+
+        message.textContent =
+            "Enter your username and password.";
+
+        return;
+
+    }
+
+
+    let users =
+        JSON.parse(
+            localStorage.getItem(
+                "ahmedAcademyUsers"
+            ) || "{}"
+        );
+
+
+    if(
+        users[username] &&
+        users[username].password===password
+    ){
+
+        currentUser=username;
+
+        localStorage.setItem(
+            "ahmedAcademyCurrentUser",
+            username
+        );
+
+
+        enterAcademy();
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Incorrect username or password.";
+
+}
+
+
+/* ==================================================
+   TEACHER LOGIN
+================================================== */
+
+function teacherLogin(){
+
+    const username =
+        document.getElementById(
+            "teacherUsername"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "teacherPassword"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "teacherMessage"
+        );
+
+
+    /*
+       TEACHER ACCOUNT
+
+       Username:
+       ahmed
+
+       Password:
+       Ahmed2012$
+    */
+
+    if(
+        username==="ahmed" &&
+        password==="Ahmed2012$"
+    ){
+
+        currentUser="ahmed";
+
+        localStorage.setItem(
+            "ahmedAcademyCurrentUser",
+            "ahmed"
+        );
+
+        localStorage.setItem(
+            "ahmedAcademyTeacher",
+            "true"
+        );
+
+
+        enterAcademy();
+
+        showToast(
+            "Welcome Teacher 👨‍🏫"
+        );
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Incorrect teacher username or password.";
+
+}
+
+
+/* ==================================================
+   ENTER ACADEMY
+================================================== */
+
+function enterAcademy(){
+
+    hideAuthPages();
+
+    document.getElementById(
+        "app"
+    ).style.display="block";
+
+
+    updateProfile();
+
+    showPage("home");
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logout(){
+
+    localStorage.removeItem(
+        "ahmedAcademyCurrentUser"
+    );
+
+    localStorage.removeItem(
+        "ahmedAcademyTeacher"
+    );
+
+    currentUser="";
+
+    document.getElementById(
+        "app"
+    ).style.display="none";
+
+
+    close  align-items:center;
   gap:8px;
   background:#102238;
   border:1px solid #315474;
