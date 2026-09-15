@@ -1,293 +1,265 @@
-import os, zipfile, re, shutil, textwrap
+import os, re, zipfile, shutil
 
-src = "/mnt/data/ahmed_source.txt"
-out_dir = "/mnt/data/Ahmed_Academy_Expanded"
-zip_path = "/mnt/data/Ahmed_Academy_Expanded.zip"
+src="/mnt/data/ahmed_source.txt"
+out="/mnt/data/Ahmed_Academy_Pro"
+zip_path="/mnt/data/Ahmed_Academy_PRO.zip"
 
-if not os.path.exists(src):
-    raise FileNotFoundError("Source file not found.")
+shutil.rmtree(out, ignore_errors=True)
+os.makedirs(out, exist_ok=True)
 
-with open(src, "r", encoding="utf-8") as f:
-    html = f.read()
+with open(src,"r",encoding="utf-8") as f:
+    html=f.read()
 
-# Remove a previous generated folder if present.
-shutil.rmtree(out_dir, ignore_errors=True)
-os.makedirs(out_dir, exist_ok=True)
+# Fix the most important "white page / code page" failure mode:
+# ensure this is an actual HTML document and has a visible app container.
+html=html.strip()
+if not re.search(r'<!doctype\s+html', html, re.I):
+    html='<!DOCTYPE html>\n'+html
+if '<html' not in html.lower():
+    html='<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ahmed Academy</title></head><body>'+html+'</body></html>'
 
-# Add a polished "big platform" visual layer without changing the existing progress logic.
-extra_css = r"""
-/* ===== Ahmed Academy Expanded Platform ===== */
-:root{
-  --aa-panel:rgba(17,24,39,.82);
-  --aa-panel2:rgba(15,23,42,.92);
-  --aa-border:rgba(148,163,184,.14);
-  --aa-text:#f8fafc;
-  --aa-muted:#94a3b8;
-  --aa-accent:#60a5fa;
-  --aa-accent2:#a78bfa;
-}
+css=r"""
+/* ===== AHMED ACADEMY PRO UI ===== */
 body{
+  min-height:100vh!important;
   background:
-    radial-gradient(circle at 10% 0%,rgba(96,165,250,.12),transparent 28%),
-    radial-gradient(circle at 90% 10%,rgba(167,139,250,.10),transparent 25%),
-    #0b1120 !important;
+    radial-gradient(900px 500px at 5% -10%,rgba(59,130,246,.18),transparent 60%),
+    radial-gradient(800px 500px at 100% 0%,rgba(139,92,246,.16),transparent 60%),
+    #070d1a!important;
 }
-.aa-platform-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:16px;margin:22px 0;
+.hidden{display:none!important}
+.aa-shell{max-width:1180px;margin:auto;padding:0 18px 50px}
+.aa-dashboard{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0
 }
-.aa-tool{
-  border:1px solid var(--aa-border);background:linear-gradient(145deg,var(--aa-panel),rgba(30,41,59,.55));
-  border-radius:20px;padding:20px;cursor:pointer;transition:.22s;
-  box-shadow:0 12px 30px rgba(0,0,0,.16);
+.aa-stat{
+  padding:18px;border:1px solid rgba(148,163,184,.14);border-radius:18px;
+  background:rgba(15,23,42,.78);box-shadow:0 14px 35px rgba(0,0,0,.16)
 }
-.aa-tool:hover{transform:translateY(-4px);border-color:rgba(96,165,250,.38);box-shadow:0 18px 40px rgba(0,0,0,.24)}
-.aa-tool .icon{font-size:30px;margin-bottom:10px}
-.aa-tool h3{margin:0 0 7px;color:var(--aa-text)}
-.aa-tool p{margin:0;color:var(--aa-muted);font-size:13px;line-height:1.5}
-.aa-section-title{margin:28px 0 12px}
-.aa-section-title h2{margin:0}
-.aa-section-title p{margin:5px 0;color:var(--aa-muted)}
-.aa-search{
-  display:flex;gap:10px;margin:16px 0;flex-wrap:wrap
+.aa-stat b{display:block;font-size:28px}.aa-stat span{color:#94a3b8;font-size:13px}
+.aa-section{margin-top:28px}.aa-section h2{margin-bottom:6px}.aa-muted{color:#94a3b8}
+.aa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.aa-card{
+  border:1px solid rgba(148,163,184,.14);border-radius:20px;padding:20px;
+  background:linear-gradient(145deg,rgba(15,23,42,.95),rgba(30,41,59,.62));
+  transition:.2s;box-shadow:0 15px 35px rgba(0,0,0,.16)
 }
-.aa-search input{
-  flex:1;min-width:220px;padding:13px 15px;border-radius:13px;
-  border:1px solid var(--aa-border);background:#0f172a;color:white;outline:none
+.aa-card:hover{transform:translateY(-3px);border-color:rgba(96,165,250,.4)}
+.aa-icon{font-size:32px;margin-bottom:10px}.aa-card h3{margin:0 0 7px}
+.aa-card p{color:#94a3b8;font-size:13px;line-height:1.5}
+.aa-card button{margin-top:12px}
+.aa-profile{
+  display:flex;align-items:center;gap:9px;cursor:pointer;padding:7px 10px;
+  border-radius:14px;background:rgba(30,41,59,.7);border:1px solid rgba(148,163,184,.12)
 }
-.aa-search button{
-  padding:12px 18px;border:0;border-radius:13px;background:#2563eb;color:#fff;cursor:pointer
+.aa-avatar{
+  width:34px;height:34px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-weight:800;background:linear-gradient(135deg,#2563eb,#7c3aed)
 }
-.aa-flashcard{
-  min-height:190px;display:flex;align-items:center;justify-content:center;text-align:center;
-  border:1px solid rgba(96,165,250,.22);border-radius:22px;padding:28px;
-  background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(124,58,237,.16));
-  font-size:22px;font-weight:700;line-height:1.5
+.aa-hero{
+  margin-top:20px;padding:34px;border-radius:26px;border:1px solid rgba(148,163,184,.13);
+  background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(124,58,237,.12),rgba(15,23,42,.9))
 }
-.aa-pill{
-  display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(96,165,250,.12);
-  color:#93c5fd;font-size:12px;margin:4px
+.aa-hero .eyebrow{font-size:12px;color:#93c5fd;letter-spacing:.08em;text-transform:uppercase}
+.aa-hero h1{font-size:clamp(32px,5vw,58px);margin:10px 0}
+.aa-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.aa-term-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.aa-term{
+  padding:28px;border-radius:22px;border:1px solid rgba(148,163,184,.14);
+  background:rgba(15,23,42,.88);text-align:left
 }
-.aa-empty{
-  padding:25px;border:1px dashed var(--aa-border);border-radius:18px;color:var(--aa-muted);text-align:center
+.aa-term.active{border-color:rgba(96,165,250,.5);box-shadow:0 18px 45px rgba(37,99,235,.12)}
+.aa-term.disabled{opacity:.62}
+.aa-chip{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;
+  background:rgba(96,165,250,.12);color:#93c5fd;margin:3px}
+.aa-hub{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.aa-tool{padding:18px;border-radius:18px;border:1px solid rgba(148,163,184,.13);
+  background:rgba(15,23,42,.8);cursor:pointer;transition:.2s}
+.aa-tool:hover{transform:translateY(-3px);border-color:rgba(167,139,250,.45)}
+.aa-tool .aa-icon{font-size:27px}
+.aa-tool p{font-size:12px;color:#94a3b8}
+.aa-note{
+ width:100%;min-height:220px;box-sizing:border-box;padding:15px;border-radius:16px;
+ border:1px solid rgba(148,163,184,.15);background:#0b1220;color:#f8fafc
 }
-@media(max-width:650px){
-  .aa-platform-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .aa-tool{padding:15px;border-radius:16px}
-  .aa-tool .icon{font-size:25px}
-}
+@media(max-width:900px){.aa-dashboard{grid-template-columns:repeat(2,1fr)}.aa-grid{grid-template-columns:repeat(2,1fr)}.aa-hub{grid-template-columns:repeat(2,1fr)}.aa-term-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.aa-grid{grid-template-columns:1fr}.aa-dashboard{grid-template-columns:1fr 1fr}.aa-hero{padding:23px}.aa-shell{padding:0 12px 35px}}
 """
 
-# Put the CSS before </head>.
-if "Ahmed Academy Expanded Platform" not in html:
-    html = html.replace("</head>", "<style>" + extra_css + "</style>\n</head>", 1)
+if "AHMED ACADEMY PRO UI" not in html:
+    html=html.replace("</head>", "<style>"+css+"</style>\n</head>", 1)
 
-# Add a compact Study Hub page. The existing site's progress/quiz/challenge storage is untouched.
-hub_js = r"""
+# Add a large Study Hub and utilities. Existing quiz/progress/challenge functions are left intact.
+js=r"""
 <script>
-/* ===== Ahmed Academy Study Hub ===== */
-const AA_TOOLS = [
-  ["🧠","Flashcards","Quick review cards for key ideas and definitions","renderFlashcards()"],
-  ["📐","Formula Bank","Keep important formulas together for fast revision","renderFormulaBank()"],
-  ["⚡","Daily Challenge","A quick high-thinking practice area","renderDailyChallenge()"],
-  ["📝","Worksheets","Open your lesson practice files","showPage('worksheets')"],
-  ["🏆","Achievements","Review your learning milestones and rewards","showPage('rewards')"],
-  ["📅","Study Planner","Plan a simple weekly study routine","renderStudyPlanner()"],
-  ["📔","Mistake Book","Keep track of questions you want to revisit","renderMistakeBook()"],
-  ["💡","Notes","Write personal revision notes in this browser","renderNotes()"],
-  ["🔎","Search Academy","Search lessons and study tools","renderSearchHub()"]
+/* ===== AHMED ACADEMY PRO STUDY HUB ===== */
+const AA_PRO_TOOLS=[
+["📖","Lessons","Units, lessons and your lesson files","showPage('lessons')"],
+["🧪","Quizzes","Practice quizzes and results","showPage('quizzes')"],
+["🧠","Challenges","Higher-thinking practice","showPage('challenges')"],
+["📊","Progress","Track every quiz and challenge","showPage('progress')"],
+["📄","Worksheets","Practice resources","showPage('worksheets')"],
+["🏆","Rewards","Achievements and milestones","showPage('rewards')"],
+["🧠","Flashcards","Fast revision cards","aaFlashcards()"],
+["📐","Formula Bank","Important formulas in one place","aaFormulas()"],
+["⚡","Daily Challenge","One thinking task every day","aaDaily()"],
+["📅","Study Planner","Plan your weekly study","aaPlanner()"],
+["📔","Mistake Book","Topics you want to revisit","aaMistakes()"],
+["💡","My Notes","Personal revision notes","aaNotes()"],
+["🔎","Search","Find a study area quickly","aaSearch()"],
+["👤","Profile","Your student profile","showPage('profile')"]
 ];
 
-function renderTools(){
-  let el=document.getElementById("content");
-  if(!el) return;
-  el.innerHTML=`
-    <div class="aa-section-title">
-      <h2>🎓 Study Hub</h2>
-      <p>Your central place for revision, practice, planning and study tools.</p>
-    </div>
-    <div class="aa-platform-grid">
-      ${AA_TOOLS.map(t=>`
-        <div class="aa-tool" onclick="${t[3]}">
-          <div class="icon">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}</p>
-        </div>`).join("")}
-    </div>
-    <div class="aa-section-title"><h2>📚 Quick Study</h2><p>Jump back into the main learning areas.</p></div>
-    <div class="aa-platform-grid">
-      <div class="aa-tool" onclick="showPage('lessons')"><div class="icon">📖</div><h3>Lessons</h3><p>Units and lesson PDFs.</p></div>
-      <div class="aa-tool" onclick="showPage('quizzes')"><div class="icon">🧪</div><h3>Quizzes</h3><p>Practice and check your understanding.</p></div>
-      <div class="aa-tool" onclick="showPage('challenges')"><div class="icon">🔥</div><h3>Challenges</h3><p>Push your thinking further.</p></div>
-      <div class="aa-tool" onclick="showPage('progress')"><div class="icon">📊</div><h3>Progress</h3><p>See your individual results.</p></div>
-    </div>`;
+function aaHub(){
+ const main=document.getElementById("main"); if(!main)return;
+ main.innerHTML=`
+ <div class="aa-hero">
+  <div class="eyebrow">AHMED ACADEMY • GRADE 9 ADVANCED MATH</div>
+  <h1>Your Study Hub 🚀</h1>
+  <p class="aa-muted">Everything you need to learn, practice, review and track your progress.</p>
+  <div class="aa-actions">
+   <button class="primary" onclick="showPage('terms')">Start Learning →</button>
+   <button class="secondary" onclick="showPage('progress')">📊 My Progress</button>
+  </div>
+ </div>
+ <div class="aa-dashboard">
+  <div class="aa-stat"><b>3</b><span>Terms</span></div>
+  <div class="aa-stat"><b>4</b><span>Active Units</span></div>
+  <div class="aa-stat"><b>23+</b><span>Lessons</span></div>
+  <div class="aa-stat"><b>90+</b><span>Practice Sets</span></div>
+ </div>
+ <div class="aa-section"><h2>Everything in one place</h2><p class="aa-muted">Choose a category.</p>
+ <div class="aa-hub">${AA_PRO_TOOLS.map(x=>`
+  <div class="aa-tool" onclick="${x[3]}"><div class="aa-icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("")}</div></div>`;
 }
 
-const AA_FLASHCARDS=[
- ["Algebra","A branch of mathematics dealing with symbols and rules for manipulating them."],
- ["Function","A relationship where each input has exactly one output."],
- ["Slope","A measure of how steep a line is; it describes the change in y relative to the change in x."],
- ["Quadratic","An expression or equation involving a variable raised to the second power."],
- ["Domain","The set of input values for a function."],
- ["Range","The set of output values of a function."]
-];
-let aaCard=0, aaFlipped=false;
-function renderFlashcards(){
- let el=document.getElementById("content"); if(!el)return;
- aaFlipped=false;
- el.innerHTML=`<div class="aa-section-title"><h2>🧠 Flashcards</h2><p>Tap the card to reveal the meaning.</p></div>
- <div class="aa-flashcard" onclick="aaFlipCard()">${AA_FLASHCARDS[aaCard][0]}</div>
- <div style="text-align:center;margin-top:14px"><button class="btn" onclick="aaPrevCard()">← Previous</button>
- <span class="aa-pill">${aaCard+1} / ${AA_FLASHCARDS.length}</span>
- <button class="btn" onclick="aaNextCard()">Next →</button></div>`;
+function aaBack(title){
+ const main=document.getElementById("main"); if(!main)return;
+ main.innerHTML=`<div class="page-title"><button class="back" onclick="aaHub()">← Back</button><h2 style="margin-top:14px">${title}</h2></div>`;
+ return main;
 }
-function aaFlipCard(){
- const c=document.querySelector(".aa-flashcard"); if(!c)return;
- aaFlipped=!aaFlipped; c.textContent=aaFlipped?AA_FLASHCARDS[aaCard][1]:AA_FLASHCARDS[aaCard][0];
+function aaFlashcards(){
+ const main=aaBack("🧠 Flashcards");
+ const cards=[["Slope","The change in y divided by the change in x."],["Function","A relation where each input has exactly one output."],["Domain","The set of allowed input values."],["Range","The set of output values."],["Quadratic","An expression involving a variable raised to the second power."]];
+ let i=0;
+ const draw=()=>{main.innerHTML=`<div class="page-title"><button class="back" onclick="aaHub()">← Back</button><h2 style="margin-top:14px">🧠 Flashcards</h2></div>
+ <div class="aa-card" id="aaFC" style="min-height:180px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:25px;cursor:pointer">${cards[i][0]}</div>
+ <div class="aa-actions"><button class="secondary" onclick="i=(i-1+${cards.length})%${cards.length};draw()">← Previous</button><button class="primary" onclick="i=(i+1)%${cards.length};draw()">Next →</button></div>`};
+ draw();
+ window.aaFCFlip=()=>{};
 }
-function aaNextCard(){aaCard=(aaCard+1)%AA_FLASHCARDS.length;renderFlashcards()}
-function aaPrevCard(){aaCard=(aaCard-1+AA_FLASHCARDS.length)%AA_FLASHCARDS.length;renderFlashcards()}
-
-const AA_FORMULAS=[
- ["Slope","m = (y₂ − y₁) / (x₂ − x₁)"],
- ["Distance","d = √((x₂ − x₁)² + (y₂ − y₁)²)"],
- ["Midpoint","M = ((x₁+x₂)/2, (y₁+y₂)/2)"],
- ["Quadratic Formula","x = (−b ± √(b² − 4ac)) / 2a"],
- ["Pythagorean Theorem","a² + b² = c²"]
-];
-function renderFormulaBank(){
- let el=document.getElementById("content"); if(!el)return;
- el.innerHTML=`<div class="aa-section-title"><h2>📐 Formula Bank</h2><p>Useful formulas for quick revision.</p></div>
- <div class="aa-search"><input id="formulaSearch" placeholder="Search formulas..." oninput="filterFormulas()"></div>
- <div id="formulaList" class="aa-platform-grid"></div>`;
- filterFormulas();
+function aaFormulas(){
+ const main=aaBack("📐 Formula Bank");
+ const f=[["Slope","m = (y₂ − y₁) / (x₂ − x₁)"],["Distance","d = √((x₂ − x₁)² + (y₂ − y₁)²)"],["Midpoint","M = ((x₁+x₂)/2, (y₁+y₂)/2)"],["Quadratic Formula","x = (−b ± √(b² − 4ac)) / 2a"],["Pythagorean Theorem","a² + b² = c²"]];
+ main.innerHTML+=`<div class="aa-grid">${f.map(x=>`<div class="aa-card"><div class="aa-icon">📐</div><h3>${x[0]}</h3><p style="font-size:19px;color:#e2e8f0">${x[1]}</p></div>`).join("")}</div>`;
 }
-function filterFormulas(){
- let q=(document.getElementById("formulaSearch")?.value||"").toLowerCase();
- let list=document.getElementById("formulaList"); if(!list)return;
- list.innerHTML=AA_FORMULAS.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q)).map(x=>
- `<div class="aa-tool"><div class="icon">📐</div><h3>${x[0]}</h3><p style="font-size:18px;color:#e2e8f0">${x[1]}</p></div>`).join("") ||
- `<div class="aa-empty">No formula found.</div>`;
-}
-function renderDailyChallenge(){
- let el=document.getElementById("content");if(!el)return;
- const qs=[
- "A line passes through two points. What information would you use to determine its slope?",
- "How can you check whether an algebraic solution is reasonable?",
- "What changes when the coefficient of x² changes in a quadratic expression?"
- ];
+function aaDaily(){
+ const main=aaBack("⚡ Daily Challenge");
+ const qs=["Explain why your algebraic method works.","Find a second method and compare it with the first.","Describe how changing one value could change the result."];
  const q=qs[new Date().getDate()%qs.length];
- el.innerHTML=`<div class="aa-section-title"><h2>⚡ Daily Challenge</h2><p>Think first, then explain your reasoning.</p></div>
- <div class="aa-tool" style="cursor:default"><span class="aa-pill">HIGH THINKING</span><h2>${q}</h2>
- <textarea id="aaDailyAnswer" rows="7" style="width:100%;margin-top:15px;border-radius:14px;padding:14px;background:#0f172a;color:white;border:1px solid var(--aa-border)" placeholder="Write your reasoning..."></textarea>
- <button class="btn" style="margin-top:12px" onclick="localStorage.setItem('aa_daily_answer',document.getElementById('aaDailyAnswer').value);alert('Saved!')">Save Answer</button></div>`;
+ main.innerHTML+=`<div class="aa-card"><span class="aa-chip">HIGH THINKING</span><h2>${q}</h2><textarea id="aaDailyText" class="aa-note" placeholder="Write your reasoning...">${localStorage.getItem("aa_daily")||""}</textarea><button class="primary" onclick="localStorage.setItem('aa_daily',document.getElementById('aaDailyText').value);alert('Saved!')">Save Answer</button></div>`;
 }
-function renderStudyPlanner(){
- let el=document.getElementById("content");if(!el)return;
- el.innerHTML=`<div class="aa-section-title"><h2>📅 Study Planner</h2><p>Set a small target for each day.</p></div>
- <div class="aa-platform-grid">${["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].map(d=>
- `<div class="aa-tool" style="cursor:default"><h3>${d}</h3><input data-day="${d}" value="${localStorage.getItem('aa_plan_'+d)||''}" placeholder="Today's target..." style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--aa-border);background:#0f172a;color:white" oninput="localStorage.setItem('aa_plan_${d}',this.value)"></div>`).join("")}</div>`;
+function aaPlanner(){
+ const main=aaBack("📅 Study Planner");
+ const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+ main.innerHTML+=`<div class="aa-grid">${days.map(d=>`<div class="aa-card"><h3>${d}</h3><input value="${localStorage.getItem("aa_plan_"+d)||""}" placeholder="Study target..." style="width:100%;box-sizing:border-box;padding:11px;border-radius:10px;background:#0b1220;color:white;border:1px solid rgba(148,163,184,.15)" oninput="localStorage.setItem('aa_plan_${d}',this.value)"></div>`).join("")}</div>`;
 }
-function renderNotes(){
- let el=document.getElementById("content");if(!el)return;
- el.innerHTML=`<div class="aa-section-title"><h2>💡 My Notes</h2><p>Your notes stay saved in this browser.</p></div>
- <textarea id="aaNotes" rows="16" style="width:100%;padding:16px;border-radius:16px;background:#0f172a;color:white;border:1px solid var(--aa-border)" placeholder="Write your revision notes here...">${localStorage.getItem("aa_notes")||""}</textarea>
- <button class="btn" style="margin-top:12px" onclick="localStorage.setItem('aa_notes',document.getElementById('aaNotes').value);alert('Notes saved!')">Save Notes</button>`;
+function aaNotes(){
+ const main=aaBack("💡 My Notes");
+ main.innerHTML+=`<div class="aa-card"><p class="aa-muted">Notes are saved in this browser.</p><textarea id="aaNotesText" class="aa-note">${localStorage.getItem("aa_notes")||""}</textarea><button class="primary" onclick="localStorage.setItem('aa_notes',document.getElementById('aaNotesText').value);alert('Notes saved!')">Save Notes</button></div>`;
 }
-function renderMistakeBook(){
- let el=document.getElementById("content");if(!el)return;
- const key="aa_mistakes";
- el.innerHTML=`<div class="aa-section-title"><h2>📔 Mistake Book</h2><p>Save questions or topics you want to revisit.</p></div>
- <textarea id="aaMistakes" rows="12" style="width:100%;padding:16px;border-radius:16px;background:#0f172a;color:white;border:1px solid var(--aa-border)" placeholder="Example: Unit 2 Lesson 3 — review this topic...">${localStorage.getItem(key)||""}</textarea>
- <button class="btn" style="margin-top:12px" onclick="localStorage.setItem('${key}',document.getElementById('aaMistakes').value);alert('Mistake book saved!')">Save</button>`;
+function aaMistakes(){
+ const main=aaBack("📔 Mistake Book");
+ main.innerHTML+=`<div class="aa-card"><p class="aa-muted">Write questions or topics you want to revisit.</p><textarea id="aaMistakeText" class="aa-note">${localStorage.getItem("aa_mistakes")||""}</textarea><button class="primary" onclick="localStorage.setItem('aa_mistakes',document.getElementById('aaMistakeText').value);alert('Saved!')">Save</button></div>`;
 }
-function renderSearchHub(){
- let el=document.getElementById("content");if(!el)return;
- el.innerHTML=`<div class="aa-section-title"><h2>🔎 Search Academy</h2><p>Search the available study areas quickly.</p></div>
- <div class="aa-search"><input id="aaSearch" placeholder="Try: Unit 2, Quiz, Challenge, Formula..." onkeydown="if(event.key==='Enter')academySearch()"><button onclick="academySearch()">Search</button></div>
- <div id="aaSearchResults" class="aa-platform-grid"></div>`;
+function aaSearch(){
+ const main=aaBack("🔎 Search Academy");
+ main.innerHTML+=`<div class="aa-search" style="display:flex;gap:10px;flex-wrap:wrap"><input id="aaSearchInput" placeholder="Search lessons, quizzes, challenges..." style="flex:1;min-width:220px;padding:13px;border-radius:12px;background:#0b1220;color:white;border:1px solid rgba(148,163,184,.15)"><button class="primary" onclick="aaDoSearch()">Search</button></div><div id="aaSearchResults" class="aa-grid"></div>`;
 }
-function academySearch(){
- const q=(document.getElementById("aaSearch")?.value||"").toLowerCase().trim(), r=document.getElementById("aaSearchResults");
- if(!r)return;
- const items=[["📖","Lessons","lessons"],["🧪","Quizzes","quizzes"],["🔥","Challenges","challenges"],["📊","Progress","progress"],["🧠","Flashcards","tools"],["📐","Formula Bank","tools"],["📝","Worksheets","worksheets"],["🏆","Rewards","rewards"]];
- const found=items.filter(x=>(x[1]+" "+x[2]).toLowerCase().includes(q)||!q);
- r.innerHTML=found.map(x=>`<div class="aa-tool" onclick="showPage('${x[2]}')"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>Open ${x[1]}.</p></div>`).join("")||`<div class="aa-empty">No matching section.</div>`;
+function aaDoSearch(){
+ const q=(document.getElementById("aaSearchInput")?.value||"").toLowerCase();
+ const data=AA_PRO_TOOLS.filter(x=>(x[1]+" "+x[2]).toLowerCase().includes(q));
+ const r=document.getElementById("aaSearchResults");
+ r.innerHTML=(data.length?data:AA_PRO_TOOLS).map(x=>`<div class="aa-card" onclick="${x[3]}"><div class="aa-icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
 }
+
+/* Add a safe route without overwriting the existing progress/quiz logic. */
+const aaOriginalShowPage=window.showPage;
+window.showPage=function(page){
+ if(page==="tools" || page==="hub"){aaHub();window.scrollTo(0,0);return;}
+ if(typeof aaOriginalShowPage==="function") return aaOriginalShowPage(page);
+};
+
+/* Make the profile avatar available in the header if a nav area exists. */
+document.addEventListener("DOMContentLoaded",()=>{
+ const nav=document.querySelector("header .nav");
+ if(nav && !document.getElementById("aaProfileTop")){
+  const p=document.createElement("button");
+  p.id="aaProfileTop";p.className="aa-profile";
+  p.innerHTML='<span class="aa-avatar">A</span><span>Profile</span>';
+  p.onclick=()=>window.showPage("profile");
+  nav.insertBefore(p,nav.firstChild);
+ }
+});
 </script>
 """
 
-if "Ahmed Academy Study Hub" not in html:
-    html = html.replace("</body>", hub_js + "\n</body>", 1)
+if "AHMED ACADEMY PRO STUDY HUB" not in html:
+    html=html.replace("</body>",js+"\n</body>",1)
 
-# Add a Study Hub button to an existing navigation area when possible.
-# We avoid replacing existing navigation/progress logic.
-if "onclick=\"showPage('tools')\"" not in html:
-    patterns = [
-        r'(<button[^>]*onclick=["\']showPage\([\'"]home[\'"]\)[^>]*>.*?</button>)',
-        r'(<a[^>]*onclick=["\']showPage\([\'"]home[\'"]\)[^>]*>.*?</a>)'
-    ]
-    for pat in patterns:
-        m = re.search(pat, html, flags=re.I|re.S)
-        if m:
-            addition = m.group(1) + '\n<button class="nav-btn" onclick="showPage(\'tools\')">🎓 Study Hub</button>'
-            html = html[:m.start()] + addition + html[m.end():]
-            break
-
-# Extend showPage with a tools branch if it exists.
-if "case 'tools'" not in html and 'case "tools"' not in html:
-    # Try common switch forms.
-    m = re.search(r'(switch\s*\(\s*page\s*\)\s*\{)', html)
+# Add a direct Study Hub button near the top navigation if possible.
+if "🎓 Study Hub" not in html:
+    m=re.search(r'(<div[^>]*class=["\'][^"\']*nav[^"\']*["\'][^>]*>)',html,re.I)
     if m:
-        pos = m.end()
-        branch = "\ncase 'tools': renderTools(); break;\n"
-        html = html[:pos] + branch + html[pos:]
-    else:
-        # If showPage is an if/else chain, inject at its start.
-        m = re.search(r'(function\s+showPage\s*\([^)]*\)\s*\{)', html)
-        if m:
-            pos = m.end()
-            branch = "\nif(page==='tools'){ renderTools(); return; }\n"
-            html = html[:pos] + branch + html[pos:]
+        html=html[:m.end()]+'<button class="secondary" onclick="showPage(\'tools\')">🎓 Study Hub</button>'+html[m.end():]
 
-# Make sure a visible "Study Hub" shortcut exists even if nav insertion failed.
-if "Study Hub" not in html:
-    marker = '<div class="aa-platform-grid">'
-    html = html.replace(marker, '<button class="btn" onclick="showPage(\'tools\')" style="margin:10px 0">🎓 Study Hub</button>\n'+marker, 1)
-
-with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
-    f.write(html)
-
-readme = """Ahmed Academy – Expanded Platform
-
-This package is based on the latest Ahmed Academy source and adds a polished Study Hub
-with extra categories: Flashcards, Formula Bank, Daily Challenge, Worksheets, Achievements,
-Study Planner, Mistake Book, Notes, and Search Academy.
-
-Existing quiz/challenge/progress storage logic is preserved.
-
-How to use:
-1. Extract the ZIP.
-2. Put index.html in your GitHub Pages repository.
-3. Keep your existing files/ folder beside index.html if your current version uses it.
-4. Commit the changes and wait for GitHub Pages to publish.
-
-Important:
-- This is a static site, so notes/planner and account/progress data are browser-local.
-- The added Formula Bank and Flashcards are general study helpers; your textbook-specific
-  lesson PDFs remain the source for the actual lesson content.
+# Add a robust "if opened directly" fallback so the page doesn't look blank if an old
+# source expected a different DOM state.
+fallback=r"""
+<script>
+window.addEventListener("error",function(e){
+  const main=document.getElementById("main");
+  if(main && !main.innerHTML.trim()){
+    main.innerHTML='<div style="padding:40px;text-align:center"><h2>Ahmed Academy</h2><p>Reload the page to continue.</p></div>';
+  }
+});
+</script>
 """
-with open(os.path.join(out_dir, "README.txt"), "w", encoding="utf-8") as f:
-    f.write(readme)
+html=html.replace("</body>",fallback+"</body>",1)
 
-# Include the existing PDF folder if it is available.
-pdf_source = "/mnt/data/Ahmed_Academy_Complete/files"
-if os.path.isdir(pdf_source):
-    shutil.copytree(pdf_source, os.path.join(out_dir, "files"))
+with open(os.path.join(out,"index.html"),"w",encoding="utf-8") as f:f.write(html)
 
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for root, dirs, files in os.walk(out_dir):
+# Copy lesson PDFs from the existing complete package if present.
+pdf_dir="/mnt/data/Ahmed_Academy_Complete/files"
+if os.path.isdir(pdf_dir):
+    shutil.copytree(pdf_dir,os.path.join(out,"files"))
+
+readme="""Ahmed Academy PRO
+=================
+
+This is the expanded Grade 9 Advanced Math static website based on the latest Ahmed Academy source.
+
+IMPORTANT FOR GITHUB PAGES:
+- The website entry file is index.html.
+- Upload the CONTENTS of this folder to the root of your GitHub repository.
+- Do not rename index.html.
+- Keep the files/ folder beside index.html if you want the lesson PDFs to open.
+- GitHub Pages must be set to deploy from the main branch/root.
+
+The new version adds a larger platform-style Study Hub with:
+Lessons, Quizzes, Challenges, Progress, Worksheets, Rewards,
+Flashcards, Formula Bank, Daily Challenge, Study Planner,
+Mistake Book, Notes, Search and Profile.
+
+The existing quiz/challenge/progress functions were intentionally preserved.
+"""
+with open(os.path.join(out,"README.txt"),"w",encoding="utf-8") as f:f.write(readme)
+
+with zipfile.ZipFile(zip_path,"w",zipfile.ZIP_DEFLATED) as z:
+    for root,dirs,files in os.walk(out):
         for name in files:
-            path = os.path.join(root, name)
-            z.write(path, os.path.relpath(path, out_dir))
+            p=os.path.join(root,name)
+            z.write(p,os.path.relpath(p,out))
 
-print(f"تم إنشاء الملف بنجاح: {zip_path}")
-print("الملف يحتوي على النسخة الموسعة + Study Hub، مع الحفاظ على منطق Progress الحالي.")
+print("تم إنشاء Ahmed Academy PRO بنجاح.")
+print(zip_path)
