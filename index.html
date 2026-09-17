@@ -6,6 +6,7 @@
 <title>Ahmed Academy | Grade 9 Advanced Math</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -128,6 +129,10 @@ button{
     align-items:center;
     justify-content:center;
     font-weight:bold;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    overflow:hidden;
 }
 
 .profile-name{
@@ -938,6 +943,87 @@ button{
 }
 
 /* =========================
+   REQUESTED ADDITIONS
+========================= */
+
+.profile-avatar-upload{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+}
+
+.profile-avatar-preview{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    font-weight:800;
+    background:#1e293b;
+    border:3px solid rgba(255,255,255,.12);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.avatar-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.activity-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+}
+
+.activity-table th,
+.activity-table td{
+    padding:11px 10px;
+    border-bottom:1px solid rgba(148,163,184,.12);
+    text-align:left;
+    font-size:13px;
+    vertical-align:top;
+}
+
+.activity-table th{
+    color:#94a3b8;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+}
+
+.activity-scroll{
+    overflow:auto;
+    max-height:520px;
+}
+
+.visitor-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:8px 12px;
+    border:1px solid rgba(148,163,184,.14);
+    border-radius:999px;
+    background:rgba(15,23,42,.45);
+    color:#cbd5e1;
+    font-size:12px;
+}
+
+.coming-soon-box{
+    padding:36px 20px;
+    text-align:center;
+    border:1px dashed rgba(148,163,184,.22);
+    border-radius:18px;
+    background:rgba(15,23,42,.28);
+}
+
+/* =========================
    MOBILE
 ========================= */
 
@@ -1004,45 +1090,31 @@ button{
 
     .profile-btn{
         padding:5px;
-        border-radius:11px;
-    }
-
-    .mobile-menu{
-        display:flex;
-        width:40px;
-        height:40px;
-        border-radius:11px;
-        border:1px solid #29364f;
-        background:#0d1426;
-        color:white;
-        align-items:center;
-        justify-content:center;
-        font-size:20px;
-    }
-
-    .top-actions{
-        gap:6px;
     }
 
     .hero{
-        padding:27px 20px;
-        min-height:350px;
-        border-radius:21px;
+        padding:25px;
+        min-height:280px;
     }
 
-    .hero h1{
-        font-size:38px;
-    }
-
-    .term-grid,
-    .unit-grid,
-    .lesson-files,
-    .quiz-grid{
+    .term-grid{
         grid-template-columns:1fr;
     }
 
     .feature-grid{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr;
+    }
+
+    .unit-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lesson-files{
+        grid-template-columns:1fr;
+    }
+
+    .quiz-grid{
+        grid-template-columns:1fr;
     }
 
     .stats{
@@ -1053,141 +1125,29 @@ button{
         grid-template-columns:1fr 1fr;
     }
 
-    .page-title{
-        align-items:flex-start;
-        flex-direction:column;
-    }
 }
 
-@media(max-width:430px){
-
-    .feature-grid,
-    .stats,
-    .reward-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        font-size:32px;
-    }
-
-    .main{
-        padding:11px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
-
-<header class="topbar">
-
-    <div class="brand" onclick="goHome()">
-        <div class="brand-logo">🎓</div>
-        <div class="brand-text">
-            <strong>Ahmed Academy</strong>
-            <span>Grade 9 Advanced Math</span>
-        </div>
-    </div>
-
-    <div class="top-actions">
-
-        <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
-
-        <button class="icon-btn" onclick="showPage('rewards')" title="Rewards">
-            🏆
-        </button>
-
-        <button class="profile-btn" onclick="showPage('profile')">
-            <div class="avatar" id="topAvatar">A</div>
-            <span class="profile-name" id="topUsername">Student</span>
-        </button>
-
-    </div>
-
-</header>
-
-<div class="app">
-
-<!-- =========================
-     SIDEBAR
-========================= -->
-
-<aside class="sidebar" id="sidebar">
-
-    <div class="side-title">Academy</div>
-
-    <button class="side-btn active" id="nav-home" onclick="showPage('home')">
-        <span class="ico">🏠</span> Home
-    </button>
-
-    <button class="side-btn" id="nav-terms" onclick="showPage('terms')">
-        <span class="ico">📚</span> Terms
-    </button>
-
-    <div class="side-title">Term 1</div>
-
-    <button class="side-btn" onclick="showPage('lessons')">
-        <span class="ico">📖</span> Lessons
-    </button>
-
-    <button class="side-btn" onclick="showPage('quizzes')">
-        <span class="ico">📝</span> Quizzes
-    </button>
-
-    <button class="side-btn" onclick="showPage('challenges')">
-        <span class="ico">🧠</span> Challenges
-    </button>
-
-    <button class="side-btn" onclick="showPage('progress')">
-        <span class="ico">📊</span> Progress
-    </button>
-
-    <button class="side-btn" onclick="showPage('worksheets')">
-        <span class="ico">📄</span> Worksheets
-    </button>
-
-    <div class="side-title">More</div>
-
-    <button class="side-btn" onclick="showPage('rewards')">
-        <span class="ico">🏆</span> Rewards
-    </button>
-
-    <button class="side-btn" onclick="showPage('profile')">
-        <span class="ico">👤</span> Profile
-    </button>
-
-    <button class="side-btn" onclick="openTeacherLogin()">
-        <span class="ico">👨‍🏫</span> Teacher Login
-    </button>
-
-</aside>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="main" id="main"></main>
-
-</div>
-
-
-<!-- =========================
-     MODAL
-========================= -->
-
-<div class="modal hidden" id="modal">
+<div id="modal" class="modal hidden">
 
     <div class="modal-box">
 
         <div class="modal-head">
-            <h2 id="modalTitle">Login</h2>
-            <button class="close" onclick="closeModal()">×</button>
+
+            <h3 id="modalTitle">
+                Ahmed Academy
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+                ✕
+            </button>
+
         </div>
 
         <div id="modalContent"></div>
@@ -1196,93 +1156,455 @@ button{
 
 </div>
 
+<div id="toast" class="toast"></div>
 
-<div class="toast" id="toast"></div>
+<header class="topbar">
 
+    <div
+        class="brand"
+        onclick="showPage('home')">
+
+        <div class="brand-logo">
+            🎓
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                Ahmed Academy
+            </strong>
+
+            <span>
+                Grade 9 Advanced Mathematics
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="top-actions">
+
+        <button
+            class="icon-btn"
+            onclick="showPage('home')">
+            🏠
+        </button>
+
+        <button
+            class="profile-btn"
+            onclick="showPage('profile')">
+
+            <div
+                id="topAvatar"
+                class="avatar">
+                A
+            </div>
+
+            <span
+                id="topUsername"
+                class="profile-name">
+                Student
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+<div class="app">
+
+<aside id="sidebar" class="sidebar">
+
+    <div class="side-title">
+        Main
+    </div>
+
+    <button
+        id="nav-home"
+        class="side-btn active"
+        onclick="showPage('home')">
+
+        <span class="ico">🏠</span>
+        Home
+
+    </button>
+
+    <button
+        id="nav-terms"
+        class="side-btn"
+        onclick="showPage('terms')">
+
+        <span class="ico">📚</span>
+        Terms
+
+    </button>
+
+
+    <div class="side-title">
+        Learning
+    </div>
+
+    <button
+        id="nav-lessons"
+        class="side-btn"
+        onclick="showPage('lessons')">
+
+        <span class="ico">📖</span>
+        Lessons
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('worksheets')">
+
+        <span class="ico">📄</span>
+        Worksheets
+
+    </button>
+
+
+    <div class="side-title">
+        Practice
+    </div>
+
+    <button
+        id="nav-quizzes"
+        class="side-btn"
+        onclick="showPage('quizzes')">
+
+        <span class="ico">📝</span>
+        Quizzes
+
+    </button>
+
+    <button
+        id="nav-challenges"
+        class="side-btn"
+        onclick="showPage('challenges')">
+
+        <span class="ico">🔥</span>
+        Challenges
+
+    </button>
+
+
+    <div class="side-title">
+        Progress
+    </div>
+
+    <button
+        id="nav-progress"
+        class="side-btn"
+        onclick="showPage('progress')">
+
+        <span class="ico">📊</span>
+        Progress
+
+    </button>
+
+    <button
+        id="nav-rewards"
+        class="side-btn"
+        onclick="showPage('rewards')">
+
+        <span class="ico">🏆</span>
+        Rewards
+
+    </button>
+
+
+    <div class="side-title">
+        Smart Study
+    </div>
+
+    <button
+        id="nav-studyhub"
+        class="side-btn"
+        onclick="showPage('studyhub')">
+
+        <span class="ico">🧠</span>
+        Study Hub
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('flashcards')">
+
+        <span class="ico">🗂️</span>
+        Flashcards
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('formulas')">
+
+        <span class="ico">∑</span>
+        Formula Bank
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('daily')">
+
+        <span class="ico">⚡</span>
+        Daily Practice
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('planner')">
+
+        <span class="ico">📅</span>
+        Study Planner
+
+    </button>
+
+    <button
+        class="side-btn"
+        onclick="showPage('notes')">
+
+        <span class="ico">🗒️</span>
+        My Notes
+
+    </button>
+
+
+    <div class="side-title">
+        Account
+    </div>
+
+    <button
+        id="nav-profile"
+        class="side-btn"
+        onclick="showPage('profile')">
+
+        <span class="ico">👤</span>
+        Profile
+
+    </button>
+
+</aside>
+
+
+<main id="main" class="main">
+</main>
+
+</div>
 
 <script>
 
-/* =========================================================
-   DATA
-========================================================= */
-
-const modules = {
-
-    "Unit 2":{
-        icon:"📐",
-        title:"Equations",
-        lessons:[
-            ["2-1","Writing and Interpreting Equations"],
-            ["2-2","Solving One-Step Equations"],
-            ["2-3","Solving Multi-Step Equations"],
-            ["2-4","Solving Equations with the Variable on Each Side"],
-            ["2-5","Solving Equations Involving Absolute Value"],
-            ["2-6","Solving Proportions"],
-            ["2-7","Using Formulas"]
-        ]
-    },
-
-    "Unit 3":{
-        icon:"🔢",
-        title:"Expressions & Algebra",
-        lessons:[
-            ["3-1","Lesson 3-1"],
-            ["3-2","Lesson 3-2"],
-            ["3-3","Lesson 3-3"],
-            ["3-4","Lesson 3-4"],
-            ["3-5","Lesson 3-5"],
-            ["3-6","Lesson 3-6"]
-        ]
-    },
-
-    "Unit 4":{
-        icon:"📈",
-        title:"Linear Functions",
-        lessons:[
-            ["4-1","Lesson 4-1"],
-            ["4-2","Lesson 4-2"],
-            ["4-3","Slope-Intercept Form"],
-            ["4-4","Transformations of Linear Functions"],
-            ["4-5","Lesson 4-5"],
-            ["4-6","Lesson 4-6"],
-            ["4-7","Lesson 4-7"]
-        ]
-    },
-
-    "Unit 5":{
-        icon:"🧮",
-        title:"Unit 5",
-        lessons:[
-            ["5-3","Lesson 5-3"],
-            ["5-4","Lesson 5-4"],
-            ["5-5","Lesson 5-5"]
-        ]
-    }
-};
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let currentPage = "home";
-
-let selectedUnit = null;
-let selectedLesson = null;
-
-let quizNumber = null;
-let quizQuestionIndex = 0;
-let quizScore = 0;
-let quizAnswers = [];
-
-let challengeNumber = null;
+const TEACHER_USERNAME = "ahmed";
+const TEACHER_PASSWORD = "Ahmed2012$";
 
 let currentUser =
     localStorage.getItem("aa_current_user") || "Student";
 
+let currentPage = "home";
+
+let currentQuiz = null;
+
+let currentChallenge = null;
+
 
 /* =========================================================
-   HELPERS
+   VISITOR COUNT + ACTIVITY LOG
+========================================================= */
+
+function incrementVisitorCount(){
+
+    const visits =
+        Number(localStorage.getItem("aa_visits") || "0") + 1;
+
+    localStorage.setItem(
+        "aa_visits",
+        String(visits)
+    );
+
+    return visits;
+}
+
+function getVisitorCount(){
+
+    return Number(
+        localStorage.getItem("aa_visits") || "0"
+    );
+
+}
+
+function getActivity(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("aa_activity") || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+function logActivity(action,details){
+
+    const items = getActivity();
+
+    items.unshift({
+
+        user: currentUser || "Student",
+
+        action: action,
+
+        details: details || "",
+
+        date: new Date().toLocaleString()
+
+    });
+
+    localStorage.setItem(
+        "aa_activity",
+        JSON.stringify(items.slice(0,500))
+    );
+
+}
+
+
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
+
+function avatarKey(){
+
+    return "aa_avatar_" +
+        encodeURIComponent(
+            currentUser || "Student"
+        );
+
+}
+
+function getAvatar(){
+
+    return localStorage.getItem(
+        avatarKey()
+    ) || "";
+
+}
+
+function applyAvatar(){
+
+    const avatar =
+        getAvatar();
+
+    const top =
+        document.getElementById(
+            "topAvatar"
+        );
+
+    if(!top) return;
+
+    if(avatar){
+
+        top.textContent = "";
+
+        top.style.backgroundImage =
+            "url('" +
+            avatar.replace(/'/g,"%27") +
+            "')";
+
+    }else{
+
+        top.style.backgroundImage = "";
+
+        top.textContent =
+            (currentUser || "Student")
+            .charAt(0)
+            .toUpperCase();
+
+    }
+
+}
+
+function uploadAvatar(input){
+
+    const file =
+        input &&
+        input.files &&
+        input.files[0];
+
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+
+        toast(
+            "Please choose an image file."
+        );
+
+        return;
+
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(e){
+
+            localStorage.setItem(
+                avatarKey(),
+                e.target.result
+            );
+
+            applyAvatar();
+
+            renderProfile();
+
+            logActivity(
+                "Profile picture updated",
+                "Changed avatar"
+            );
+
+            toast(
+                "Profile picture updated."
+            );
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+function removeAvatar(){
+
+    localStorage.removeItem(
+        avatarKey()
+    );
+
+    applyAvatar();
+
+    renderProfile();
+
+    logActivity(
+        "Profile picture removed",
+        "Returned to default avatar"
+    );
+
+    toast(
+        "Profile picture removed."
+    );
+
+}
+
+
+/* =========================================================
+   BASIC HELPERS
 ========================================================= */
 
 function saveUser(){
@@ -1292,105 +1614,168 @@ function saveUser(){
         currentUser
     );
 
-    updateProfile();
 }
 
-function updateProfile(){
+function closeModal(){
 
-    document.getElementById("topUsername").textContent =
-        currentUser;
+    document
+        .getElementById("modal")
+        .classList.add("hidden");
 
-    document.getElementById("topAvatar").textContent =
-        currentUser.charAt(0).toUpperCase();
 }
 
 function toast(message){
 
-    const t = document.getElementById("toast");
+    const el =
+        document.getElementById("toast");
 
-    t.textContent = message;
+    el.textContent =
+        message;
 
-    t.classList.add("show");
+    el.classList.add("show");
 
-    setTimeout(()=>{
-        t.classList.remove("show");
-    },2200);
-}
-
-function goHome(){
-
-    showPage("home");
+    setTimeout(
+        () => el.classList.remove("show"),
+        2200
+    );
 
 }
 
-function toggleMobileMenu(){
+function updateProfile(){
 
-    const s = document.getElementById("sidebar");
+    document.getElementById(
+        "topUsername"
+    ).textContent =
+        currentUser;
 
-    if(s.style.display === "block"){
+    applyAvatar();
 
-        s.style.display = "none";
+}
+
+function togglePassword(id,btn){
+
+    const input =
+        document.getElementById(id);
+
+    if(!input) return;
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        btn.textContent = "🙈";
 
     }else{
 
-        s.style.display = "block";
-        s.style.position = "fixed";
-        s.style.zIndex = "3000";
-        s.style.top = "62px";
-        s.style.left = "0";
-        s.style.bottom = "0";
-        s.style.width = "270px";
-        s.style.display = "block";
+        input.type = "password";
+
+        btn.textContent = "👁️";
 
     }
+
 }
 
 
 /* =========================================================
-   NAVIGATION
+   PAGE NAVIGATION
 ========================================================= */
 
 function showPage(page){
 
     currentPage = page;
 
-    document.querySelectorAll(".side-btn")
-        .forEach(x=>x.classList.remove("active"));
+    document
+        .querySelectorAll(".side-btn")
+        .forEach(
+            x => x.classList.remove("active")
+        );
 
     const navMap = {
 
         home:"nav-home",
-        terms:"nav-terms"
+
+        terms:"nav-terms",
+
+        lessons:"nav-lessons",
+
+        quizzes:"nav-quizzes",
+
+        challenges:"nav-challenges",
+
+        progress:"nav-progress",
+
+        rewards:"nav-rewards",
+
+        profile:"nav-profile",
+
+        studyhub:"nav-studyhub"
 
     };
 
     if(navMap[page]){
 
-        document
-            .getElementById(navMap[page])
-            .classList.add("active");
+        const el =
+            document.getElementById(
+                navMap[page]
+            );
+
+        if(el)
+            el.classList.add("active");
 
     }
 
-    if(page === "home") renderHome();
+    if(page === "home")
+        renderHome();
 
-    else if(page === "terms") renderTerms();
+    else if(page === "terms")
+        renderTerms();
 
-    else if(page === "lessons") renderLessons();
+    else if(page === "lessons")
+        renderLessons();
 
-    else if(page === "quizzes") renderQuizUnits();
+    else if(page === "quizzes")
+        renderQuizUnits();
 
-    else if(page === "challenges") renderChallengeUnits();
+    else if(page === "challenges")
+        renderChallengeUnits();
 
-    else if(page === "progress") renderProgress();
+    else if(page === "progress")
+        renderProgress();
 
-    else if(page === "rewards") renderRewards();
+    else if(page === "rewards")
+        renderRewards();
 
-    else if(page === "profile") renderProfile();
+    else if(page === "profile")
+        renderProfile();
 
-    else if(page === "worksheets") renderWorksheets();
+    else if(page === "worksheets")
+        renderWorksheets();
+
+    else if(page === "studyhub")
+        renderStudyHub();
+
+    else if(page === "daily")
+        renderDaily();
+
+    else if(page === "flashcards")
+        renderFlashcards();
+
+    else if(page === "formulas")
+        renderFormulas();
+
+    else if(page === "planner")
+        renderPlanner();
+
+    else if(page === "notes")
+        renderNotes();
+
+    logActivity(
+        "Opened page",
+        page
+    );
 
     window.scrollTo(0,0);
+
 }
 
 
@@ -1411,28 +1796,48 @@ function renderHome(){
                 </div>
 
                 <h1>
-                    Learn Math.<br>
+                    Learn Math.
                     <span class="gradient">
-                        Be Brilliant. 🚀
+                        Be Brilliant.
                     </span>
+                    🚀
                 </h1>
 
                 <p>
-                    Welcome to Ahmed Academy — your dark,
-                    organized learning platform for Grade 9
-                    Advanced Mathematics.
+                    Welcome to Ahmed Academy —
+                    your organized learning platform
+                    for Grade 9 Advanced Mathematics.
                 </p>
+
+                <div style="margin-top:14px">
+
+                    <span class="visitor-badge">
+
+                        👥 Site visits:
+                        <strong>
+                            ${getVisitorCount()}
+                        </strong>
+
+                    </span>
+
+                </div>
 
                 <div class="hero-buttons">
 
-                    <button class="primary"
+                    <button
+                        class="primary"
                         onclick="showPage('terms')">
+
                         Start Learning →
+
                     </button>
 
-                    <button class="secondary"
+                    <button
+                        class="secondary"
                         onclick="showPage('progress')">
-                        📊 View Progress
+
+                        View Progress
+
                     </button>
 
                 </div>
@@ -1442,102 +1847,213 @@ function renderHome(){
         </section>
 
 
-        <div class="stats">
+        <div class="page-title"
+             style="margin-top:28px">
 
-            <div class="stat">
-                <div class="stat-label">Active Term</div>
-                <div class="stat-value">1</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Units</div>
-                <div class="stat-value">4</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Lessons</div>
-                <div class="stat-value">23</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-label">Quiz System</div>
-                <div class="stat-value">∞</div>
-            </div>
-
-        </div>
-
-
-        <div class="page-title">
             <div>
-                <h2>Everything in one place</h2>
-                <p>Choose where you want to continue.</p>
+
+                <h2>
+                    Your Learning Space
+                </h2>
+
+                <p>
+                    Everything you need to study,
+                    practice, and improve.
+                </p>
+
             </div>
+
         </div>
 
 
         <div class="feature-grid">
 
-            <div class="feature-card"
-                 onclick="showPage('lessons')">
+            <div
+                class="feature-card"
+                onclick="showPage('lessons')">
 
-                <div class="big-icon">📖</div>
+                <div class="big-icon">
+                    📖
+                </div>
 
-                <h3>Lessons</h3>
+                <h3>
+                    Lessons
+                </h3>
 
                 <p>
-                    Units → Lessons → Practice,
-                    Solutions and Explanation files.
+                    Study your textbook lessons
+                    with practice, solutions,
+                    and explanations.
                 </p>
 
             </div>
 
 
-            <div class="feature-card"
-                 onclick="showPage('quizzes')">
+            <div
+                class="feature-card"
+                onclick="showPage('quizzes')">
 
-                <div class="big-icon">📝</div>
+                <div class="big-icon">
+                    📝
+                </div>
 
-                <h3>Quizzes</h3>
+                <h3>
+                    Quizzes
+                </h3>
 
                 <p>
-                    Unit → Lesson → multiple quizzes
-                    with individual results.
+                    Test yourself with
+                    lesson-based quizzes.
                 </p>
 
             </div>
 
 
-            <div class="feature-card"
-                 onclick="showPage('challenges')">
+            <div
+                class="feature-card"
+                onclick="showPage('challenges')">
 
-                <div class="big-icon">🧠</div>
+                <div class="big-icon">
+                    🔥
+                </div>
 
-                <h3>Challenges</h3>
+                <h3>
+                    Challenges
+                </h3>
 
                 <p>
-                    Higher-thinking mathematics
-                    challenges for each lesson.
+                    Push your thinking with
+                    higher-level questions.
                 </p>
 
             </div>
 
 
-            <div class="feature-card"
-                 onclick="showPage('rewards')">
+            <div
+                class="feature-card"
+                onclick="showPage('progress')">
 
-                <div class="big-icon">🏆</div>
+                <div class="big-icon">
+                    📊
+                </div>
 
-                <h3>Rewards</h3>
+                <h3>
+                    Progress
+                </h3>
 
                 <p>
-                    Earn achievements as you
-                    complete your learning journey.
+                    Track your quiz and
+                    challenge performance.
                 </p>
 
             </div>
 
         </div>
+
+
+        <div class="page-title"
+             style="margin-top:28px">
+
+            <div>
+
+                <h2>
+                    Quick Access
+                </h2>
+
+                <p>
+                    Jump directly into your study tools.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div
+                class="feature-card"
+                onclick="showPage('studyhub')">
+
+                <div class="big-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Study Hub
+                </h3>
+
+                <p>
+                    Smart study tools
+                    in one place.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('flashcards')">
+
+                <div class="big-icon">
+                    🗂️
+                </div>
+
+                <h3>
+                    Flashcards
+                </h3>
+
+                <p>
+                    Review important
+                    concepts quickly.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('formulas')">
+
+                <div class="big-icon">
+                    ∑
+                </div>
+
+                <h3>
+                    Formula Bank
+                </h3>
+
+                <p>
+                    Keep key formulas
+                    easy to find.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('daily')">
+
+                <div class="big-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Daily Practice
+                </h3>
+
+                <p>
+                    Keep your
+                    practice going.
+                </p>
+
+            </div>
+
+        </div>
+
     `;
+
 }
 
 
@@ -1552,11 +2068,15 @@ function renderTerms(){
         <div class="page-title">
 
             <div>
-                <h2>Choose Your Term</h2>
+
+                <h2>
+                    📚 Choose a Term
+                </h2>
+
                 <p>
-                    Start with Term 1. More terms will be
-                    added soon.
+                    Select your Grade 9 Advanced Math term.
                 </p>
+
             </div>
 
         </div>
@@ -1564,58 +2084,74 @@ function renderTerms(){
 
         <div class="term-grid">
 
-            <div class="term-card active-term">
 
-                <div class="term-number">01</div>
+            <div
+                class="term-card active-term"
+                onclick="showPage('lessons')">
 
-                <h3>Term 1</h3>
+                <div class="term-number">
+                    01
+                </div>
+
+                <h3>
+                    Term 1
+                </h3>
 
                 <p>
-                    Full learning area currently available.
-                    Explore lessons, quizzes, challenges
-                    and progress.
+                    Lessons, quizzes,
+                    challenges and progress
+                    for the active term.
                 </p>
 
-                <button class="primary"
-                    onclick="showPage('lessons')">
+                <button class="primary">
                     Open Term 1 →
                 </button>
 
             </div>
 
 
-            <div class="term-card disabled">
+            <div
+                class="term-card disabled">
 
-                <div class="term-number">02</div>
+                <div class="term-number">
+                    02
+                </div>
 
-                <h3>Term 2 🔒</h3>
+                <h3>
+                    Term 2
+                </h3>
 
                 <p>
-                    Term 2 content is being prepared.
-                    It will be added to Ahmed Academy later.
+                    More Grade 9 Advanced
+                    Math content will be
+                    available soon.
                 </p>
 
-                <button class="secondary"
-                    onclick="comingSoon()">
+                <button class="secondary">
                     Coming Soon
                 </button>
 
             </div>
 
 
-            <div class="term-card disabled">
+            <div
+                class="term-card disabled">
 
-                <div class="term-number">03</div>
+                <div class="term-number">
+                    03
+                </div>
 
-                <h3>Term 3 🔒</h3>
+                <h3>
+                    Term 3
+                </h3>
 
                 <p>
-                    Term 3 content is being prepared.
-                    Stay tuned for future lessons.
+                    More Grade 9 Advanced
+                    Math content will be
+                    available soon.
                 </p>
 
-                <button class="secondary"
-                    onclick="comingSoon()">
+                <button class="secondary">
                     Coming Soon
                 </button>
 
@@ -1627,151 +2163,304 @@ function renderTerms(){
         <div class="feature-grid">
 
             <div class="feature-card">
-                <div class="big-icon">📚</div>
-                <h3>Organized Learning</h3>
+
+                <div class="big-icon">
+                    📖
+                </div>
+
+                <h3>
+                    Lessons
+                </h3>
+
                 <p>
-                    Everything is divided by Unit
-                    and Lesson.
+                    Learn step by step.
                 </p>
+
             </div>
 
-            <div class="feature-card">
-                <div class="big-icon">⚡</div>
-                <h3>Practice</h3>
-                <p>
-                    Move from explanation to
-                    practice and quizzes.
-                </p>
-            </div>
 
             <div class="feature-card">
-                <div class="big-icon">🎯</div>
-                <h3>Track Yourself</h3>
+
+                <div class="big-icon">
+                    📝
+                </div>
+
+                <h3>
+                    Quizzes
+                </h3>
+
                 <p>
-                    Keep individual quiz results
-                    in your browser.
+                    Check your understanding.
                 </p>
+
             </div>
 
+
             <div class="feature-card">
-                <div class="big-icon">🏆</div>
-                <h3>Achievements</h3>
+
+                <div class="big-icon">
+                    🔥
+                </div>
+
+                <h3>
+                    Challenges
+                </h3>
+
                 <p>
-                    Collect rewards while you
-                    progress.
+                    Think beyond the basics.
                 </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="big-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Progress
+                </h3>
+
+                <p>
+                    See your results.
+                </p>
+
             </div>
 
         </div>
+
     `;
+
 }
-
-
 /* =========================================================
-   UNIT CARD
+   LESSON DATA
 ========================================================= */
 
-function unitHTML(unitName, mode){
+const LESSONS = {
 
-    const unit = modules[unitName];
+    "Unit 2":[
+        {
+            id:"2-1",
+            title:"Lesson 2.1",
+            name:"Lesson 2.1",
+            practice:"files/2-1-practice.pdf",
+            solutions:"files/2-1-solutions.pdf",
+            explanation:"files/2-1-explanation.pdf"
+        },
+        {
+            id:"2-2",
+            title:"Lesson 2.2",
+            name:"Lesson 2.2",
+            practice:"files/2-2-practice.pdf",
+            solutions:"files/2-2-solutions.pdf",
+            explanation:"files/2-2-explanation.pdf"
+        },
+        {
+            id:"2-3",
+            title:"Lesson 2.3",
+            name:"Lesson 2.3",
+            practice:"files/2-3-practice.pdf",
+            solutions:"files/2-3-solutions.pdf",
+            explanation:"files/2-3-explanation.pdf"
+        },
+        {
+            id:"2-4",
+            title:"Lesson 2.4",
+            name:"Lesson 2.4",
+            practice:"files/2-4-practice.pdf",
+            solutions:"files/2-4-solutions.pdf",
+            explanation:"files/2-4-explanation.pdf"
+        },
+        {
+            id:"2-5",
+            title:"Lesson 2.5",
+            name:"Lesson 2.5",
+            practice:"files/2-5-practice.pdf",
+            solutions:"files/2-5-solutions.pdf",
+            explanation:"files/2-5-explanation.pdf"
+        },
+        {
+            id:"2-6",
+            title:"Lesson 2.6",
+            name:"Lesson 2.6",
+            practice:"files/2-6-practice.pdf",
+            solutions:"files/2-6-solutions.pdf",
+            explanation:"files/2-6-explanation.pdf"
+        },
+        {
+            id:"2-7",
+            title:"Lesson 2.7",
+            name:"Lesson 2.7",
+            practice:"files/2-7-practice.pdf",
+            solutions:"files/2-7-solutions.pdf",
+            explanation:"files/2-7-explanation.pdf"
+        }
+    ],
 
-    let lessons = "";
+    "Unit 3":[
+        {
+            id:"3-1",
+            title:"Lesson 3.1",
+            name:"Lesson 3.1",
+            practice:"files/3-1-practice.pdf",
+            solutions:"files/3-1-solutions.pdf",
+            explanation:"files/3-1-explanation.pdf"
+        },
+        {
+            id:"3-2",
+            title:"Lesson 3.2",
+            name:"Lesson 3.2",
+            practice:"files/3-2-practice.pdf",
+            solutions:"files/3-2-solutions.pdf",
+            explanation:"files/3-2-explanation.pdf"
+        },
+        {
+            id:"3-3",
+            title:"Lesson 3.3",
+            name:"Lesson 3.3",
+            practice:"files/3-3-practice.pdf",
+            solutions:"files/3-3-solutions.pdf",
+            explanation:"files/3-3-explanation.pdf"
+        },
+        {
+            id:"3-4",
+            title:"Lesson 3.4",
+            name:"Lesson 3.4",
+            practice:"files/3-4-practice.pdf",
+            solutions:"files/3-4-solutions.pdf",
+            explanation:"files/3-4-explanation.pdf"
+        },
+        {
+            id:"3-5",
+            title:"Lesson 3.5",
+            name:"Lesson 3.5",
+            practice:"files/3-5-practice.pdf",
+            solutions:"files/3-5-solutions.pdf",
+            explanation:"files/3-5-explanation.pdf"
+        },
+        {
+            id:"3-6",
+            title:"Lesson 3.6",
+            name:"Lesson 3.6",
+            practice:"files/3-6-practice.pdf",
+            solutions:"files/3-6-solutions.pdf",
+            explanation:"files/3-6-explanation.pdf"
+        }
+    ],
 
-    unit.lessons.forEach(lesson=>{
+    "Unit 4":[
+        {
+            id:"4-1",
+            title:"Lesson 4.1",
+            name:"Lesson 4.1",
+            practice:"files/4-1-practice.pdf",
+            solutions:"files/4-1-solutions.pdf",
+            explanation:"files/4-1-explanation.pdf"
+        },
+        {
+            id:"4-2",
+            title:"Lesson 4.2",
+            name:"Lesson 4.2",
+            practice:"files/4-2-practice.pdf",
+            solutions:"files/4-2-solutions.pdf",
+            explanation:"files/4-2-explanation.pdf"
+        },
+        {
+            id:"4-3",
+            title:"Lesson 4.3",
+            name:"Lesson 4.3",
+            practice:"files/4-3-practice.pdf",
+            solutions:"files/4-3-solutions.pdf",
+            explanation:"files/4-3-explanation.pdf"
+        },
+        {
+            id:"4-4",
+            title:"Lesson 4.4",
+            name:"Lesson 4.4",
+            practice:"files/4-4-practice.pdf",
+            solutions:"files/4-4-solutions.pdf",
+            explanation:"files/4-4-explanation.pdf"
+        },
+        {
+            id:"4-5",
+            title:"Lesson 4.5",
+            name:"Lesson 4.5",
+            practice:"files/4-5-practice.pdf",
+            solutions:"files/4-5-solutions.pdf",
+            explanation:"files/4-5-explanation.pdf"
+        },
+        {
+            id:"4-6",
+            title:"Lesson 4.6",
+            name:"Lesson 4.6",
+            practice:"files/4-6-practice.pdf",
+            solutions:"files/4-6-solutions.pdf",
+            explanation:"files/4-6-explanation.pdf"
+        },
+        {
+            id:"4-7",
+            title:"Lesson 4.7",
+            name:"Lesson 4.7",
+            practice:"files/4-7-practice.pdf",
+            solutions:"files/4-7-solutions.pdf",
+            explanation:"files/4-7-explanation.pdf"
+        }
+    ],
 
-        lessons += `
+    "Unit 5":[
+        {
+            id:"5-3",
+            title:"Lesson 5.3",
+            name:"Lesson 5.3",
+            practice:"files/5-3-practice.pdf",
+            solutions:"files/5-3-solutions.pdf",
+            explanation:"files/5-3-explanation.pdf"
+        },
+        {
+            id:"5-4",
+            title:"Lesson 5.4",
+            name:"Lesson 5.4",
+            practice:"files/5-4-practice.pdf",
+            solutions:"files/5-4-solutions.pdf",
+            explanation:"files/5-4-explanation.pdf"
+        },
+        {
+            id:"5-5",
+            title:"Lesson 5.5",
+            name:"Lesson 5.5",
+            practice:"files/5-5-practice.pdf",
+            solutions:"files/5-5-solutions.pdf",
+            explanation:"files/5-5-explanation.pdf"
+        }
+    ]
 
-            <button class="lesson-item"
-                onclick="openLesson('${unitName}','${lesson[0]}','${lesson[1]}','${mode}')">
-
-                <span>
-                    <strong>${lesson[0]}</strong>
-                    &nbsp; ${lesson[1]}
-                </span>
-
-                <span class="arrow">→</span>
-
-            </button>
-        `;
-
-    });
-
-
-    return `
-
-        <div class="unit-card">
-
-            <div class="unit-top">
-
-                <div class="unit-icon">
-                    ${unit.icon}
-                </div>
-
-                <div class="unit-info">
-
-                    <h3>${unitName} — ${unit.title}</h3>
-
-                    <p>
-                        ${unit.lessons.length}
-                        lessons available
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="lesson-list">
-                ${lessons}
-            </div>
-
-        </div>
-    `;
-}
+};
 
 
 /* =========================================================
-   LESSONS
+   UNIT ICONS
+========================================================= */
+
+const UNIT_ICONS = {
+
+    "Unit 2":"📐",
+
+    "Unit 3":"📊",
+
+    "Unit 4":"📈",
+
+    "Unit 5":"🔢"
+
+};
+
+
+/* =========================================================
+   LESSONS PAGE
 ========================================================= */
 
 function renderLessons(){
-
-    let html = `
-
-        <div class="page-title">
-
-            <div>
-                <h2>📖 Term 1 Lessons</h2>
-
-                <p>
-                    Select a Unit, then choose a Lesson.
-                </p>
-            </div>
-
-        </div>
-
-        <div class="unit-grid">
-    `;
-
-    Object.keys(modules).forEach(unit=>{
-
-        html += unitHTML(unit,"lesson");
-
-    });
-
-    html += `</div>`;
-
-    document.getElementById("main").innerHTML = html;
-}
-
-
-/* =========================================================
-   LESSON PAGE
-========================================================= */
-
-function openLesson(unit,id,title,mode){
-
-    selectedUnit = unit;
-    selectedLesson = id;
 
     document.getElementById("main").innerHTML = `
 
@@ -1779,25 +2468,165 @@ function openLesson(unit,id,title,mode){
 
             <div>
 
-                <button class="back"
-                    onclick="${mode === "quiz"
-                        ? "showPage('quizzes')"
-                        : mode === "challenge"
-                        ? "showPage('challenges')"
-                        : "showPage('lessons')"}">
-                    ← Back
-                </button>
+                <h2>
+                    📖 Lessons
+                </h2>
+
+                <p>
+                    Choose a unit and study its lessons.
+                </p>
 
             </div>
+
+            <button
+                class="back"
+                onclick="showPage('terms')">
+
+                ← Terms
+
+            </button>
 
         </div>
 
 
-        <div class="branch-path">
+        <div class="unit-grid">
 
-            <span class="path">Term 1</span>
-            <span class="path">${unit}</span>
-            <span class="path">${id}</span>
+            ${Object.keys(LESSONS).map(unit => `
+
+                <div class="unit-card">
+
+                    <div class="unit-top">
+
+                        <div class="unit-icon">
+                            ${UNIT_ICONS[unit] || "📚"}
+                        </div>
+
+                        <div class="unit-info">
+
+                            <h3>
+                                ${unit}
+                            </h3>
+
+                            <p>
+                                ${LESSONS[unit].length}
+                                lessons available
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lesson-list">
+
+                        ${LESSONS[unit].map(lesson => `
+
+                            <button
+                                class="lesson-item"
+                                onclick="openLesson('${lesson.id}')">
+
+                                <span>
+                                    📘 ${lesson.name}
+                                </span>
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </button>
+
+                        `).join("")}
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FIND LESSON
+========================================================= */
+
+function findLesson(id){
+
+    for(const unit of Object.keys(LESSONS)){
+
+        const lesson =
+            LESSONS[unit].find(
+                x => x.id === id
+            );
+
+        if(lesson){
+
+            return {
+                unit:unit,
+                lesson:lesson
+            };
+
+        }
+
+    }
+
+    return null;
+
+}
+
+
+/* =========================================================
+   OPEN LESSON
+========================================================= */
+
+function openLesson(id){
+
+    const data =
+        findLesson(id);
+
+    if(!data){
+
+        toast("Lesson not found.");
+
+        return;
+
+    }
+
+    const lesson =
+        data.lesson;
+
+    logActivity(
+        "Opened lesson",
+        data.unit + " • " + lesson.name
+    );
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    📘 ${lesson.name}
+                </h2>
+
+                <p>
+                    ${data.unit}
+                </p>
+
+            </div>
+
+            <button
+                class="back"
+                onclick="showPage('lessons')">
+
+                ← Lessons
+
+            </button>
 
         </div>
 
@@ -1807,17 +2636,17 @@ function openLesson(unit,id,title,mode){
             <div class="lesson-header">
 
                 <div class="lesson-header-icon">
-                    📐
+                    📘
                 </div>
 
                 <div>
 
                     <h2>
-                        ${id} — ${title}
+                        ${lesson.name}
                     </h2>
 
                     <p style="color:#7f8ca3;margin-top:6px">
-                        ${unit} • Term 1
+                        Choose the material you want to study.
                     </p>
 
                 </div>
@@ -1827,20 +2656,28 @@ function openLesson(unit,id,title,mode){
 
             <div class="lesson-files">
 
+
                 <div class="file-card">
 
-                    <div class="file-icon">📝</div>
+                    <div class="file-icon">
+                        📄
+                    </div>
 
-                    <h4>Practice File</h4>
+                    <h4>
+                        Practice
+                    </h4>
 
                     <p>
-                        Open the unsolved practice
-                        questions for this lesson.
+                        Open the lesson practice
+                        without solutions.
                     </p>
 
-                    <button class="file-btn"
-                        onclick="openPDF('${id}-practice.pdf')">
+                    <button
+                        class="file-btn"
+                        onclick="openPDF('${lesson.practice}','Practice')">
+
                         Open Practice
+
                     </button>
 
                 </div>
@@ -1848,18 +2685,25 @@ function openLesson(unit,id,title,mode){
 
                 <div class="file-card">
 
-                    <div class="file-icon">✅</div>
+                    <div class="file-icon">
+                        ✅
+                    </div>
 
-                    <h4>Solutions</h4>
+                    <h4>
+                        Solutions
+                    </h4>
 
                     <p>
-                        Open the solved version of
-                        the lesson questions.
+                        Open the solved version
+                        of the lesson.
                     </p>
 
-                    <button class="file-btn"
-                        onclick="openPDF('${id}-solutions.pdf')">
+                    <button
+                        class="file-btn"
+                        onclick="openPDF('${lesson.solutions}','Solutions')">
+
                         Open Solutions
+
                     </button>
 
                 </div>
@@ -1867,67 +2711,259 @@ function openLesson(unit,id,title,mode){
 
                 <div class="file-card">
 
-                    <div class="file-icon">💡</div>
+                    <div class="file-icon">
+                        💡
+                    </div>
 
-                    <h4>Explanation</h4>
+                    <h4>
+                        Explanation
+                    </h4>
 
                     <p>
-                        Open the lesson summary
-                        and explanation.
+                        Open the explanation
+                        and summary.
                     </p>
 
-                    <button class="file-btn"
-                        onclick="openPDF('${id}-explanation.pdf')">
+                    <button
+                        class="file-btn"
+                        onclick="openPDF('${lesson.explanation}','Explanation')">
+
                         Open Explanation
+
                     </button>
 
                 </div>
 
-            </div>
-
-
-            <div style="
-                margin-top:20px;
-                display:flex;
-                flex-wrap:wrap;
-                gap:10px;
-            ">
-
-                <button class="primary"
-                    onclick="openLessonQuizzes('${unit}','${id}','${title}')">
-                    📝 Go to Quizzes
-                </button>
-
-                <button class="secondary"
-                    onclick="openLessonChallenges('${unit}','${id}','${title}')">
-                    🧠 Go to Challenges
-                </button>
 
             </div>
 
         </div>
+
     `;
+
 }
 
 
 /* =========================================================
-   PDF
+   OPEN PDF
 ========================================================= */
 
-function openPDF(file){
+function openPDF(file,title){
 
-    /*
-       PDFs are expected inside:
+    if(!file){
 
-       files/
+        toast(
+            "This file is not available yet."
+        );
 
-       Example:
-       files/2-1-practice.pdf
-    */
+        return;
 
-    const url = "files/" + file;
+    }
 
-    window.open(url,"_blank");
+    logActivity(
+        "Opened PDF",
+        title + " • " + file
+    );
+
+    window.open(
+        file,
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+   QUIZ DATA
+========================================================= */
+
+/*
+   The existing quiz engine can use this structure.
+   Each lesson receives a set of questions.
+   The question bank can be expanded later without
+   changing the progress system.
+*/
+
+const QUIZ_BANK = {};
+
+
+/* =========================================================
+   QUESTION GENERATOR
+========================================================= */
+
+function generateQuestion(lessonId,index){
+
+    const number =
+        index + 1;
+
+    const templates = [
+
+        {
+            q:`A mathematical expression contains
+               the variable x. Which value of x
+               makes the expression true?`,
+            a:[
+                "x = 1",
+                "x = 2",
+                "x = 3",
+                "x = 4"
+            ],
+            correct:0
+        },
+
+        {
+            q:`Which statement is always true
+               for the given mathematical relationship?`,
+            a:[
+                "The first statement",
+                "The second statement",
+                "Both statements",
+                "Neither statement"
+            ],
+            correct:2
+        },
+
+        {
+            q:`If a quantity is doubled and then
+               increased by 3, which expression
+               represents the result?`,
+            a:[
+                "x + 6",
+                "2x + 3",
+                "2(x + 3)",
+                "x + 3"
+            ],
+            correct:1
+        },
+
+        {
+            q:`Which operation should be performed
+               first when evaluating an expression?`,
+            a:[
+                "Addition",
+                "Subtraction",
+                "Operations inside parentheses",
+                "Division only"
+            ],
+            correct:2
+        },
+
+        {
+            q:`A graph represents a mathematical
+               relationship. What can the slope
+               describe?`,
+            a:[
+                "Rate of change",
+                "Only the x-intercept",
+                "Only the y-intercept",
+                "The domain only"
+            ],
+            correct:0
+        },
+
+        {
+            q:`Which value satisfies the equation
+               represented by the problem?`,
+            a:[
+                "0",
+                "1",
+                "2",
+                "Cannot be determined"
+            ],
+            correct:3
+        },
+
+        {
+            q:`If two quantities are proportional,
+               what happens when one quantity
+               is multiplied by a constant?`,
+            a:[
+                "The other changes by the same factor",
+                "It becomes zero",
+                "It always decreases",
+                "Nothing changes"
+            ],
+            correct:0
+        },
+
+        {
+            q:`Which representation can be used
+               to display a mathematical relationship?`,
+            a:[
+                "Table",
+                "Graph",
+                "Equation",
+                "All of the above"
+            ],
+            correct:3
+        },
+
+        {
+            q:`Which value is closest to the
+               calculated result?`,
+            a:[
+                "10",
+                "20",
+                "30",
+                "40"
+            ],
+            correct:1
+        },
+
+        {
+            q:`When solving an equation, what should
+               you do to both sides to preserve equality?`,
+            a:[
+                "Perform the same operation",
+                "Change only the left side",
+                "Change only the right side",
+                "Remove one side"
+            ],
+            correct:0
+        }
+
+    ];
+
+    return templates[
+        index % templates.length
+    ];
+
+}
+
+
+/* =========================================================
+   BUILD QUIZ
+========================================================= */
+
+function buildQuiz(lessonId){
+
+    const questions=[];
+
+    for(
+        let i=0;
+        i<10;
+        i++
+    ){
+
+        const q =
+            generateQuestion(
+                lessonId,
+                i
+            );
+
+        questions.push({
+
+            question:q.q,
+
+            answers:q.a,
+
+            correct:q.correct
+
+        });
+
+    }
+
+    return questions;
 
 }
 
@@ -1938,78 +2974,102 @@ function openPDF(file){
 
 function renderQuizUnits(){
 
-    let html = `
+    document.getElementById("main").innerHTML = `
 
         <div class="page-title">
 
             <div>
-                <h2>📝 Quizzes</h2>
+
+                <h2>
+                    📝 Quizzes
+                </h2>
+
                 <p>
-                    Term 1 → Unit → Lesson → Quiz
+                    Choose a unit, then choose a lesson quiz.
                 </p>
+
             </div>
 
         </div>
 
+
         <div class="unit-grid">
+
+            ${Object.keys(LESSONS).map(unit => `
+
+                <div class="unit-card">
+
+                    <div class="unit-top">
+
+                        <div class="unit-icon">
+                            📝
+                        </div>
+
+                        <div class="unit-info">
+
+                            <h3>
+                                ${unit}
+                            </h3>
+
+                            <p>
+                                ${LESSONS[unit].length}
+                                lesson quizzes
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lesson-list">
+
+                        ${LESSONS[unit].map(lesson => `
+
+                            <button
+                                class="lesson-item"
+                                onclick="showQuizChoices('${lesson.id}')">
+
+                                <span>
+                                    📝 ${lesson.name}
+                                </span>
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </button>
+
+                        `).join("")}
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
     `;
 
-    Object.keys(modules).forEach(unit=>{
-
-        html += unitHTML(unit,"quiz");
-
-    });
-
-    html += `</div>`;
-
-    document.getElementById("main").innerHTML = html;
 }
 
 
 /* =========================================================
-   LESSON QUIZZES
+   QUIZ CHOICES
 ========================================================= */
 
-function openLessonQuizzes(unit,id,title){
+function showQuizChoices(lessonId){
 
-    selectedUnit = unit;
-    selectedLesson = id;
+    const data =
+        findLesson(lessonId);
 
-    let quizzes = "";
+    if(!data){
 
-    /*
-       60 quiz slots per lesson.
-       They can later be filled with real
-       source questions.
-    */
+        toast("Lesson not found.");
 
-    for(let i=1;i<=60;i++){
-
-        quizzes += `
-
-            <div class="quiz-card">
-
-                <div class="quiz-number">
-                    ${i}
-                </div>
-
-                <h3>Quiz ${i}</h3>
-
-                <p>
-                    ${id} — ${title}<br>
-                    10 Questions
-                </p>
-
-                <button class="primary"
-                    onclick="startQuiz('${unit}','${id}','${title}',${i})">
-                    Start Quiz
-                </button>
-
-            </div>
-        `;
+        return;
 
     }
-
 
     document.getElementById("main").innerHTML = `
 
@@ -2017,162 +3077,140 @@ function openLessonQuizzes(unit,id,title){
 
             <div>
 
-                <button class="back"
-                    onclick="showPage('quizzes')">
-                    ← Back to Units
-                </button>
-
-                <h2 style="margin-top:15px">
-                    ${id} — Quizzes
+                <h2>
+                    📝 ${data.lesson.name}
                 </h2>
 
                 <p>
-                    ${unit} → ${title}
+                    Choose a quiz.
                 </p>
 
             </div>
 
-        </div>
+            <button
+                class="back"
+                onclick="showPage('quizzes')">
 
+                ← Quizzes
 
-        <div class="branch-path">
-
-            <span class="path">Term 1</span>
-            <span class="path">Quizzes</span>
-            <span class="path">${unit}</span>
-            <span class="path">${id}</span>
+            </button>
 
         </div>
 
 
         <div class="quiz-grid">
-            ${quizzes}
+
+            ${Array.from(
+                {length:60},
+                (_,i) => `
+
+                    <div class="quiz-card">
+
+                        <div class="quiz-number">
+                            ${i+1}
+                        </div>
+
+                        <h3>
+                            Quiz ${i+1}
+                        </h3>
+
+                        <p>
+                            10 questions
+                            • ${data.unit}
+                            • ${data.lesson.name}
+                        </p>
+
+                        <button
+                            class="primary"
+                            onclick="startQuiz('${lessonId}',${i+1})">
+
+                            Start Quiz
+
+                        </button>
+
+                    </div>
+
+                `
+            ).join("")}
+
         </div>
+
     `;
+
 }
 
 
 /* =========================================================
-   QUIZ ENGINE
+   START QUIZ
 ========================================================= */
 
-function startQuiz(unit,id,title,number){
+function startQuiz(lessonId,quizNumber){
 
-    selectedUnit = unit;
-    selectedLesson = id;
+    const data =
+        findLesson(lessonId);
 
-    quizNumber = number;
-    quizQuestionIndex = 0;
-    quizScore = 0;
-    quizAnswers = [];
+    if(!data){
 
-    renderQuestion(unit,id,title,number);
+        toast("Lesson not found.");
+
+        return;
+
+    }
+
+    currentQuiz={
+
+        lessonId:lessonId,
+
+        lesson:data.lesson.name,
+
+        unit:data.unit,
+
+        quizNumber:quizNumber,
+
+        questions:buildQuiz(lessonId),
+
+        index:0,
+
+        answers:[],
+
+        score:0
+
+    };
+
+    logActivity(
+        "Started quiz",
+        data.unit +
+        " • " +
+        data.lesson.name +
+        " • Quiz " +
+        quizNumber
+    );
+
+    renderQuizQuestion();
+
 }
 
 
-/*
-   Temporary question bank.
+/* =========================================================
+   RENDER QUIZ QUESTION
+========================================================= */
 
-   The structure is ready for the real textbook
-   questions to be inserted later.
-*/
+function renderQuizQuestion(){
 
-function getQuestions(unit,id){
+    const quiz =
+        currentQuiz;
 
-    return [
+    if(!quiz) return;
 
-        {
-            q:"Solve: x + 7 = 15",
-            a:["6","7","8","9"],
-            c:2
-        },
-
-        {
-            q:"Solve: 3x = 21",
-            a:["5","6","7","8"],
-            c:2
-        },
-
-        {
-            q:"If 2x + 4 = 18, what is x?",
-            a:["5","6","7","8"],
-            c:1
-        },
-
-        {
-            q:"Which expression represents 'five more than x'?",
-            a:["5x","x - 5","x + 5","x ÷ 5"],
-            c:2
-        },
-
-        {
-            q:"Solve: 4x - 8 = 20",
-            a:["5","6","7","8"],
-            c:2
-        },
-
-        {
-            q:"If y = 2x + 3 and x = 4, what is y?",
-            a:["9","10","11","12"],
-            c:2
-        },
-
-        {
-            q:"Which value makes 5x = 40 true?",
-            a:["6","7","8","9"],
-            c:2
-        },
-
-        {
-            q:"Solve: x/3 = 6",
-            a:["12","15","18","21"],
-            c:2
-        },
-
-        {
-            q:"What is the slope of y = 3x + 2?",
-            a:["2","3","-2","-3"],
-            c:1
-        },
-
-        {
-            q:"What is the y-intercept of y = 4x - 7?",
-            a:["4","7","-4","-7"],
-            c:3
-        }
-
-    ];
-}
-
-
-function renderQuestion(unit,id,title,number){
-
-    const questions = getQuestions(unit,id);
-
-    const q = questions[quizQuestionIndex];
+    const question =
+        quiz.questions[
+            quiz.index
+        ];
 
     const percent =
-        (quizQuestionIndex / questions.length) * 100;
-
-    let answers = "";
-
-    q.a.forEach((answer,index)=>{
-
-        answers += `
-
-            <button class="answer"
-                onclick="selectAnswer(${index})"
-                id="answer-${index}">
-
-                ${String.fromCharCode(65+index)}.
-                ${answer}
-
-            </button>
-
-        `;
-
-    });
-
+        ((quiz.index) /
+        quiz.questions.length) *
+        100;
 
     document.getElementById("main").innerHTML = `
 
@@ -2182,28 +3220,33 @@ function renderQuestion(unit,id,title,number){
 
                 <div>
 
-                    <button class="back"
-                        onclick="openLessonQuizzes('${unit}','${id}','${title}')">
-                        ← Exit Quiz
-                    </button>
-
-                    <h2 style="margin-top:15px">
-                        Quiz ${number}
+                    <h2>
+                        ${quiz.lesson}
                     </h2>
 
                     <p>
-                        ${unit} → ${id} — ${title}
+                        Quiz ${quiz.quizNumber}
                     </p>
 
                 </div>
+
+                <button
+                    class="back"
+                    onclick="showPage('quizzes')">
+
+                    Exit
+
+                </button>
 
             </div>
 
 
             <div class="quiz-progress">
 
-                <div class="quiz-progress-bar"
+                <div
+                    class="quiz-progress-bar"
                     style="width:${percent}%">
+
                 </div>
 
             </div>
@@ -2214,115 +3257,159 @@ function renderQuestion(unit,id,title,number){
                 <div class="question-number">
 
                     QUESTION
-                    ${quizQuestionIndex+1}
-                    OF
-                    ${questions.length}
+                    ${quiz.index + 1}
+                    /
+                    ${quiz.questions.length}
 
                 </div>
+
 
                 <div class="question-text">
-                    ${q.q}
+
+                    ${question.question}
+
                 </div>
 
+
                 <div class="answers">
-                    ${answers}
+
+                    ${question.answers.map(
+                        (answer,i) => `
+
+                            <button
+                                class="answer"
+                                onclick="selectQuizAnswer(${i})">
+
+                                ${String.fromCharCode(65+i)}.
+                                ${answer}
+
+                            </button>
+
+                        `
+                    ).join("")}
+
                 </div>
+
 
                 <div class="quiz-controls">
 
-                    <button class="secondary"
-                        onclick="openLessonQuizzes('${unit}','${id}','${title}')">
-                        Exit
-                    </button>
+                    <span style="color:#64748b;font-size:12px">
 
-                    <button class="primary"
-                        onclick="nextQuestion('${unit}','${id}','${title}',${number})">
-                        ${quizQuestionIndex === questions.length-1
-                            ? "Finish Quiz"
-                            : "Next →"}
-                    </button>
+                        ${quiz.index + 1}
+                        of
+                        ${quiz.questions.length}
+
+                    </span>
 
                 </div>
 
             </div>
 
         </div>
+
     `;
+
 }
 
 
-function selectAnswer(index){
+/* =========================================================
+   SELECT ANSWER
+========================================================= */
 
-    quizAnswers[quizQuestionIndex] = index;
+function selectQuizAnswer(answerIndex){
 
-    document
-        .querySelectorAll(".answer")
-        .forEach(x=>x.classList.remove("selected"));
+    const quiz =
+        currentQuiz;
 
-    const el =
-        document.getElementById("answer-"+index);
+    if(!quiz) return;
 
-    if(el){
-        el.classList.add("selected");
+    const question =
+        quiz.questions[
+            quiz.index
+        ];
+
+    const correct =
+        answerIndex === question.correct;
+
+    quiz.answers.push({
+
+        question:
+            quiz.index + 1,
+
+        selected:
+            answerIndex,
+
+        correct:
+            correct
+
+    });
+
+    if(correct){
+
+        quiz.score++;
+
     }
-}
 
-
-function nextQuestion(unit,id,title,number){
-
-    const questions = getQuestions(unit,id);
-
-    if(quizAnswers[quizQuestionIndex] === undefined){
-
-        toast("Please choose an answer first.");
-
-        return;
-    }
-
+    quiz.index++;
 
     if(
-        quizAnswers[quizQuestionIndex]
-        ===
-        questions[quizQuestionIndex].c
+        quiz.index >=
+        quiz.questions.length
     ){
 
-        quizScore++;
-
-    }
-
-
-    if(quizQuestionIndex < questions.length-1){
-
-        quizQuestionIndex++;
-
-        renderQuestion(unit,id,title,number);
+        finishQuiz();
 
     }else{
 
-        finishQuiz(unit,id,title,number);
+        renderQuizQuestion();
 
     }
+
 }
 
 
-function finishQuiz(unit,id,title,number){
+/* =========================================================
+   FINISH QUIZ
+========================================================= */
 
-    const questions = getQuestions(unit,id);
+function finishQuiz(){
+
+    const quiz =
+        currentQuiz;
+
+    const total =
+        quiz.questions.length;
 
     const percent =
         Math.round(
-            (quizScore / questions.length) * 100
+            (quiz.score / total) * 100
         );
 
     const key =
-        `quiz_${unit}_${id}_${number}`;
+        "quiz_" +
+        currentUser +
+        "_" +
+        quiz.lessonId +
+        "_" +
+        quiz.quizNumber;
 
-    const result = {
+    const result={
 
-        score:quizScore,
-        total:questions.length,
+        score:quiz.score,
+
+        total:total,
+
         percent:percent,
-        date:new Date().toLocaleString()
+
+        date:new Date().toLocaleString(),
+
+        user:currentUser,
+
+        unit:quiz.unit,
+
+        lesson:quiz.lesson,
+
+        quizNumber:quiz.quizNumber
 
     };
 
@@ -2331,6 +3418,17 @@ function finishQuiz(unit,id,title,number){
         JSON.stringify(result)
     );
 
+    logActivity(
+        "Completed quiz",
+        quiz.unit +
+        " • " +
+        quiz.lesson +
+        " • Quiz " +
+        quiz.quizNumber +
+        " • " +
+        percent +
+        "%"
+    );
 
     document.getElementById("main").innerHTML = `
 
@@ -2339,58 +3437,71 @@ function finishQuiz(unit,id,title,number){
             <div class="question-card"
                  style="text-align:center">
 
-                <div style="font-size:65px">
-                    ${percent >= 80 ? "🏆" :
-                      percent >= 50 ? "⭐" : "💪"}
+                <div style="font-size:55px">
+                    ${percent >= 80 ? "🏆" : "📚"}
                 </div>
 
                 <h2 style="margin-top:10px">
                     Quiz Complete!
                 </h2>
 
-                <p style="
-                    color:#94a3b8;
-                    margin-top:8px;
-                ">
-                    ${unit} → ${id} → Quiz ${number}
+                <p style="color:#94a3b8;margin-top:8px">
+                    ${quiz.lesson}
+                    • Quiz ${quiz.quizNumber}
                 </p>
 
-                <div style="
-                    font-size:45px;
-                    font-weight:bold;
-                    margin:25px 0 8px;
-                ">
+
+                <div
+                    style="font-size:48px;
+                           font-weight:bold;
+                           margin:25px 0">
+
                     ${percent}%
+
                 </div>
 
+
                 <p style="color:#94a3b8">
+
                     Correct:
-                    <strong>${quizScore}</strong>
+                    <strong>
+                        ${quiz.score}
+                    </strong>
                     /
-                    ${questions.length}
+                    ${total}
+
                 </p>
 
-                <div style="
-                    margin-top:24px;
-                    display:flex;
-                    justify-content:center;
-                    flex-wrap:wrap;
-                    gap:10px;
-                ">
 
-                    <button class="primary"
-                        onclick="openLessonQuizzes('${unit}','${id}','${title}')">
-                        Back to Quizzes
-                    </button>
+                <div
+                    style="display:flex;
+                           gap:10px;
+                           justify-content:center;
+                           flex-wrap:wrap;
+                           margin-top:25px">
 
-                    <button class="secondary"
-                        onclick="startQuiz('${unit}','${id}','${title}',${number})">
+                    <button
+                        class="primary"
+                        onclick="startQuiz('${quiz.lessonId}',${quiz.quizNumber})">
+
                         Try Again
+
                     </button>
 
-                    <button class="secondary"
+                    <button
+                        class="secondary"
                         onclick="showPage('progress')">
+
                         View Progress
+
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="showPage('quizzes')">
+
+                        Back to Quizzes
+
                     </button>
 
                 </div>
@@ -2398,88 +3509,24 @@ function finishQuiz(unit,id,title,number){
             </div>
 
         </div>
+
     `;
+
 }
 
 
 /* =========================================================
-   CHALLENGES
+   CHALLENGE DATA
+========================================================= */
+
+const CHALLENGE_BANK = {};
+
+
+/* =========================================================
+   CHALLENGE UNITS
 ========================================================= */
 
 function renderChallengeUnits(){
-
-    let html = `
-
-        <div class="page-title">
-
-            <div>
-
-                <h2>🧠 Challenges</h2>
-
-                <p>
-                    Higher-thinking practice by Unit
-                    and Lesson.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="unit-grid">
-    `;
-
-
-    Object.keys(modules).forEach(unit=>{
-
-        html += unitHTML(unit,"challenge");
-
-    });
-
-
-    html += `</div>`;
-
-    document.getElementById("main").innerHTML = html;
-}
-
-
-function openLessonChallenges(unit,id,title){
-
-    selectedUnit = unit;
-    selectedLesson = id;
-
-    let cards = "";
-
-    /*
-       30 challenge slots per lesson.
-    */
-
-    for(let i=1;i<=30;i++){
-
-        cards += `
-
-            <div class="quiz-card">
-
-                <div class="quiz-number">
-                    🧠
-                </div>
-
-                <h3>Challenge ${i}</h3>
-
-                <p>
-                    ${id} — Higher Thinking<br>
-                    10 Questions
-                </p>
-
-                <button class="primary"
-                    onclick="startChallenge('${unit}','${id}','${title}',${i})">
-                    Start Challenge
-                </button>
-
-            </div>
-        `;
-
-    }
-
 
     document.getElementById("main").innerHTML = `
 
@@ -2487,17 +3534,12 @@ function openLessonChallenges(unit,id,title){
 
             <div>
 
-                <button class="back"
-                    onclick="showPage('challenges')">
-                    ← Back
-                </button>
-
-                <h2 style="margin-top:15px">
-                    ${id} — Challenges
+                <h2>
+                    🔥 Challenges
                 </h2>
 
                 <p>
-                    ${unit} → ${title}
+                    Test your higher-level mathematical thinking.
                 </p>
 
             </div>
@@ -2505,528 +3547,611 @@ function openLessonChallenges(unit,id,title){
         </div>
 
 
-        <div class="branch-path">
+        <div class="unit-grid">
 
-            <span class="path">Term 1</span>
-            <span class="path">Challenges</span>
-            <span class="path">${unit}</span>
-            <span class="path">${id}</span>
+            ${Object.keys(LESSONS).map(unit => `
+
+                <div class="unit-card">
+
+                    <div class="unit-top">
+
+                        <div class="unit-icon">
+                            🔥
+                        </div>
+
+                        <div class="unit-info">
+
+                            <h3>
+                                ${unit}
+                            </h3>
+
+                            <p>
+                                Challenges by lesson
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="lesson-list">
+
+                        ${LESSONS[unit].map(lesson => `
+
+                            <button
+                                class="lesson-item"
+                                onclick="showChallengeChoices('${lesson.id}')">
+
+                                <span>
+                                    🔥 ${lesson.name}
+                                </span>
+
+                                <span class="arrow">
+                                    →
+                                </span>
+
+                            </button>
+
+                        `).join("")}
+
+                    </div>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CHALLENGE CHOICES
+========================================================= */
+
+function showChallengeChoices(lessonId){
+
+    const data =
+        findLesson(lessonId);
+
+    if(!data){
+
+        toast("Lesson not found.");
+
+        return;
+
+    }
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    🔥 ${data.lesson.name}
+                </h2>
+
+                <p>
+                    Higher-thinking challenges.
+                </p>
+
+            </div>
+
+            <button
+                class="back"
+                onclick="showPage('challenges')">
+
+                ← Challenges
+
+            </button>
 
         </div>
 
 
         <div class="quiz-grid">
-            ${cards}
+
+            ${Array.from(
+                {length:30},
+                (_,i) => `
+
+                    <div class="quiz-card">
+
+                        <div
+                            class="quiz-number"
+                            style="background:#32152a">
+
+                            ${i+1}
+
+                        </div>
+
+                        <h3>
+                            Challenge ${i+1}
+                        </h3>
+
+                        <p>
+                            10 challenging questions
+                            • ${data.lesson.name}
+                        </p>
+
+                        <button
+                            class="primary"
+                            onclick="startChallenge('${lessonId}',${i+1})">
+
+                            Start Challenge
+
+                        </button>
+
+                    </div>
+
+                `
+            ).join("")}
+
         </div>
+
     `;
+
 }
 
 
-function startChallenge(unit,id,title,number){
+/* =========================================================
+   CHALLENGE QUESTION GENERATOR
+========================================================= */
 
-    /*
-       Challenge system is ready.
-       Actual source-based challenge questions
-       can be inserted later.
-    */
+function generateChallengeQuestion(
+    lessonId,
+    index
+){
 
-    const questions = [
+    const templates=[
 
-        "Explain why your method works, not only your answer.",
+        {
+            q:
+            "A student claims that two mathematical expressions are equivalent. Which reasoning would be the strongest way to verify the claim?",
+            a:[
+                "Test one random value only",
+                "Compare the expressions algebraically",
+                "Choose the larger expression",
+                "Use a calculator without checking"
+            ],
+            correct:1
+        },
 
-        "Find another possible method and compare it with yours.",
+        {
+            q:
+            "A pattern continues according to a rule. Which strategy would best help determine whether a proposed rule is always valid?",
+            a:[
+                "Check several values and justify the general relationship",
+                "Check only the first value",
+                "Guess from the graph",
+                "Use an unrelated example"
+            ],
+            correct:0
+        },
 
-        "Create an example that satisfies the given condition.",
+        {
+            q:
+            "Two different methods produce the same numerical result. What is the most important mathematical question to ask?",
+            a:[
+                "Which method looks shorter?",
+                "Whether both methods are logically valid",
+                "Which answer is larger?",
+                "Whether a calculator was used"
+            ],
+            correct:1
+        },
 
-        "Identify a possible mistake in a student's solution.",
+        {
+            q:
+            "A graph and an equation describe the same relationship. What could be used to confirm that they agree?",
+            a:[
+                "Compare corresponding points",
+                "Ignore the scale",
+                "Use only the y-axis",
+                "Change the equation"
+            ],
+            correct:0
+        },
 
-        "How would the answer change if one value changed?",
-
-        "Can you prove your answer using a different representation.",
-
-        "Find a pattern and explain what it tells you.",
-
-        "Use algebraic reasoning to justify your conclusion.",
-
-        "Which strategy is more efficient? Explain why.",
-
-        "Solve the problem and justify every important step."
+        {
+            q:
+            "A student obtains an answer that seems unreasonable. What should they do first?",
+            a:[
+                "Accept it immediately",
+                "Check the calculations and assumptions",
+                "Change the question",
+                "Round everything to zero"
+            ],
+            correct:1
+        }
 
     ];
 
-    let i=0;
-    let score=0;
+    return templates[
+        index % templates.length
+    ];
+
+}
 
 
-    function draw(){
+/* =========================================================
+   START CHALLENGE
+========================================================= */
 
-        document.getElementById("main").innerHTML = `
+function startChallenge(
+    lessonId,
+    challengeNumber
+){
 
-            <div class="quiz-shell">
+    const data =
+        findLesson(lessonId);
 
-                <div class="page-title">
+    if(!data){
 
-                    <div>
+        toast("Lesson not found.");
 
-                        <button class="back"
-                            onclick="openLessonChallenges('${unit}','${id}','${title}')">
-                            ← Exit
-                        </button>
-
-                        <h2 style="margin-top:15px">
-                            Challenge ${number}
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div class="quiz-progress">
-
-                    <div class="quiz-progress-bar"
-                         style="width:${(i/questions.length)*100}%">
-                    </div>
-
-                </div>
-
-
-                <div class="question-card">
-
-                    <div class="question-number">
-                        CHALLENGE QUESTION
-                        ${i+1} OF ${questions.length}
-                    </div>
-
-                    <div class="question-text">
-                        ${questions[i]}
-                    </div>
-
-                    <div style="margin-top:20px">
-
-                        <textarea
-                            id="challengeAnswer"
-                            placeholder="Write your reasoning here..."
-                            style="
-                                width:100%;
-                                min-height:160px;
-                                resize:vertical;
-                                background:#0e1729;
-                                color:white;
-                                border:1px solid #293750;
-                                border-radius:13px;
-                                padding:14px;
-                                outline:none;
-                            "
-                        ></textarea>
-
-                    </div>
-
-                    <div class="quiz-controls">
-
-                        <button class="secondary"
-                            onclick="openLessonChallenges('${unit}','${id}','${title}')">
-                            Exit
-                        </button>
-
-                        <button class="primary"
-                            onclick="challengeNext()">
-                            ${i === questions.length-1
-                                ? "Finish"
-                                : "Next →"}
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-        `;
+        return;
 
     }
 
+    const questions=[];
 
-    window.challengeNext = function(){
+    for(
+        let i=0;
+        i<10;
+        i++
+    ){
 
-        const ans =
-            document.getElementById("challengeAnswer");
-
-        if(!ans || ans.value.trim().length < 2){
-
-            toast("Write your reasoning first.");
-
-            return;
-        }
-
-        /*
-           For now completion is tracked rather than
-           automatically judging open-ended reasoning.
-        */
-
-        i++;
-
-        if(i >= questions.length){
-
-            localStorage.setItem(
-                `challenge_${unit}_${id}_${number}`,
-                JSON.stringify({
-                    completed:true,
-                    total:questions.length,
-                    date:new Date().toLocaleString()
-                })
+        const q =
+            generateChallengeQuestion(
+                lessonId,
+                i
             );
 
+        questions.push(q);
 
-            document.getElementById("main").innerHTML = `
+    }
 
-                <div class="quiz-shell">
+    currentChallenge={
 
-                    <div class="question-card"
-                         style="text-align:center">
+        lessonId:lessonId,
 
-                        <div style="font-size:65px">
-                            🧠
-                        </div>
+        lesson:data.lesson.name,
 
-                        <h2>
-                            Challenge Complete!
-                        </h2>
+        unit:data.unit,
 
-                        <p style="
-                            color:#94a3b8;
-                            margin-top:10px;
-                        ">
-                            You completed all
-                            ${questions.length}
-                            thinking questions.
-                        </p>
+        challengeNumber:challengeNumber,
 
-                        <button class="primary"
-                            style="margin-top:22px"
-                            onclick="openLessonChallenges('${unit}','${id}','${title}')">
-                            Back to Challenges
-                        </button>
+        questions:questions,
 
-                    </div>
+        index:0,
 
-                </div>
-            `;
-
-        }else{
-
-            draw();
-
-        }
+        score:0
 
     };
 
+    logActivity(
+        "Started challenge",
+        data.unit +
+        " • " +
+        data.lesson.name +
+        " • Challenge " +
+        challengeNumber
+    );
 
-    draw();
+    renderChallengeQuestion();
+
 }
 
 
 /* =========================================================
-   PROGRESS
+   RENDER CHALLENGE QUESTION
 ========================================================= */
 
-function renderProgress(){
+function renderChallengeQuestion(){
 
-    let results = [];
+    const challenge =
+        currentChallenge;
 
-    Object.keys(localStorage).forEach(key=>{
+    const question =
+        challenge.questions[
+            challenge.index
+        ];
 
-        if(
-            key.startsWith("quiz_") ||
-            key.startsWith("challenge_")
-        ){
+    const percent =
+        (challenge.index /
+        challenge.questions.length) *
+        100;
 
-            try{
+    document.getElementById("main").innerHTML = `
 
-                const data =
-                    JSON.parse(localStorage.getItem(key));
+        <div class="quiz-shell">
 
-                results.push({
-                    key:key,
-                    data:data
-                });
+            <div class="page-title">
 
-            }catch(e){}
+                <div>
 
-        }
+                    <h2>
+                        🔥 ${challenge.lesson}
+                    </h2>
 
-    });
+                    <p>
+                        Challenge ${challenge.challengeNumber}
+                    </p>
 
-
-    let html = `
-
-        <div class="page-title">
-
-            <div>
-
-                <h2>📊 My Progress</h2>
-
-                <p>
-                    Every quiz and challenge is tracked
-                    separately.
-                </p>
-
-            </div>
-
-        </div>
-    `;
-
-
-    if(results.length === 0){
-
-        html += `
-
-            <div class="lesson-box"
-                 style="text-align:center">
-
-                <div style="font-size:55px">
-                    📊
                 </div>
 
-                <h3 style="margin-top:10px">
-                    No results yet
-                </h3>
+                <button
+                    class="back"
+                    onclick="showPage('challenges')">
 
-                <p style="
-                    color:#7f8ca3;
-                    margin:8px 0 18px;
-                ">
-                    Complete a quiz to see its result
-                    here.
-                </p>
+                    Exit
 
-                <button class="primary"
-                    onclick="showPage('quizzes')">
-                    Start a Quiz
                 </button>
 
             </div>
-        `;
+
+
+            <div class="quiz-progress">
+
+                <div
+                    class="quiz-progress-bar"
+                    style="width:${percent}%">
+
+                </div>
+
+            </div>
+
+
+            <div class="question-card">
+
+                <div class="question-number">
+
+                    CHALLENGE QUESTION
+                    ${challenge.index+1}
+                    /
+                    ${challenge.questions.length}
+
+                </div>
+
+
+                <div class="question-text">
+
+                    ${question.q}
+
+                </div>
+
+
+                <div class="answers">
+
+                    ${question.a.map(
+                        (answer,i)=>`
+
+                            <button
+                                class="answer"
+                                onclick="selectChallengeAnswer(${i})">
+
+                                ${String.fromCharCode(65+i)}.
+                                ${answer}
+
+                            </button>
+
+                        `
+                    ).join("")}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SELECT CHALLENGE ANSWER
+========================================================= */
+
+function selectChallengeAnswer(
+    answerIndex
+){
+
+    const challenge =
+        currentChallenge;
+
+    const question =
+        challenge.questions[
+            challenge.index
+        ];
+
+    if(
+        answerIndex ===
+        question.correct
+    ){
+
+        challenge.score++;
+
+    }
+
+    challenge.index++;
+
+    if(
+        challenge.index >=
+        challenge.questions.length
+    ){
+
+        finishChallenge();
 
     }else{
 
-        html += `<div class="progress-list">`;
-
-
-        results.forEach(item=>{
-
-            const d = item.data;
-
-            const isQuiz =
-                item.key.startsWith("quiz_");
-
-
-            let title =
-                item.key
-                    .replace("quiz_","")
-                    .replace("challenge_","")
-                    .replaceAll("_"," → ");
-
-
-            let percent =
-                d.percent !== undefined
-                ? d.percent
-                : 100;
-
-
-            html += `
-
-                <div class="progress-row">
-
-                    <div class="progress-head">
-
-                        <span>
-                            ${isQuiz ? "📝" : "🧠"}
-                            ${title}
-                        </span>
-
-                        <span>
-                            ${percent}%
-                        </span>
-
-                    </div>
-
-                    <div class="bar">
-
-                        <div class="bar-fill"
-                             style="width:${percent}%">
-                        </div>
-
-                    </div>
-
-                    <div style="
-                        color:#64748b;
-                        font-size:11px;
-                        margin-top:8px;
-                    ">
-                        ${
-                            isQuiz
-                            ? `Correct: ${d.score}/${d.total}`
-                            : "Challenge completed"
-                        }
-
-                        ${d.date ? " • " + d.date : ""}
-                    </div>
-
-                </div>
-            `;
-
-        });
-
-
-        html += `</div>`;
+        renderChallengeQuestion();
 
     }
 
-
-    document.getElementById("main").innerHTML = html;
 }
 
 
 /* =========================================================
-   REWARDS
+   FINISH CHALLENGE
 ========================================================= */
 
-function renderRewards(){
+function finishChallenge(){
+
+    const challenge =
+        currentChallenge;
+
+    const total =
+        challenge.questions.length;
+
+    const percent =
+        Math.round(
+            challenge.score /
+            total *
+            100
+        );
+
+    const key =
+        "challenge_" +
+        currentUser +
+        "_" +
+        challenge.lessonId +
+        "_" +
+        challenge.challengeNumber;
+
+    const result={
+
+        score:
+            challenge.score,
+
+        total:
+            total,
+
+        percent:
+            percent,
+
+        date:
+            new Date().toLocaleString(),
+
+        user:
+            currentUser,
+
+        unit:
+            challenge.unit,
+
+        lesson:
+            challenge.lesson,
+
+        challengeNumber:
+            challenge.challengeNumber
+
+    };
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(result)
+    );
+
+    logActivity(
+        "Completed challenge",
+        challenge.unit +
+        " • " +
+        challenge.lesson +
+        " • Challenge " +
+        challenge.challengeNumber +
+        " • " +
+        percent +
+        "%"
+    );
 
     document.getElementById("main").innerHTML = `
 
-        <div class="page-title">
+        <div class="quiz-shell">
 
-            <div>
+            <div
+                class="question-card"
+                style="text-align:center">
 
-                <h2>🏆 Rewards Center</h2>
+                <div style="font-size:55px">
+                    🔥
+                </div>
 
-                <p>
-                    Keep learning and unlock your achievements.
+                <h2>
+                    Challenge Complete!
+                </h2>
+
+                <p style="color:#94a3b8;margin-top:8px">
+
+                    ${challenge.lesson}
+                    • Challenge
+                    ${challenge.challengeNumber}
+
                 </p>
 
+
+                <div
+                    style="font-size:48px;
+                           font-weight:bold;
+                           margin:25px 0">
+
+                    ${percent}%
+
+                </div>
+
+
+                <p style="color:#94a3b8">
+
+                    Correct:
+                    <strong>
+                        ${challenge.score}
+                    </strong>
+                    /
+                    ${total}
+
+                </p>
+
+
+                <div
+                    style="display:flex;
+                           gap:10px;
+                           justify-content:center;
+                           flex-wrap:wrap;
+                           margin-top:25px">
+
+                    <button
+                        class="primary"
+                        onclick="startChallenge('${challenge.lessonId}',${challenge.challengeNumber})">
+
+                        Try Again
+
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="showPage('progress')">
+
+                        View Progress
+
+                    </button>
+
+                    <button
+                        class="secondary"
+                        onclick="showPage('challenges')">
+
+                        Back to Challenges
+
+                    </button>
+
+                </div>
+
             </div>
 
         </div>
 
-
-        <div class="reward-grid">
-
-            <div class="reward">
-                <div class="reward-icon">🌟</div>
-                <h3>First Step</h3>
-                <p>Complete your first quiz.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">🔥</div>
-                <h3>On Fire</h3>
-                <p>Complete multiple quizzes.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">🧠</div>
-                <h3>Thinker</h3>
-                <p>Complete a challenge.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">📚</div>
-                <h3>Book Explorer</h3>
-                <p>Explore multiple lessons.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">🎯</div>
-                <h3>Perfect Score</h3>
-                <p>Get 100% on a quiz.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">🚀</div>
-                <h3>Fast Learner</h3>
-                <p>Keep progressing through units.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">👑</div>
-                <h3>Math Master</h3>
-                <p>Complete a major learning milestone.</p>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">💎</div>
-                <h3>Elite Student</h3>
-                <p>Build a strong learning record.</p>
-            </div>
-
-        </div>
     `;
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function renderProfile(){
-
-    document.getElementById("main").innerHTML = `
-
-        <div class="page-title">
-
-            <div>
-                <h2>👤 Profile</h2>
-                <p>Your Ahmed Academy student profile.</p>
-            </div>
-
-        </div>
-
-
-        <div class="profile-panel">
-
-            <div class="profile-big">
-                ${currentUser.charAt(0).toUpperCase()}
-            </div>
-
-            <h2>${currentUser}</h2>
-
-            <p>
-                Grade 9 Advanced Math Student
-            </p>
-
-            <button class="primary"
-                onclick="editUsername()">
-                Edit Username
-            </button>
-
-            <button class="secondary"
-                style="margin-left:7px"
-                onclick="logout()">
-                Logout
-            </button>
-
-        </div>
-    `;
-}
-
-
-function editUsername(){
-
-    const name =
-        prompt("Enter your username:",currentUser);
-
-    if(name && name.trim()){
-
-        currentUser = name.trim();
-
-        saveUser();
-
-        renderProfile();
-
-        toast("Username updated.");
-
-    }
 
 }
 
@@ -3043,11 +4168,12 @@ function renderWorksheets(){
 
             <div>
 
-                <h2>📄 Worksheets</h2>
+                <h2>
+                    📄 Worksheets
+                </h2>
 
                 <p>
-                    A dedicated worksheet section is ready
-                    for future content.
+                    Extra practice materials.
                 </p>
 
             </div>
@@ -3055,60 +4181,868 @@ function renderWorksheets(){
         </div>
 
 
-        <div class="lesson-box"
-             style="text-align:center">
+        <div class="coming-soon-box">
 
-            <div style="font-size:65px">
-                📄
+            <div style="font-size:55px">
+                🚧
             </div>
 
-            <h2 style="margin-top:10px">
-                Worksheets Coming Soon
+            <h2 style="margin-top:12px">
+                Coming Soon
             </h2>
 
-            <p style="
-                color:#7f8ca3;
-                max-width:550px;
-                margin:10px auto 20px;
-                line-height:1.6;
-            ">
-                The section is already built into
-                Ahmed Academy. The actual worksheet
-                files can be added later.
+            <p style="color:#7f8ca3;margin-top:8px">
+                Worksheets will be added here later.
             </p>
 
-            <button class="secondary"
-                onclick="showPage('lessons')">
-                Back to Lessons
-            </button>
-
         </div>
+
     `;
+
 }
 
 
 /* =========================================================
-   PROFILE / TEACHER
+   STUDY HUB
 ========================================================= */
+
+function renderStudyHub(){
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    🧠 Study Hub
+                </h2>
+
+                <p>
+                    Your smart study tools.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div
+                class="feature-card"
+                onclick="showPage('flashcards')">
+
+                <div class="big-icon">
+                    🗂️
+                </div>
+
+                <h3>
+                    Flashcards
+                </h3>
+
+                <p>
+                    Review key concepts.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('formulas')">
+
+                <div class="big-icon">
+                    ∑
+                </div>
+
+                <h3>
+                    Formula Bank
+                </h3>
+
+                <p>
+                    Review important formulas.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('daily')">
+
+                <div class="big-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Daily Practice
+                </h3>
+
+                <p>
+                    Practice every day.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('planner')">
+
+                <div class="big-icon">
+                    📅
+                </div>
+
+                <h3>
+                    Study Planner
+                </h3>
+
+                <p>
+                    Organize your study time.
+                </p>
+
+            </div>
+
+
+            <div
+                class="feature-card"
+                onclick="showPage('notes')">
+
+                <div class="big-icon">
+                    🗒️
+                </div>
+
+                <h3>
+                    My Notes
+                </h3>
+
+                <p>
+                    Save your own study notes.
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FLASHCARDS
+========================================================= */
+
+function renderFlashcards(){
+
+    const cards=[
+
+        {
+            front:"What is a function?",
+            back:"A relation in which each input has exactly one output."
+        },
+
+        {
+            front:"What does slope represent?",
+            back:"The rate of change between two quantities."
+        },
+
+        {
+            front:"What is an equation?",
+            back:"A mathematical statement showing that two expressions are equal."
+        },
+
+        {
+            front:"What is the domain?",
+            back:"The set of possible input values."
+        },
+
+        {
+            front:"What is the range?",
+            back:"The set of possible output values."
+        }
+
+    ];
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    🗂️ Flashcards
+                </h2>
+
+                <p>
+                    Quick concept review.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="unit-grid">
+
+            ${cards.map(
+                (card,i)=>`
+
+                    <div class="unit-card">
+
+                        <div
+                            style="font-size:12px;
+                                   color:#818cf8">
+
+                            CARD ${i+1}
+
+                        </div>
+
+                        <h3 style="margin-top:12px">
+
+                            ${card.front}
+
+                        </h3>
+
+                        <p
+                            style="color:#7f8ca3;
+                                   line-height:1.6;
+                                   margin-top:10px">
+
+                            ${card.back}
+
+                        </p>
+
+                    </div>
+
+                `
+            ).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   FORMULA BANK
+========================================================= */
+
+function renderFormulas(){
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    ∑ Formula Bank
+                </h2>
+
+                <p>
+                    Useful formulas for quick revision.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="unit-grid">
+
+            <div class="unit-card">
+
+                <h3>
+                    Slope
+                </h3>
+
+                <p
+                    style="font-size:25px;
+                           margin-top:15px">
+
+                    m =
+                    (y₂ − y₁)
+                    /
+                    (x₂ − x₁)
+
+                </p>
+
+            </div>
+
+
+            <div class="unit-card">
+
+                <h3>
+                    Distance
+                </h3>
+
+                <p
+                    style="font-size:23px;
+                           margin-top:15px">
+
+                    d =
+                    √((x₂−x₁)²+(y₂−y₁)²)
+
+                </p>
+
+            </div>
+
+
+            <div class="unit-card">
+
+                <h3>
+                    Pythagorean Theorem
+                </h3>
+
+                <p
+                    style="font-size:25px;
+                           margin-top:15px">
+
+                    a² + b² = c²
+
+                </p>
+
+            </div>
+
+
+            <div class="unit-card">
+
+                <h3>
+                    Quadratic Formula
+                </h3>
+
+                <p
+                    style="font-size:20px;
+                           margin-top:15px">
+
+                    x =
+                    (−b ± √(b²−4ac))
+                    /
+                    2a
+
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   DAILY PRACTICE
+========================================================= */
+
+function renderDaily(){
+
+    const number =
+        Math.floor(
+            Math.random()*20
+        ) + 1;
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    ⚡ Daily Practice
+                </h2>
+
+                <p>
+                    One quick question for today.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <div class="question-number">
+                DAILY QUESTION
+            </div>
+
+            <div class="question-text">
+
+                If
+                2x + 4 = ${number + 4},
+                what is x?
+
+            </div>
+
+
+            <div class="answers">
+
+                <button
+                    class="answer"
+                    onclick="dailyAnswer(1,${number})">
+
+                    A. ${number/2}
+
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="dailyAnswer(2,${number})">
+
+                    B. ${number}
+
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="dailyAnswer(3,${number})">
+
+                    C. ${number+2}
+
+                </button>
+
+                <button
+                    class="answer"
+                    onclick="dailyAnswer(4,${number})">
+
+                    D. ${number*2}
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function dailyAnswer(choice,number){
+
+    const correct =
+        choice === 1;
+
+    logActivity(
+        "Daily practice answered",
+        correct ? "Correct" : "Incorrect"
+    );
+
+    toast(
+        correct
+        ? "Correct! 🎉"
+        : "Not quite. Keep practicing!"
+    );
+
+}
+
+
+/* =========================================================
+   STUDY PLANNER
+========================================================= */
+
+function renderPlanner(){
+
+    const saved =
+        localStorage.getItem(
+            "aa_study_plan_" + currentUser
+        ) || "";
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    📅 Study Planner
+                </h2>
+
+                <p>
+                    Write your study plan.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="lesson-box">
+
+            <textarea
+                id="studyPlan"
+                style="width:100%;
+                       min-height:250px;
+                       background:#0d1628;
+                       color:white;
+                       border:1px solid #29364f;
+                       border-radius:13px;
+                       padding:15px;
+                       resize:vertical;
+                       outline:none"
+                placeholder="Write your study plan here...">${saved}</textarea>
+
+
+            <button
+                class="primary"
+                style="margin-top:14px"
+                onclick="savePlanner()">
+
+                Save Study Plan
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+function savePlanner(){
+
+    const value =
+        document.getElementById(
+            "studyPlan"
+        ).value;
+
+    localStorage.setItem(
+        "aa_study_plan_" + currentUser,
+        value
+    );
+
+    logActivity(
+        "Updated study planner",
+        "Saved study plan"
+    );
+
+    toast(
+        "Study plan saved."
+    );
+
+}
+
+
+/* =========================================================
+   MY NOTES
+========================================================= */
+
+function renderNotes(){
+
+    const saved =
+        localStorage.getItem(
+            "aa_notes_" + currentUser
+        ) || "";
+
+    document.getElementById("main").innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <h2>
+                    🗒️ My Notes
+                </h2>
+
+                <p>
+                    Keep your personal math notes here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="lesson-box">
+
+            <textarea
+                id="myNotes"
+                style="width:100%;
+                       min-height:300px;
+                       background:#0d1628;
+                       color:white;
+                       border:1px solid #29364f;
+                       border-radius:13px;
+                       padding:15px;
+                       resize:vertical;
+                       outline:none"
+                placeholder="Write your notes...">${saved}</textarea>
+
+
+            <button
+                class="primary"
+                style="margin-top:14px"
+                onclick="saveNotes()">
+
+                Save Notes
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+function saveNotes(){
+
+    const value =
+        document.getElementById(
+            "myNotes"
+        ).value;
+
+    localStorage.setItem(
+        "aa_notes_" + currentUser,
+        value
+    );
+
+    logActivity(
+        "Updated notes",
+        "Saved personal notes"
+    );
+
+    toast(
+        "Notes saved."
+    );
+
+}
+    <script>
+
+/* =========================================================
+   ACTIVITY / TEACHER LOG SYSTEM
+========================================================= */
+
+/*
+   كل عملية يقوم بها الطالب يتم تسجيلها محليًا:
+   - تسجيل الدخول
+   - فتح Lesson
+   - فتح PDF
+   - بدء Quiz
+   - إنهاء Quiz
+   - بدء Challenge
+   - إنهاء Challenge
+   - Daily Practice
+   - Notes
+   - Planner
+*/
+
+function getActivityLog(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem("aa_activity_log") || "[]"
+        );
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function saveActivityLog(log){
+
+    localStorage.setItem(
+        "aa_activity_log",
+        JSON.stringify(log)
+    );
+
+}
+
+
+function logActivity(action,details){
+
+    if(!currentUser ||
+       currentUser === "Student"){
+
+        return;
+
+    }
+
+    const log =
+        getActivityLog();
+
+    log.unshift({
+
+        username:currentUser,
+
+        action:action,
+
+        details:details || "",
+
+        date:new Date().toLocaleString(),
+
+        timestamp:Date.now()
+
+    });
+
+
+    /*
+       لا نخلي الـ localStorage يكبر بلا حدود.
+       نحتفظ بآخر 1000 عملية.
+    */
+
+    if(log.length > 1000){
+
+        log.splice(
+            1000
+        );
+
+    }
+
+    saveActivityLog(log);
+
+}
+
+
+/* =========================================================
+   LOGIN LOG
+========================================================= */
+
+function logLogin(){
+
+    if(!currentUser ||
+       currentUser === "Student"){
+
+        return;
+
+    }
+
+    logActivity(
+        "Student Login",
+        "Logged into Ahmed Academy"
+    );
+
+}
+
+
+/* =========================================================
+   VISITOR COUNTER
+========================================================= */
+
+/*
+   ملاحظة مهمة:
+
+   في الموقع Static على GitHub Pages،
+   العداد الموجود هنا يستطيع تسجيل الزيارات
+   في نفس المتصفح فقط.
+
+   كل Refresh = زيارة جديدة.
+
+   أما عداد حقيقي لكل زوار الموقع من أجهزة مختلفة
+   فيحتاج Backend / Database.
+*/
+
+
+function registerVisit(){
+
+    let visits = 0;
+
+    try{
+
+        visits =
+            Number(
+                localStorage.getItem(
+                    "aa_total_visits"
+                ) || 0
+            );
+
+    }catch(e){
+
+        visits = 0;
+
+    }
+
+
+    visits++;
+
+
+    localStorage.setItem(
+        "aa_total_visits",
+        visits
+    );
+
+
+    renderVisitorCounter();
+
+}
+
+
+function getVisitorCount(){
+
+    return Number(
+        localStorage.getItem(
+            "aa_total_visits"
+        ) || 0
+    );
+
+}
+
+
+function renderVisitorCounter(){
+
+    const elements =
+        document.querySelectorAll(
+            "[data-visitor-count]"
+        );
+
+    const count =
+        getVisitorCount();
+
+
+    elements.forEach(el => {
+
+        el.textContent =
+            count.toLocaleString();
+
+    });
+
+}
+
+
+/* =========================================================
+   TEACHER LOGIN
+========================================================= */
+
+const TEACHER_USERNAME =
+    "ahmed";
+
+const TEACHER_PASSWORD =
+    "Ahmed2012$";
+
 
 function openTeacherLogin(){
 
-    document.getElementById("modalTitle").textContent =
-        "👨‍🏫 Teacher Login";
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "👨‍🏫 Teacher Dashboard";
 
-    document.getElementById("modalContent").innerHTML = `
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
 
         <div class="input-group">
 
-            <label>Teacher Username</label>
+            <label>
+                Teacher Username
+            </label>
 
             <div class="input-wrap">
 
                 <input
                     id="teacherUsername"
                     type="text"
-                    placeholder="Username"
-                >
+                    placeholder="Enter teacher username">
 
             </div>
 
@@ -3117,19 +5051,28 @@ function openTeacherLogin(){
 
         <div class="input-group">
 
-            <label>Password</label>
+            <label>
+                Password
+            </label>
 
             <div class="input-wrap">
 
                 <input
                     id="teacherPassword"
                     type="password"
-                    placeholder="Password"
-                >
+                    placeholder="Enter teacher password">
 
-                <button class="toggle-pass"
-                    onclick="togglePassword('teacherPassword',this)">
+                <button
+                    class="toggle-pass"
+                    onclick="
+                        togglePassword(
+                            'teacherPassword',
+                            this
+                        )
+                    ">
+
                     👁️
+
                 </button>
 
             </div>
@@ -3137,54 +5080,70 @@ function openTeacherLogin(){
         </div>
 
 
-        <button class="primary"
-            style="width:100%;margin-top:5px"
+        <button
+            class="primary"
+            style="width:100%"
             onclick="teacherLogin()">
+
             Login as Teacher
+
         </button>
+
+
+        <div
+            class="login-footer">
+
+            <button
+                class="link-btn"
+                onclick="showLogin()">
+
+                ← Student Login
+
+            </button>
+
+        </div>
 
     `;
 
-    document
-        .getElementById("modal")
-        .classList.remove("hidden");
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("hidden");
+
 }
 
 
 function teacherLogin(){
 
     const username =
-        document.getElementById("teacherUsername").value.trim();
+        document.getElementById(
+            "teacherUsername"
+        ).value.trim();
+
 
     const password =
-        document.getElementById("teacherPassword").value;
+        document.getElementById(
+            "teacherPassword"
+        ).value;
 
 
     if(
-        username === "ahmed" &&
-        password === "Ahmed2012$"
+        username !== TEACHER_USERNAME ||
+        password !== TEACHER_PASSWORD
     ){
 
-        localStorage.setItem(
-            "aa_teacher",
-            "true"
+        toast(
+            "Incorrect teacher username or password."
         );
 
-        closeModal();
-
-        toast("Teacher login successful.");
-
-        setTimeout(()=>{
-
-            renderTeacherDashboard();
-
-        },500);
-
-    }else{
-
-        toast("Incorrect teacher username or password.");
+        return;
 
     }
+
+
+    closeModal();
+
+    showTeacherDashboard();
 
 }
 
@@ -3193,30 +5152,1533 @@ function teacherLogin(){
    TEACHER DASHBOARD
 ========================================================= */
 
+function showTeacherDashboard(){
+
+    document
+        .querySelectorAll(".side-btn")
+        .forEach(
+            x => x.classList.remove("active")
+        );
+
+
+    document.getElementById(
+        "main"
+    ).innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <div
+                    class="section-kicker">
+
+                    TEACHER CENTER
+
+                </div>
+
+                <h2>
+
+                    👨‍🏫 Teacher Dashboard
+
+                </h2>
+
+                <p>
+
+                    Monitor student activity
+                    and learning progress.
+
+                </p>
+
+            </div>
+
+
+            <button
+                class="back"
+                onclick="showPage('home')">
+
+                ← Home
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="teacherStats"
+            class="stats-grid">
+
+        </div>
+
+
+        <div
+            class="teacher-dashboard-grid">
+
+
+            <div
+                class="teacher-panel">
+
+                <div
+                    class="teacher-panel-head">
+
+                    <div>
+
+                        <h3>
+                            👥 Students
+                        </h3>
+
+                        <p>
+                            Registered accounts
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="teacherStudents">
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="teacher-panel">
+
+                <div
+                    class="teacher-panel-head">
+
+                    <div>
+
+                        <h3>
+                            🕒 Recent Activity
+                        </h3>
+
+                        <p>
+                            Latest student actions
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="secondary"
+                        onclick="clearTeacherActivity()">
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="teacherActivity">
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    renderTeacherDashboard();
+
+}
+
+
+/* =========================================================
+   TEACHER DASHBOARD DATA
+========================================================= */
+
+function getStudentAccounts(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "aa_accounts"
+            ) || "{}"
+        );
+
+    }catch(e){
+
+        return {};
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER TEACHER DASHBOARD
+========================================================= */
+
 function renderTeacherDashboard(){
 
-    const isTeacher =
-        localStorage.getItem("aa_teacher") === "true";
+    const accounts =
+        getStudentAccounts();
 
-    if(!isTeacher){
 
-        openTeacherLogin();
+    const students =
+        Object.keys(accounts);
+
+
+    const activities =
+        getActivityLog();
+
+
+    const quizResults =
+        getAllResults(
+            "quiz_"
+        );
+
+
+    const challengeResults =
+        getAllResults(
+            "challenge_"
+        );
+
+
+    const stats =
+        document.getElementById(
+            "teacherStats"
+        );
+
+
+    if(stats){
+
+        stats.innerHTML = `
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${students.length}
+                    </strong>
+
+                    <span>
+                        Students
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👀
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${getVisitorCount()}
+                    </strong>
+
+                    <span>
+                        Visits
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${quizResults.length}
+                    </strong>
+
+                    <span>
+                        Quiz Results
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${challengeResults.length}
+                    </strong>
+
+                    <span>
+                        Challenge Results
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    renderTeacherStudents(
+        students
+    );
+
+
+    renderTeacherActivity(
+        activities
+    );
+
+}
+
+
+/* =========================================================
+   GET ALL RESULTS
+========================================================= */
+
+function getAllResults(prefix){
+
+    const results=[];
+
+
+    for(
+        let i=0;
+        i<localStorage.length;
+        i++
+    ){
+
+        const key =
+            localStorage.key(i);
+
+
+        if(
+            key &&
+            key.startsWith(prefix)
+        ){
+
+            try{
+
+                const data =
+                    JSON.parse(
+                        localStorage.getItem(
+                            key
+                        )
+                    );
+
+
+                if(data){
+
+                    results.push({
+                        key:key,
+                        ...data
+                    });
+
+                }
+
+            }catch(e){}
+
+        }
+
+    }
+
+
+    results.sort(
+        (a,b) =>
+            new Date(b.date) -
+            new Date(a.date)
+    );
+
+
+    return results;
+
+}
+
+
+/* =========================================================
+   STUDENT LIST
+========================================================= */
+
+function renderTeacherStudents(
+    students
+){
+
+    const box =
+        document.getElementById(
+            "teacherStudents"
+        );
+
+
+    if(!box){
 
         return;
 
     }
 
 
-    document.getElementById("main").innerHTML = `
+    if(!students.length){
+
+        box.innerHTML = `
+
+            <div class="empty-state">
+
+                👤
+
+                <p>
+                    No students have
+                    created accounts yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = students.map(
+        username => {
+
+            const activity =
+                getActivityLog()
+                .filter(
+                    x =>
+                        x.username === username
+                );
+
+
+            const quizResults =
+                getAllResults(
+                    "quiz_"
+                )
+                .filter(
+                    x =>
+                        x.user === username
+                );
+
+
+            const challengeResults =
+                getAllResults(
+                    "challenge_"
+                )
+                .filter(
+                    x =>
+                        x.user === username
+                );
+
+
+            return `
+
+                <div
+                    class="student-row">
+
+                    <div
+                        class="student-avatar">
+
+                        ${getAvatarHTML(
+                            username,
+                            42
+                        )}
+
+                    </div>
+
+
+                    <div
+                        class="student-info">
+
+                        <strong>
+
+                            ${escapeHTML(
+                                username
+                            )}
+
+                        </strong>
+
+                        <span>
+
+                            ${activity.length}
+                            activities
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="student-results">
+
+                        <span>
+                            📝
+                            ${quizResults.length}
+                        </span>
+
+                        <span>
+                            🔥
+                            ${challengeResults.length}
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="secondary small-btn"
+                        onclick="
+                            showStudentDetails(
+                                '${escapeAttribute(username)}'
+                            )
+                        ">
+
+                        View
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+function showStudentDetails(
+    username
+){
+
+    const activities =
+        getActivityLog()
+        .filter(
+            x =>
+                x.username === username
+        );
+
+
+    const quizzes =
+        getAllResults(
+            "quiz_"
+        )
+        .filter(
+            x =>
+                x.user === username
+        );
+
+
+    const challenges =
+        getAllResults(
+            "challenge_"
+        )
+        .filter(
+            x =>
+                x.user === username
+        );
+
+
+    document.getElementById(
+        "main"
+    ).innerHTML = `
 
         <div class="page-title">
 
             <div>
 
-                <h2>👨‍🏫 Teacher Dashboard</h2>
+                <div class="section-kicker">
+                    STUDENT PROFILE
+                </div>
+
+                <h2>
+
+                    👤
+                    ${escapeHTML(username)}
+
+                </h2>
 
                 <p>
-                    Local dashboard for this browser.
+                    Complete learning activity.
+                </p>
+
+            </div>
+
+
+            <button
+                class="back"
+                onclick="showTeacherDashboard()">
+
+                ← Dashboard
+
+            </button>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${quizzes.length}
+                    </strong>
+
+                    <span>
+                        Quizzes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${challenges.length}
+                    </strong>
+
+                    <span>
+                        Challenges
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <strong>
+                        ${activities.length}
+                    </strong>
+
+                    <span>
+                        Activities
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="teacher-panel">
+
+            <div
+                class="teacher-panel-head">
+
+                <div>
+
+                    <h3>
+                        📝 Quiz Results
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="results-table">
+
+                ${
+                    quizzes.length
+                    ?
+
+                    quizzes.map(
+                        result => `
+
+                            <div
+                                class="result-row">
+
+                                <div>
+
+                                    <strong>
+
+                                        ${escapeHTML(
+                                            result.lesson ||
+                                            "Lesson"
+                                        )}
+
+                                    </strong>
+
+                                    <span>
+
+                                        Quiz
+                                        ${result.quizNumber || ""}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div>
+
+                                    ${result.score}
+                                    /
+                                    ${result.total}
+
+                                    <small>
+                                        (${result.percent}%)
+                                    </small>
+
+                                </div>
+
+
+                                <div>
+
+                                    ${escapeHTML(
+                                        result.date || ""
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                        <div class="empty-state">
+
+                            No quiz results yet.
+
+                        </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="teacher-panel"
+            style="margin-top:20px">
+
+            <div
+                class="teacher-panel-head">
+
+                <div>
+
+                    <h3>
+                        🔥 Challenge Results
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="results-table">
+
+                ${
+                    challenges.length
+                    ?
+
+                    challenges.map(
+                        result => `
+
+                            <div
+                                class="result-row">
+
+                                <div>
+
+                                    <strong>
+
+                                        ${escapeHTML(
+                                            result.lesson ||
+                                            "Lesson"
+                                        )}
+
+                                    </strong>
+
+                                    <span>
+
+                                        Challenge
+                                        ${result.challengeNumber || ""}
+
+                                    </span>
+
+                                </div>
+
+
+                                <div>
+
+                                    ${result.score}
+                                    /
+                                    ${result.total}
+
+                                    <small>
+                                        (${result.percent}%)
+                                    </small>
+
+                                </div>
+
+
+                                <div>
+
+                                    ${escapeHTML(
+                                        result.date || ""
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                        <div class="empty-state">
+
+                            No challenge results yet.
+
+                        </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="teacher-panel"
+            style="margin-top:20px">
+
+            <div
+                class="teacher-panel-head">
+
+                <div>
+
+                    <h3>
+                        🕒 Complete Activity
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity-list">
+
+                ${
+                    activities.length
+                    ?
+
+                    activities.map(
+                        activity => `
+
+                            <div
+                                class="activity-row">
+
+                                <div
+                                    class="activity-icon">
+
+                                    ${getActivityIcon(
+                                        activity.action
+                                    )}
+
+                                </div>
+
+
+                                <div
+                                    class="activity-content">
+
+                                    <strong>
+
+                                        ${escapeHTML(
+                                            activity.action
+                                        )}
+
+                                    </strong>
+
+                                    <span>
+
+                                        ${escapeHTML(
+                                            activity.details || ""
+                                        )}
+
+                                    </span>
+
+                                    <small>
+
+                                        ${escapeHTML(
+                                            activity.date || ""
+                                        )}
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        `
+                    ).join("")
+
+                    :
+
+                    `
+                        <div class="empty-state">
+
+                            No activity recorded.
+
+                        </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TEACHER ACTIVITY
+========================================================= */
+
+function renderTeacherActivity(
+    activities
+){
+
+    const box =
+        document.getElementById(
+            "teacherActivity"
+        );
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    if(!activities.length){
+
+        box.innerHTML = `
+
+            <div class="empty-state">
+
+                🕒
+
+                <p>
+                    No student activity yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        activities
+        .slice(0,100)
+        .map(
+            activity => `
+
+                <div
+                    class="activity-row">
+
+                    <div
+                        class="activity-icon">
+
+                        ${getActivityIcon(
+                            activity.action
+                        )}
+
+                    </div>
+
+
+                    <div
+                        class="activity-content">
+
+                        <strong>
+
+                            ${escapeHTML(
+                                activity.username
+                            )}
+
+                        </strong>
+
+
+                        <span>
+
+                            ${escapeHTML(
+                                activity.action
+                            )}
+
+                            ${
+                                activity.details
+                                ?
+                                " • " +
+                                escapeHTML(
+                                    activity.details
+                                )
+                                :
+                                ""
+                            }
+
+                        </span>
+
+
+                        <small>
+
+                            ${escapeHTML(
+                                activity.date
+                            )}
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+/* =========================================================
+   ACTIVITY ICON
+========================================================= */
+
+function getActivityIcon(action){
+
+    if(!action){
+
+        return "📌";
+
+    }
+
+    if(
+        action.includes("Login")
+    ){
+
+        return "🔐";
+
+    }
+
+    if(
+        action.includes("Opened lesson")
+    ){
+
+        return "📘";
+
+    }
+
+    if(
+        action.includes("Opened PDF")
+    ){
+
+        return "📄";
+
+    }
+
+    if(
+        action.includes("Started quiz")
+    ){
+
+        return "📝";
+
+    }
+
+    if(
+        action.includes("Completed quiz")
+    ){
+
+        return "✅";
+
+    }
+
+    if(
+        action.includes("Started challenge")
+    ){
+
+        return "🔥";
+
+    }
+
+    if(
+        action.includes("Completed challenge")
+    ){
+
+        return "🏆";
+
+    }
+
+    if(
+        action.includes("notes")
+    ){
+
+        return "🗒️";
+
+    }
+
+    if(
+        action.includes("planner")
+    ){
+
+        return "📅";
+
+    }
+
+    return "📌";
+
+}
+
+
+/* =========================================================
+   CLEAR ACTIVITY
+========================================================= */
+
+function clearTeacherActivity(){
+
+    if(
+        !confirm(
+            "Clear all recorded activity?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "aa_activity_log"
+    );
+
+
+    renderTeacherDashboard();
+
+    toast(
+        "Activity cleared."
+    );
+
+}
+
+
+/* =========================================================
+   HTML SAFETY HELPERS
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    );
+
+}
+
+
+/* =========================================================
+   PROFILE AVATAR SYSTEM
+========================================================= */
+
+/*
+   الصورة يتم حفظها في localStorage
+   وتظهر في الزاوية في كل صفحات الموقع.
+*/
+
+function getAvatarKey(username){
+
+    return (
+        "aa_avatar_" +
+        username
+    );
+
+}
+
+
+function getAvatar(username){
+
+    if(!username ||
+       username === "Student"){
+
+        return "";
+
+    }
+
+    return localStorage.getItem(
+        getAvatarKey(username)
+    ) || "";
+
+}
+
+
+/* =========================================================
+   AVATAR HTML
+========================================================= */
+
+function getAvatarHTML(
+    username,
+    size=44
+){
+
+    const image =
+        getAvatar(username);
+
+
+    if(image){
+
+        return `
+
+            <img
+                src="${image}"
+                alt="Profile"
+                style="
+                    width:${size}px;
+                    height:${size}px;
+                    border-radius:50%;
+                    object-fit:cover;
+                    display:block;
+                "
+            >
+
+        `;
+
+    }
+
+
+    const letter =
+        String(
+            username || "A"
+        )
+        .charAt(0)
+        .toUpperCase();
+
+
+    return `
+
+        <div
+            style="
+                width:${size}px;
+                height:${size}px;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #8b5cf6
+                );
+                color:white;
+                font-weight:800;
+                font-size:${Math.max(
+                    14,
+                    size*0.42
+                )}px;
+            ">
+
+            ${escapeHTML(letter)}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PROFILE PHOTO PICKER
+========================================================= */
+
+function chooseProfilePhoto(){
+
+    const input =
+        document.createElement(
+            "input"
+        );
+
+
+    input.type =
+        "file";
+
+
+    input.accept =
+        "image/*";
+
+
+    input.onchange =
+        function(){
+
+            const file =
+                this.files[0];
+
+
+            if(!file){
+
+                return;
+
+            }
+
+
+            /*
+               نحط حد معقول لحجم الصورة
+               حتى لا يمتلئ localStorage.
+            */
+
+            if(
+                file.size >
+                2 * 1024 * 1024
+            ){
+
+                toast(
+                    "Please choose an image smaller than 2MB."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(e){
+
+                    localStorage.setItem(
+                        getAvatarKey(
+                            currentUser
+                        ),
+                        e.target.result
+                    );
+
+
+                    updateProfile();
+
+
+                    if(
+                        currentPage ===
+                        "profile"
+                    ){
+
+                        renderProfile();
+
+                    }
+
+
+                    logActivity(
+                        "Updated profile",
+                        "Changed profile picture"
+                    );
+
+
+                    toast(
+                        "Profile picture updated."
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        };
+
+
+    input.click();
+
+}
+
+
+/* =========================================================
+   UPDATE HEADER PROFILE
+========================================================= */
+
+function updateProfile(){
+
+    const avatar =
+        document.getElementById(
+            "headerAvatar"
+        );
+
+
+    const username =
+        document.getElementById(
+            "headerUsername"
+        );
+
+
+    if(avatar){
+
+        avatar.innerHTML =
+            getAvatarHTML(
+                currentUser,
+                42
+            );
+
+    }
+
+
+    if(username){
+
+        username.textContent =
+            currentUser || "Student";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROFILE PAGE
+========================================================= */
+
+function renderProfile(){
+
+    const avatar =
+        getAvatarHTML(
+            currentUser,
+            120
+        );
+
+
+    const quizResults =
+        getAllResults(
+            "quiz_"
+        )
+        .filter(
+            x =>
+                x.user === currentUser
+        );
+
+
+    const challengeResults =
+        getAllResults(
+            "challenge_"
+        )
+        .filter(
+            x =>
+                x.user === currentUser
+        );
+
+
+    const activity =
+        getActivityLog()
+        .filter(
+            x =>
+                x.username === currentUser
+        );
+
+
+    document.getElementById(
+        "main"
+    ).innerHTML = `
+
+        <div class="page-title">
+
+            <div>
+
+                <div class="section-kicker">
+                    ACCOUNT
+                </div>
+
+                <h2>
+                    👤 My Profile
+                </h2>
+
+                <p>
+                    Manage your Ahmed Academy profile.
                 </p>
 
             </div>
@@ -3224,248 +6686,1580 @@ function renderTeacherDashboard(){
         </div>
 
 
-        <div class="stats">
+        <div class="profile-page">
 
-            <div class="stat">
-                <div class="stat-label">
-                    Current Student
+
+            <div
+                class="profile-hero">
+
+                <div
+                    class="profile-avatar-large">
+
+                    ${avatar}
+
                 </div>
 
-                <div class="stat-value">
-                    ${currentUser}
+
+                <div
+                    class="profile-main-info">
+
+                    <h2>
+
+                        ${escapeHTML(
+                            currentUser
+                        )}
+
+                    </h2>
+
+                    <p>
+
+                        Ahmed Academy Student
+
+                    </p>
+
+
+                    <button
+                        class="primary"
+                        onclick="chooseProfilePhoto()">
+
+                        📷 Choose Profile Picture
+
+                    </button>
+
                 </div>
+
             </div>
 
-            <div class="stat">
-                <div class="stat-label">
-                    Term
+
+            <div
+                class="profile-stats">
+
+
+                <div class="profile-stat">
+
+                    <strong>
+                        ${quizResults.length}
+                    </strong>
+
+                    <span>
+                        Quizzes Completed
+                    </span>
+
                 </div>
 
-                <div class="stat-value">
-                    1
+
+                <div class="profile-stat">
+
+                    <strong>
+                        ${challengeResults.length}
+                    </strong>
+
+                    <span>
+                        Challenges Completed
+                    </span>
+
                 </div>
+
+
+                <div class="profile-stat">
+
+                    <strong>
+                        ${activity.length}
+                    </strong>
+
+                    <span>
+                        Activities
+                    </span>
+
+                </div>
+
+
             </div>
 
-            <div class="stat">
-                <div class="stat-label">
-                    Units
+
+            <div
+                class="profile-card">
+
+                <h3>
+                    ⚙️ Account
+                </h3>
+
+
+                <div
+                    class="profile-row">
+
+                    <span>
+                        Username
+                    </span>
+
+                    <strong>
+                        ${escapeHTML(
+                            currentUser
+                        )}
+                    </strong>
+
                 </div>
 
-                <div class="stat-value">
-                    4
+
+                <div
+                    class="profile-row">
+
+                    <span>
+                        Account Type
+                    </span>
+
+                    <strong>
+                        Student
+                    </strong>
+
                 </div>
+
+
             </div>
 
-            <div class="stat">
-                <div class="stat-label">
-                    System
-                </div>
 
-                <div class="stat-value">
-                    ✓
-                </div>
+            <div
+                class="profile-card">
+
+                <h3>
+                    🏆 Recent Results
+                </h3>
+
+
+                ${
+                    [
+                        ...quizResults,
+                        ...challengeResults
+                    ]
+                    .sort(
+                        (a,b) =>
+                            new Date(b.date) -
+                            new Date(a.date)
+                    )
+                    .slice(0,10)
+                    .map(
+                        result => `
+
+                            <div
+                                class="profile-result">
+
+                                <div>
+
+                                    <strong>
+
+                                        ${
+                                            result.quizNumber
+                                            ?
+                                            "📝 Quiz " +
+                                            result.quizNumber
+                                            :
+                                            "🔥 Challenge " +
+                                            result.challengeNumber
+                                        }
+
+                                    </strong>
+
+                                    <span>
+
+                                        ${escapeHTML(
+                                            result.lesson ||
+                                            ""
+                                        )}
+
+                                    </span>
+
+                                </div>
+
+
+                                <strong>
+
+                                    ${result.percent}%
+
+                                </strong>
+
+                            </div>
+
+                        `
+                    )
+                    .join("")
+                    ||
+                    `
+
+                        <div
+                            class="empty-state">
+
+                            No results yet.
+
+                        </div>
+
+                    `
+                }
+
             </div>
+
 
         </div>
 
-
-        <div class="lesson-box">
-
-            <h3>Teacher Tools</h3>
-
-            <p style="
-                color:#7f8ca3;
-                line-height:1.6;
-                margin:10px 0 20px;
-            ">
-                This static version stores data locally
-                in the current browser. A real online
-                teacher dashboard for all students would
-                require a database/backend.
-            </p>
-
-            <button class="primary"
-                onclick="showPage('progress')">
-                View Local Progress
-            </button>
-
-            <button class="secondary"
-                onclick="localStorage.removeItem('aa_teacher');showPage('home')">
-                Exit Teacher Mode
-            </button>
-
-        </div>
     `;
-}
-
-
-/* =========================================================
-   PASSWORD TOGGLE
-========================================================= */
-
-function togglePassword(id,button){
-
-    const input =
-        document.getElementById(id);
-
-    if(input.type === "password"){
-
-        input.type = "text";
-
-        button.textContent = "🙈";
-
-    }else{
-
-        input.type = "password";
-
-        button.textContent = "👁️";
-
-    }
 
 }
 
 
 /* =========================================================
-   MODAL
+   AVATAR CLICK
 ========================================================= */
 
-function closeModal(){
+function openProfileFromHeader(){
 
-    document
-        .getElementById("modal")
-        .classList.add("hidden");
+    if(
+        !currentUser ||
+        currentUser === "Student"
+    ){
 
-}
-
-
-/* =========================================================
-   COMING SOON
-========================================================= */
-
-function comingSoon(){
-
-    toast("This section is coming soon 🔒");
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-function showLogin(){
-
-    document.getElementById("modalTitle").textContent =
-        "🔐 Student Login";
-
-    document.getElementById("modalContent").innerHTML = `
-
-        <div class="input-group">
-
-            <label>Username</label>
-
-            <div class="input-wrap">
-
-                <input
-                    id="studentUsername"
-                    type="text"
-                    placeholder="Enter username"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>Password</label>
-
-            <div class="input-wrap">
-
-                <input
-                    id="studentPassword"
-                    type="password"
-                    placeholder="Enter password"
-                >
-
-                <button class="toggle-pass"
-                    onclick="togglePassword('studentPassword',this)">
-                    👁️
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button class="primary"
-            style="width:100%"
-            onclick="studentLogin()">
-            Login
-        </button>
-
-    `;
-
-    document
-        .getElementById("modal")
-        .classList.remove("hidden");
-
-}
-
-
-function studentLogin(){
-
-    const name =
-        document
-            .getElementById("studentUsername")
-            .value.trim();
-
-    if(!name){
-
-        toast("Enter your username.");
+        showLogin();
 
         return;
 
     }
 
-    currentUser = name;
 
-    saveUser();
-
-    closeModal();
-
-    toast("Welcome to Ahmed Academy!");
-
-    renderHome();
+    showPage(
+        "profile"
+    );
 
 }
 
 
 /* =========================================================
-   LOGOUT
+   HEADER PROFILE HTML
 ========================================================= */
 
-function logout(){
+function buildHeaderProfile(){
 
-    localStorage.removeItem("aa_current_user");
+    return `
 
-    currentUser = "Student";
+        <button
+            class="header-profile"
+            onclick="openProfileFromHeader()"
+            title="Open Profile">
+
+            <span
+                id="headerAvatar">
+
+                ${getAvatarHTML(
+                    currentUser,
+                    42
+                )}
+
+            </span>
+
+
+            <span
+                id="headerUsername"
+                class="header-profile-name">
+
+                ${escapeHTML(
+                    currentUser
+                )}
+
+            </span>
+
+        </button>
+
+    `;
+
+}
+
+
+/* =========================================================
+   COMING SOON HELPERS
+========================================================= */
+
+function comingSoonPage(
+    icon,
+    title,
+    description
+){
+
+    document.getElementById(
+        "main"
+    ).innerHTML = `
+
+        <div
+            class="coming-soon-box">
+
+            <div
+                style="
+                    font-size:65px;
+                    margin-bottom:15px;
+                ">
+
+                ${icon}
+
+            </div>
+
+
+            <div
+                class="section-kicker">
+
+                AHMED ACADEMY
+
+            </div>
+
+
+            <h2>
+
+                ${title}
+
+            </h2>
+
+
+            <p>
+
+                ${description}
+
+            </p>
+
+
+            <span
+                class="coming-badge">
+
+                COMING SOON
+
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   OPTIONAL FEATURES = COMING SOON
+========================================================= */
+
+function showComingSoonWorksheets(){
+
+    comingSoonPage(
+        "📄",
+        "Worksheets",
+        "Extra worksheets and printable practice are coming soon."
+    );
+
+}
+
+
+function showComingSoonCertificates(){
+
+    comingSoonPage(
+        "🎓",
+        "Certificates",
+        "Certificates and course completion awards are coming soon."
+    );
+
+}
+
+
+function showComingSoonLeaderboard(){
+
+    comingSoonPage(
+        "🏆",
+        "Leaderboard",
+        "Student rankings and friendly competitions are coming soon."
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL VISITOR REGISTRATION
+========================================================= */
+
+/*
+   This should run once whenever index.html
+   loads/reloads.
+*/
+
+registerVisit();
+
+</script>
+/* =========================================================
+   FINAL UI CSS INJECTION
+========================================================= */
+
+(function addFinalStyles(){
+
+    const style =
+        document.createElement("style");
+
+    style.textContent = `
+
+    /* ================================
+       HEADER PROFILE
+    ================================= */
+
+    .header-profile{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        border:0;
+        background:transparent;
+        color:inherit;
+        cursor:pointer;
+        padding:5px 8px;
+        border-radius:14px;
+        transition:.2s ease;
+    }
+
+    .header-profile:hover{
+        background:rgba(255,255,255,.07);
+    }
+
+    .header-profile-name{
+        font-weight:700;
+        max-width:130px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+
+    /* ================================
+       PROFILE
+    ================================= */
+
+    .profile-page{
+        max-width:1000px;
+        margin:0 auto;
+    }
+
+    .profile-hero{
+        display:flex;
+        align-items:center;
+        gap:25px;
+        padding:30px;
+        border-radius:24px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(99,102,241,.18),
+                rgba(139,92,246,.08)
+            );
+        border:1px solid rgba(255,255,255,.08);
+        margin-bottom:20px;
+    }
+
+    .profile-avatar-large{
+        flex-shrink:0;
+    }
+
+    .profile-main-info h2{
+        margin:0 0 5px;
+    }
+
+    .profile-main-info p{
+        opacity:.7;
+        margin:0 0 18px;
+    }
+
+    .profile-stats{
+        display:grid;
+        grid-template-columns:
+            repeat(3,1fr);
+        gap:15px;
+        margin-bottom:20px;
+    }
+
+    .profile-stat{
+        padding:22px;
+        border-radius:18px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+        text-align:center;
+    }
+
+    .profile-stat strong{
+        display:block;
+        font-size:30px;
+        margin-bottom:5px;
+    }
+
+    .profile-stat span{
+        opacity:.65;
+        font-size:13px;
+    }
+
+    .profile-card{
+        padding:24px;
+        border-radius:20px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+        margin-bottom:20px;
+    }
+
+    .profile-card h3{
+        margin-top:0;
+    }
+
+    .profile-row{
+        display:flex;
+        justify-content:space-between;
+        gap:20px;
+        padding:14px 0;
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .profile-row:last-child{
+        border-bottom:0;
+    }
+
+    .profile-row span{
+        opacity:.65;
+    }
+
+    .profile-result{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 0;
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .profile-result:last-child{
+        border-bottom:0;
+    }
+
+    .profile-result strong{
+        display:block;
+    }
+
+    .profile-result span{
+        display:block;
+        opacity:.6;
+        font-size:13px;
+        margin-top:3px;
+    }
+
+
+    /* ================================
+       TEACHER DASHBOARD
+    ================================= */
+
+    .teacher-dashboard-grid{
+        display:grid;
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+        gap:20px;
+    }
+
+    .teacher-panel{
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+        border-radius:22px;
+        padding:22px;
+    }
+
+    .teacher-panel-head{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+        margin-bottom:18px;
+    }
+
+    .teacher-panel-head h3{
+        margin:0;
+    }
+
+    .teacher-panel-head p{
+        margin:4px 0 0;
+        opacity:.6;
+        font-size:13px;
+    }
+
+
+    /* ================================
+       TEACHER STATS
+    ================================= */
+
+    .stats-grid{
+        display:grid;
+        grid-template-columns:
+            repeat(4,1fr);
+        gap:15px;
+        margin-bottom:20px;
+    }
+
+    .stat-card{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        padding:20px;
+        border-radius:20px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+    }
+
+    .stat-icon{
+        width:48px;
+        height:48px;
+        border-radius:15px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(99,102,241,.15);
+        font-size:22px;
+        flex-shrink:0;
+    }
+
+    .stat-card strong{
+        display:block;
+        font-size:25px;
+    }
+
+    .stat-card span{
+        opacity:.6;
+        font-size:12px;
+    }
+
+
+    /* ================================
+       STUDENTS
+    ================================= */
+
+    .student-row{
+        display:flex;
+        align-items:center;
+        gap:12px;
+        padding:13px 0;
+        border-bottom:
+            1px solid rgba(255,255,255,.06);
+    }
+
+    .student-row:last-child{
+        border-bottom:0;
+    }
+
+    .student-avatar{
+        flex-shrink:0;
+    }
+
+    .student-info{
+        flex:1;
+        min-width:0;
+    }
+
+    .student-info strong{
+        display:block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+
+    .student-info span{
+        display:block;
+        opacity:.55;
+        font-size:12px;
+        margin-top:3px;
+    }
+
+    .student-results{
+        display:flex;
+        gap:8px;
+        font-size:12px;
+        opacity:.7;
+    }
+
+    .small-btn{
+        padding:7px 11px !important;
+        font-size:12px !important;
+    }
+
+
+    /* ================================
+       ACTIVITY
+    ================================= */
+
+    .activity-list{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .activity-row{
+        display:flex;
+        gap:12px;
+        padding:13px 0;
+        border-bottom:
+            1px solid rgba(255,255,255,.06);
+    }
+
+    .activity-row:last-child{
+        border-bottom:0;
+    }
+
+    .activity-icon{
+        width:38px;
+        height:38px;
+        border-radius:12px;
+        background:rgba(255,255,255,.06);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-shrink:0;
+    }
+
+    .activity-content{
+        min-width:0;
+        flex:1;
+    }
+
+    .activity-content strong{
+        display:block;
+        font-size:14px;
+    }
+
+    .activity-content span{
+        display:block;
+        opacity:.65;
+        font-size:12px;
+        margin-top:3px;
+    }
+
+    .activity-content small{
+        display:block;
+        opacity:.4;
+        font-size:11px;
+        margin-top:4px;
+    }
+
+
+    /* ================================
+       RESULTS
+    ================================= */
+
+    .results-table{
+        width:100%;
+    }
+
+    .result-row{
+        display:grid;
+        grid-template-columns:
+            1.5fr
+            .7fr
+            1fr;
+        gap:15px;
+        align-items:center;
+        padding:14px 0;
+        border-bottom:
+            1px solid rgba(255,255,255,.06);
+    }
+
+    .result-row:last-child{
+        border-bottom:0;
+    }
+
+    .result-row strong{
+        display:block;
+    }
+
+    .result-row span{
+        display:block;
+        opacity:.6;
+        font-size:12px;
+        margin-top:3px;
+    }
+
+    .result-row small{
+        opacity:.6;
+    }
+
+
+    /* ================================
+       EMPTY STATE
+    ================================= */
+
+    .empty-state{
+        text-align:center;
+        padding:35px 15px;
+        opacity:.65;
+    }
+
+    .empty-state p{
+        margin:8px 0 0;
+    }
+
+
+    /* ================================
+       COMING SOON
+    ================================= */
+
+    .coming-soon-box{
+        max-width:700px;
+        margin:70px auto;
+        text-align:center;
+        padding:55px 30px;
+        border-radius:28px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(99,102,241,.12),
+                rgba(139,92,246,.05)
+            );
+        border:
+            1px solid rgba(255,255,255,.08);
+    }
+
+    .coming-soon-box h2{
+        margin:10px 0;
+        font-size:30px;
+    }
+
+    .coming-soon-box p{
+        opacity:.65;
+        max-width:500px;
+        margin:0 auto 20px;
+        line-height:1.7;
+    }
+
+    .coming-badge{
+        display:inline-block;
+        padding:8px 15px;
+        border-radius:999px;
+        background:rgba(99,102,241,.16);
+        font-size:12px;
+        font-weight:800;
+        letter-spacing:.08em;
+    }
+
+
+    /* ================================
+       VISITOR COUNTER
+    ================================= */
+
+    .visitor-counter{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        font-size:13px;
+        opacity:.7;
+    }
+
+    .visitor-counter strong{
+        opacity:1;
+        font-size:16px;
+    }
+
+
+    /* ================================
+       PLATFORM CARDS
+    ================================= */
+
+    .platform-grid{
+        display:grid;
+        grid-template-columns:
+            repeat(3,1fr);
+        gap:18px;
+        margin-top:25px;
+    }
+
+    .platform-card{
+        padding:25px;
+        border-radius:22px;
+        background:rgba(255,255,255,.045);
+        border:1px solid rgba(255,255,255,.07);
+        transition:.2s ease;
+    }
+
+    .platform-card:hover{
+        transform:translateY(-3px);
+        background:rgba(255,255,255,.065);
+    }
+
+    .platform-card h3{
+        margin:10px 0 7px;
+    }
+
+    .platform-card p{
+        margin:0;
+        opacity:.6;
+        line-height:1.6;
+        font-size:13px;
+    }
+
+
+    /* ================================
+       QUICK ACCESS
+    ================================= */
+
+    .quick-grid{
+        display:grid;
+        grid-template-columns:
+            repeat(4,1fr);
+        gap:14px;
+        margin-top:20px;
+    }
+
+    .quick-card{
+        padding:18px;
+        border-radius:18px;
+        background:rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.07);
+        cursor:pointer;
+        transition:.2s ease;
+    }
+
+    .quick-card:hover{
+        transform:translateY(-2px);
+    }
+
+
+    /* ================================
+       SECTION KICKER
+    ================================= */
+
+    .section-kicker{
+        font-size:11px;
+        font-weight:800;
+        letter-spacing:.13em;
+        opacity:.5;
+        margin-bottom:7px;
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media(max-width:900px){
+
+        .stats-grid{
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+
+        .teacher-dashboard-grid{
+            grid-template-columns:1fr;
+        }
+
+        .platform-grid{
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+
+        .quick-grid{
+            grid-template-columns:
+                repeat(2,1fr);
+        }
+
+    }
+
+
+    @media(max-width:600px){
+
+        .header-profile-name{
+            display:none;
+        }
+
+        .profile-hero{
+            flex-direction:column;
+            text-align:center;
+            padding:25px 18px;
+        }
+
+        .profile-stats{
+            grid-template-columns:1fr;
+        }
+
+        .stats-grid{
+            grid-template-columns:1fr;
+        }
+
+        .platform-grid{
+            grid-template-columns:1fr;
+        }
+
+        .quick-grid{
+            grid-template-columns:1fr 1fr;
+        }
+
+        .result-row{
+            grid-template-columns:1fr;
+            gap:6px;
+        }
+
+        .student-results{
+            display:none;
+        }
+
+        .student-row{
+            gap:8px;
+        }
+
+        .teacher-panel{
+            padding:16px;
+        }
+
+        .coming-soon-box{
+            margin:35px auto;
+            padding:40px 20px;
+        }
+
+    }
+
+    `;
+
+
+    document.head.appendChild(
+        style
+    );
+
+})();
+
+
+/* =========================================================
+   FINAL HEADER INTEGRATION
+========================================================= */
+
+function injectHeaderProfile(){
+
+    /*
+       نحاول العثور على منطقة الـ header
+       بدون تكسير التصميم الأصلي.
+    */
+
+    const header =
+        document.querySelector(
+            "header"
+        );
+
+
+    if(!header ||
+       !currentUser){
+
+        return;
+
+    }
+
+
+    if(
+        document.getElementById(
+            "headerAvatar"
+        )
+    ){
+
+        updateProfile();
+
+        return;
+
+    }
+
+
+    /*
+       نبحث عن منطقة أزرار الهيدر.
+    */
+
+    const candidates =
+        header.querySelectorAll(
+            ".header-actions, .nav-actions, .top-actions, .actions"
+        );
+
+
+    let target =
+        candidates.length
+        ?
+        candidates[0]
+        :
+        null;
+
+
+    if(!target){
+
+        target = header;
+
+    }
+
+
+    const wrapper =
+        document.createElement(
+            "div"
+        );
+
+
+    wrapper.innerHTML =
+        buildHeaderProfile();
+
+
+    /*
+       لو لقينا actions نحط الـ profile
+       في نهايتها.
+    */
+
+    target.appendChild(
+        wrapper.firstElementChild
+    );
+
 
     updateProfile();
 
-    showLogin();
+}
+
+
+/* =========================================================
+   PATCH OPEN LESSON
+========================================================= */
+
+const originalOpenLesson =
+    window.openLesson;
+
+
+if(typeof originalOpenLesson === "function"){
+
+    window.openLesson =
+        function(){
+
+            const args =
+                arguments;
+
+
+            try{
+
+                logActivity(
+                    "Opened lesson",
+                    "Opened a lesson"
+                );
+
+            }catch(e){}
+
+
+            return originalOpenLesson.apply(
+                this,
+                args
+            );
+
+        };
 
 }
 
 
 /* =========================================================
-   INIT
+   PATCH OPEN PDF
 ========================================================= */
 
-updateProfile();
+const originalOpenPDF =
+    window.openPDF;
 
-renderHome();
+
+if(typeof originalOpenPDF === "function"){
+
+    window.openPDF =
+        function(path,title){
+
+            try{
+
+                logActivity(
+                    "Opened PDF",
+                    title ||
+                    path ||
+                    "Lesson PDF"
+                );
+
+            }catch(e){}
+
+
+            return originalOpenPDF.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH QUIZ START
+========================================================= */
+
+const originalStartQuiz =
+    window.startQuiz;
+
+
+if(typeof originalStartQuiz === "function"){
+
+    window.startQuiz =
+        function(){
+
+            try{
+
+                logActivity(
+                    "Started quiz",
+                    "Started a quiz"
+                );
+
+            }catch(e){}
+
+
+            return originalStartQuiz.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH CHALLENGE START
+========================================================= */
+
+const originalStartChallenge =
+    window.startChallenge;
+
+
+if(typeof originalStartChallenge === "function"){
+
+    window.startChallenge =
+        function(){
+
+            try{
+
+                logActivity(
+                    "Started challenge",
+                    "Started a challenge"
+                );
+
+            }catch(e){}
+
+
+            return originalStartChallenge.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH QUIZ FINISH
+========================================================= */
+
+const originalFinishQuiz =
+    window.finishQuiz;
+
+
+if(typeof originalFinishQuiz === "function"){
+
+    window.finishQuiz =
+        function(){
+
+            const result =
+                originalFinishQuiz.apply(
+                    this,
+                    arguments
+                );
+
+
+            try{
+
+                logActivity(
+                    "Completed quiz",
+                    "Quiz completed"
+                );
+
+            }catch(e){}
+
+
+            return result;
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH CHALLENGE FINISH
+========================================================= */
+
+const originalFinishChallenge =
+    window.finishChallenge;
+
+
+if(
+    typeof originalFinishChallenge ===
+    "function"
+){
+
+    window.finishChallenge =
+        function(){
+
+            const result =
+                originalFinishChallenge.apply(
+                    this,
+                    arguments
+                );
+
+
+            try{
+
+                logActivity(
+                    "Completed challenge",
+                    "Challenge completed"
+                );
+
+            }catch(e){}
+
+
+            return result;
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH DAILY ANSWER
+========================================================= */
+
+const originalDailyAnswer =
+    window.dailyAnswer;
+
+
+if(
+    typeof originalDailyAnswer ===
+    "function"
+){
+
+    window.dailyAnswer =
+        function(){
+
+            try{
+
+                logActivity(
+                    "Daily Practice",
+                    "Answered daily practice"
+                );
+
+            }catch(e){}
+
+
+            return originalDailyAnswer.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH PLANNER SAVE
+========================================================= */
+
+const originalSavePlanner =
+    window.savePlanner;
+
+
+if(
+    typeof originalSavePlanner ===
+    "function"
+){
+
+    window.savePlanner =
+        function(){
+
+            try{
+
+                logActivity(
+                    "Updated planner",
+                    "Saved planner changes"
+                );
+
+            }catch(e){}
+
+
+            return originalSavePlanner.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   PATCH NOTES SAVE
+========================================================= */
+
+const originalSaveNotes =
+    window.saveNotes;
+
+
+if(
+    typeof originalSaveNotes ===
+    "function"
+){
+
+    window.saveNotes =
+        function(){
+
+            try{
+
+                logActivity(
+                    "Updated notes",
+                    "Saved notes"
+                );
+
+            }catch(e){}
+
+
+            return originalSaveNotes.apply(
+                this,
+                arguments
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   FINAL APP START
+========================================================= */
+
+function startAhmedAcademy(){
+
+    /*
+       Visitor count already registered
+       at the end of Part 3.
+    */
+
+
+    /*
+       لو فيه user محفوظ
+       نظهر الموقع.
+    */
+
+    if(
+        currentUser &&
+        currentUser !== "Student"
+    ){
+
+        try{
+
+            showPage("home");
+
+        }catch(e){
+
+            console.error(
+                "Ahmed Academy startup error:",
+                e
+            );
+
+        }
+
+
+        setTimeout(
+            injectHeaderProfile,
+            100
+        );
+
+
+        setTimeout(
+            updateProfile,
+            150
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SAFE PROFILE REFRESH
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const profile =
+            event.target.closest(
+                ".header-profile"
+            );
+
+
+        if(profile){
+
+            setTimeout(
+                updateProfile,
+                50
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   KEEP PROFILE VISIBLE AFTER PAGE CHANGES
+========================================================= */
+
+const oldShowPage =
+    window.showPage;
+
+
+if(typeof oldShowPage === "function"){
+
+    window.showPage =
+        function(page){
+
+            const result =
+                oldShowPage.apply(
+                    this,
+                    arguments
+                );
+
+
+            setTimeout(
+                function(){
+
+                    injectHeaderProfile();
+
+                    updateProfile();
+
+                },
+                50
+            );
+
+
+            return result;
+
+        };
+
+}
+
+
+/* =========================================================
+   FINAL START
+========================================================= */
+
+setTimeout(
+    startAhmedAcademy,
+    50
+);
+
+
+/* =========================================================
+   END OF AHMED ACADEMY
+========================================================= */
 
 </script>
 
